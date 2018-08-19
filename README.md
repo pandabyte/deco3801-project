@@ -23,8 +23,8 @@ Use when making changes to React.
     - Bash: `./test_live.sh`
     - Cmd:
         1. Activate python virtual environment: `pipenv shell`
-        2. Set environment variable SECRET\_KEY to anything: `set SECRET\_KEY=<secret>`
-        3. Set environment variable DJANGO\_DEV to true: `set DJANGO\_DEV=true`
+        2. Set environment variable SECRET\_KEY to anything: `set SECRET_KEY=<secret>`
+        3. Set environment variable DJANGO\_DEV to true: `set DJANGO_DEV=true`
         4. Start the Django dev server: `python manage.py runserver`
 6. View the site at `localhost:8000`
 
@@ -36,7 +36,7 @@ Use when only making changes to Django.
 2. Run the Django dev server
     - Bash: `./test_built.sh`
     - Cmd:
-        1. Set environment variable SECRET\_KEY to anything: `set SECRET\_KEY=<secret>`
-        2. Unset environment variable DJANGO\_DEV: `set DJANGO\_DEV=`
+        1. Set environment variable SECRET\_KEY to anything: `set SECRET_KEY=<secret>`
+        2. Unset environment variable DJANGO\_DEV: `set DJANGO_DEV=`
         3. Start the Django dev server: `python manage.py runserver`
 3. View the site at `localhost:8000`
