@@ -12,6 +12,7 @@
 2. Change directory into cloned repository
 3. Install python dependencies with `pipenv install`
 4. Install JavaScript dependencies with `npm install`
+5. Migrate Django models with `./test_migrate.sh`
 
 ## Test With Hot Reloading React App
 
