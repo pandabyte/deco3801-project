@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangorestframework = "==3.8.2"
+pytz = "==2018.5"
+Django = "==2.1"
+gunicorn = "*"
+django-heroku = "*"
+django-webpack-loader = "*"
+djangorestframework-simplejwt = "*"
+coreapi = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
