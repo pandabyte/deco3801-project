@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Custom user model
 
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'users.User'
 
 
 # REST framework
