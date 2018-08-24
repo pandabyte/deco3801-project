@@ -19,12 +19,12 @@ class App extends Component {
   }
 
   _loginButtonHandler() {
-    var username = this.state.username;
+    var email = this.state.email;
     var password = this.state.password;
-    // Clear username and password from state
-    this.setState({username: '', password: ''})
-    console.log(`Username: ${username} Password: ${password}`);
-    console.log(JSON.stringify({username, password}));
+    // Clear email and password from state
+    this.setState({email: '', password: ''})
+    console.log(`Username: ${email} Password: ${password}`);
+    console.log(JSON.stringify({email, password}));
     fetch('/api/auth/token/obtain/', {
       method: 'POST', 
       headers: {
@@ -32,7 +32,7 @@ class App extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-         username,
+         email,
          password
       })
     }).then((response) => {
@@ -104,7 +104,7 @@ class App extends Component {
         <div className="App">
           <label>
             Username:
-            <input name="username" type="text" onChange={this.handleChange.bind(this)} />
+            <input name="email" type="text" onChange={this.handleChange.bind(this)} />
           </label>
           <label>
             Password:
