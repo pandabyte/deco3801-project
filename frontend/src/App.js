@@ -13,14 +13,8 @@ import AppRouter from './modules/Layout/AppRouter';
 
 export default class App extends React.Component {
 
-    state = {
-        activeItem: 'home',
-    }
-
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     render() {
-        const { activeItem } = this.state
 
         return (
             <div className="App">
