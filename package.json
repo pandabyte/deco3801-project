@@ -7,8 +7,11 @@
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
-    "babel-loader": "7.1.2",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^3.1.1",
+    "babel-preset-stage-1": "^6.24.1",
     "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
@@ -28,6 +31,8 @@
     "hash.js": "^1.1.5",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "mobx": "^5.0.4",
+    "mobx-react": "^5.2.5",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
@@ -36,6 +41,7 @@
     "react": "^16.4.2",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.2",
+    "react-router-dom": "^4.3.1",
     "resolve": "1.6.0",
     "semantic-ui-css": "^2.3.3",
     "semantic-ui-react": "^0.82.3",
@@ -50,10 +56,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "client": "node scripts/start.js",
-    "server": "./test_live.sh",
-    "start: all": "concurrently \" npm run client\" \"npm run server\""
+    "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -91,13 +94,20 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "es2015",
+      "react-app",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-decorators-legacy",
+      "transform-class-properties"
     ]
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "devDependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "webpack-bundle-tracker": "^0.3.0"
   }
 }

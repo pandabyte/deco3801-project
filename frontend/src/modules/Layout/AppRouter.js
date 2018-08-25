@@ -1,14 +1,20 @@
+// import dependencies
 import * as React from 'react';
+import { observer } from 'mobx-react';
+import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 
 // style sheets
 import '../../App.css';
 import { Menu, Header, Icon } from 'semantic-ui-react';
-import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 
 // import custom components
 import Home from '../../Home';
-import Process from '../../modules/Process/Process'
-;
+import Process from '../../modules/Process/Process';
+
+// import store
+import AppRouterStore from './AppRouterStore';
+
+@observer
 export default class AppRouter extends React.Component {
 
     state = {
@@ -18,12 +24,11 @@ export default class AppRouter extends React.Component {
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     render() {
-        const { activeItem } = this.state
+
+        const { activeItem } = this.state;
 
         return (
             <div>
-
-
 
                 <BrowserRouter>
                     <div>
