@@ -66,3 +66,7 @@ yarn-error.log*
 
 assets/
 webpack-stats.*
+
+# Editor
+
+.vscode/

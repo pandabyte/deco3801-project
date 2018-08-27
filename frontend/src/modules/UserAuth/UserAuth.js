@@ -9,12 +9,11 @@ import UserAuthApi from '../../api/UserAuthApi';
 
 export default class UserAuth extends React.Component {
 
-    componentWillMount() {
+    componentDidlMount() {
         if (localStorage.getItem("token") && !UserAuthStore.isLoggedIn) {
             UserAuthStore.isLoggedIn = true;
         }
-        console.log('will mount');
-        this._getUserID();
+
     }
 
     _handleChange = (e) => {
@@ -23,21 +22,15 @@ export default class UserAuth extends React.Component {
 
     _handleLogin = () => {
         const { credentials } = UserAuthStore;
+
+
         UserAuthApi.login(credentials).then(res => {
-            console.log(res)
-            if (res.ok) {
-                console.log('Success', res);
 
-                res.json().then(data => {
-                    console.log(data);
-                    localStorage.setItem('token', data.access);
-                    UserAuthStore.isLoggedIn = true;
+            localStorage.setItem('token', res.data.access);
+            localStorage.setItem('refresh', res.data.refresh);
 
-                    console.log('token set: ' + localStorage.getItem('token') + ' now getting userid');
-                    this._getUserID();
-                });
-            }
-            throw new Error(res.status + ' ' + res.statusText);
+
+
         }).catch(err => {
             console.log(err);
             this._handleLogout();
@@ -48,27 +41,21 @@ export default class UserAuth extends React.Component {
     _handleLogout = () => {
         console.log("Token removed, state reset");
         localStorage.removeItem('token');
+        localStorage.removeItem('refresh');
         UserAuthStore.isLoggedIn = false;
         UserAuthStore.userID = '';
     }
 
     _getUserID = () => {
-        UserAuthApi.getUserId()
-            .then(res => {
-                if (res.ok) {
-                    console.log('Success', res);
+        UserAuthApi.getUserId().then(res => {
 
-                    return res.json().then(data => {
-                        console.log(data);
-                        UserAuthStore.userID = data.userId
-                    });
-                }
-                throw new Error(res.status + ' ' + res.statusText);
-            })
-            .catch(err => {
-                console.log(err);
-                this._handleLogout();
-            });
+
+            UserAuthStore.userID = res.data.userId
+
+        }).catch(err => {
+            console.log(err);
+            this._handleLogout();
+        });
     }
 
     render() {
@@ -82,7 +69,7 @@ export default class UserAuth extends React.Component {
                 <p>UserID: {userID}</p>
 
                 <Form.Button type="button" content='login' onClick={this._handleLogin} />
-                <Form.Button type="button" content='get userID w/o token' onClick={this._handleLogin} />
+                <Form.Button type="button" content='get userID w/o token' onClick={this._getUserID} />
             </Form>
         )
 

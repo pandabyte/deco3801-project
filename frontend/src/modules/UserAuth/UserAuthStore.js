@@ -21,7 +21,6 @@ class UserAuthStore {
             password: ''
         }
     }
-
 }
 
 export default new UserAuthStore();

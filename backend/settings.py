@@ -31,16 +31,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'api_v1.apps.ApiV1Config',
-    'home.apps.HomeConfig',
-    'rest_framework',
-    'webpack_loader',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'webpack_loader',
+    'api_v1.apps.ApiV1Config',
+    'home.apps.HomeConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+# Custom user model
+
+AUTH_USER_MODEL = 'users.User'
 
 
 # REST framework

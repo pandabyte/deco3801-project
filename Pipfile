@@ -7,11 +7,9 @@ name = "pypi"
 djangorestframework = "==3.8.2"
 pytz = "==2018.5"
 Django = "==2.1"
-gunicorn = "*"
-django-heroku = "*"
-django-webpack-loader = "*"
-djangorestframework-simplejwt = "*"
-coreapi = "*"
+django-webpack-loader = "==0.6.0"
+djangorestframework-simplejwt = "==3.2.3"
+coreapi = "==2.3.3"
 
 [dev-packages]
 
