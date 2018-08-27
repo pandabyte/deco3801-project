@@ -29,7 +29,6 @@ class AppStore {
             password: ''
         }
     }
-
 }
 
 export default new AppStore();

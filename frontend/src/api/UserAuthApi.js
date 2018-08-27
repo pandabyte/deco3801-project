@@ -8,6 +8,7 @@ class UserAuthApi {
 
     getUserId = () => {
         var token = localStorage.getItem('token');
+        console.log('user auth api',  token);
 
         return axios.get('/api/v1/userid/', {
             headers: {
@@ -16,10 +17,10 @@ class UserAuthApi {
                 'Authorization': 'Bearer ' + token,
             }
         });
-
     }
 
     login = (credentials) => {
+
         var email = credentials.email;
         var password = credentials.password;
         console.log('email ' + email + ' Password ' + password);
@@ -41,3 +42,11 @@ class UserAuthApi {
 }
 
 export default new UserAuthApi();
+
+
+/*  create new user
+pipenv shell
+. set_test_scecret.sh   // sets secret key
+python manage.py createsuperuser
+    enter details
+*/

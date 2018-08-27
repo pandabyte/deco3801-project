@@ -13,12 +13,10 @@ import UserAuthApi from './api/UserAuthApi';
 
 export default class App extends React.Component {
 
-    componentWillMount() {
+    componentDidMount() {
         if (localStorage.getItem("token") && !AppStore.isLoggedIn) {
             AppStore.isLoggedIn = true;
         }
-        console.log('will mount');
-        this._getUserID();
     }
 
     _handleChange = (e) => {
@@ -26,22 +24,19 @@ export default class App extends React.Component {
     }
 
     _handleLogin = () => {
+        console.log('what the fuck');
         const { credentials } = AppStore;
+
         UserAuthApi.login(credentials).then(res => {
-            console.log(res)
-            if (res.ok) {
-                console.log('Success', res);
 
-                res.json().then(data => {
-                    console.log(data);
-                    localStorage.setItem('token', data.access);
-                    AppStore.isLoggedIn = true;
+            localStorage.setItem('token', res.data.access);
+            localStorage.setItem('refresh', res.data.refresh);
 
-                    console.log('token set: ' + localStorage.getItem('token') + ' now getting userid');
-                    this._getUserID();
-                });
-            }
-            throw new Error(res.status + ' ' + res.statusText);
+            AppStore.isLoggedIn = true;
+
+            this._getUserID();
+
+
         }).catch(err => {
             console.log(err);
             this._handleLogout();
@@ -57,17 +52,14 @@ export default class App extends React.Component {
     }
 
     _getUserID = () => {
+
+        console.log('get user id from app store', localStorage.getItem('token'));
+
         UserAuthApi.getUserId()
             .then(res => {
-                if (res.ok) {
-                    console.log('Success', res);
 
-                    return res.json().then(data => {
-                        console.log(data);
-                        AppStore.userID = data.userId
-                    });
-                }
-                throw new Error(res.status + ' ' + res.statusText);
+                AppStore.userID = res.data.userId;
+
             })
             .catch(err => {
                 console.log(err);
@@ -75,10 +67,6 @@ export default class App extends React.Component {
             });
     }
 
-
-    _generateToken = () => {
-
-    }
 
     render() {
         const { isLoggedIn, userID } = AppStore;
@@ -90,8 +78,8 @@ export default class App extends React.Component {
                 <Form.Input label='password' name="password" type="password" onChange={this._handleChange} />
                 <p>UserID: {userID}</p>
 
-                <Form.Button type="button" content='login' onClick={this._handleLogin} />
-                <Form.Button type="button" content='get userID w/o token' onClick={this._handleLogin} />
+                <Form.Button type="button" content='loginss' onClick={this._handleLogin} />
+                <Form.Button type="button" content='get userID w/o token' onClick={this._getUserID} />
             </Form>
         )
 
