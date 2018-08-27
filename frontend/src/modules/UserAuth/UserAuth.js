@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // style sheets
-import { Form } from 'semantic-ui-react';
+import { Form, Input } from 'semantic-ui-react';
 
 // custom components
 import UserAuthStore from './UserAuthStore';
@@ -68,8 +68,8 @@ export default class UserAuth extends React.Component {
                 <Form.Input label='password' name="password" type="password" onChange={this._handleChange} />
                 <p>UserID: {userID}</p>
 
-                <Form.Button type="button" content='login' onClick={this._handleLogin} />
-                <Form.Button type="button" content='get userID w/o token' onClick={this._getUserID} />
+                <Form.Button fluid full type="button" content='login' onClick={this._handleLogin} />
+                <Form.Button fluid full type="button" content='get userID' onClick={this._getUserID} />
             </Form>
         )
 
@@ -77,7 +77,7 @@ export default class UserAuth extends React.Component {
             <Form>
                 <p>You are logged in</p>
                 <p>UserID: {userID}</p>
-                <Form.Button type="button" content='logout' onClick={this._handleLogout} />
+                <Form.Button type="button" label='logout' onClick={this._handleLogout} />
             </Form>
         )
 
