@@ -1,7 +1,7 @@
 // import dependencies
 import axios from 'axios';
 
-import AppStore from '../AppStore';
+import UserAuthStore from '../modules/UserAuth/UserAuthStore';
 const baseUrl = 'http://localhost:8000';
 
 
@@ -24,7 +24,7 @@ class UserAuthApi {
         var email = credentials.email;
         var password = credentials.password;
         console.log('email ' + email + ' Password ' + password);
-        AppStore.clearCredentials();
+        UserAuthStore.clearCredentials();
         
         return axios.post(baseUrl + '/api/auth/token/obtain/', {
             headers: {

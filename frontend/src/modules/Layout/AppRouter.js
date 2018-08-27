@@ -10,6 +10,7 @@ import { Menu, Header, Icon } from 'semantic-ui-react';
 // import custom components
 import Home from '../../Home';
 import Process from '../../modules/Process/Process';
+import UserAuth from '../../modules/UserAuth/UserAuth';
 
 // import store
 import AppRouterStore from './AppRouterStore';
@@ -54,6 +55,13 @@ export default class AppRouter extends React.Component {
                                 as={Link} to='/process'
                             />
 
+                            <Menu.Item
+                                name='user'
+                                active={activeTab === 'user'}
+                                onClick={AppRouterStore.handleTabClick}
+                                as={Link} to='/user'
+                            />
+
                             <Menu.Menu position='right'>
                                 <Menu.Item
                                     active={activeTab === 'new-tab'}
@@ -66,6 +74,7 @@ export default class AppRouter extends React.Component {
                         <Switch>
                             <Route exact path='/home' component={Home} />
                             <Route exact path='/process' component={Process} />
+                            <Route exact path='/user' component={UserAuth} />
                         </Switch>
 
                     </div>

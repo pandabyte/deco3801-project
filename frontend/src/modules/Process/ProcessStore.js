@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 
-class AppRouterStore {
-    @observable activeTab = '';
+class ProcessStore {
+    @observable config = '';
 
     @action
     setup = () => {
@@ -19,4 +19,4 @@ class AppRouterStore {
     }
 }
 
-export default new AppRouterStore();
+export default new ProcessStore();

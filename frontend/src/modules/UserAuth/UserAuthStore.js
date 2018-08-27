@@ -1,6 +1,6 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action } from 'mobx';
 
-class AppStore {
+class UserAuthStore {
     @observable credentials = {
         email: '',
         password: ''
@@ -8,14 +8,6 @@ class AppStore {
 
     @observable isLoggedIn = false;
     @observable userID = '';
-
-    @action
-    setup = () => {
-    }
-
-    @action
-    reset = () => {
-    }
 
     @action
     updateProperty = (key, value) => {
@@ -32,4 +24,4 @@ class AppStore {
 
 }
 
-export default new AppStore();
+export default new UserAuthStore();
