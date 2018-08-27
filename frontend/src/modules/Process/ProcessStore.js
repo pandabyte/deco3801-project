@@ -1,22 +1,29 @@
 import { observable, action } from 'mobx';
 
 class ProcessStore {
-    @observable config = '';
+    @observable config = {
+        stage: ''
+    };
+    @observable title = '';
 
     @action
     setup = () => {
-        this.activeTab = 'home';
+        this.config['stage'] = 'Start configuration!';
+        this.title = 'swag';
     }
 
     @action
     reset = () => {
-        this.activeTab = 'home';
     }
 
     @action
-    handleTabClick = (e, { name }) => {
-        this.activeTab = name;
+    updateProperty = (key, value) => {
+        this.config[key] = value;
+        console.log(this.config['stage']);
+
+        this.title = 'test';
     }
+
 }
 
 export default new ProcessStore();
