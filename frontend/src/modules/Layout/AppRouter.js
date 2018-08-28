@@ -15,6 +15,7 @@ import Logo from './Logo';
 
 // import store
 import AppRouterStore from './AppRouterStore';
+import Profile from '../Profile/Profile';
 
 @observer
 export default class AppRouter extends React.Component {
@@ -45,12 +46,19 @@ export default class AppRouter extends React.Component {
                     <Menu pointing secondary>
 
                         <Logo />
-                        
+
                         <Menu.Item
                             name='dashboard'
                             active={activeTab === 'dashboard'}
                             onClick={AppRouterStore.handleTabClick}
                             as={Link} to='/'
+                        />
+
+                        <Menu.Item
+                            name='profile'
+                            active={activeTab === 'profile'}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/profile'
                         />
 
                         <Menu.Item
@@ -79,6 +87,7 @@ export default class AppRouter extends React.Component {
                     {/* Switch Component that holds Routes */}
                     <Switch>
                         <Route exact path='/' component={Dashboard} />
+                        <Route exact path='/profile' component={Profile} />
                         <Route exact path='/process' component={Process} />
                         <Route exact path='/user' component={UserAuth} />
                     </Switch>
