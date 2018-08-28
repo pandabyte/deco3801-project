@@ -71,12 +71,44 @@ export default class AppRouter extends React.Component {
                             as={Link} to='/user'
                         />
 
+                        {/* Icon nav bar */}
                         <Menu.Menu position='right'>
+
                             <Menu.Item
-                                active={activeTab === 'new-tab'}
-                                onClick={AppRouterStore.handleTabClick}
-                                icon={<Icon name='closed captioning' size='huge' />}
+                                icon={<Icon name='cloud upload' size='huge' />}
                             />
+                            <Menu.Item
+                                icon={<Icon name='cloud download' size='huge' />}
+                            />
+
+                            <Menu.Item
+                                icon={<Icon name='globe' size='huge' />}
+                            />
+
+                            <Menu.Item
+                                icon={<Icon name='user' size='huge' />}
+                            />
+
+                            <Menu.Item
+                                icon={<Icon name='wrench' size='huge' />}
+                            />
+
+                            <Menu.Item
+                                icon={<Icon name='wechat' size='huge' />}
+                            />
+
+                            <Menu.Item
+                                icon={<Icon name='graduation cap' size='huge' />}
+                            />
+
+                            <Menu.Item
+                                icon={<Icon name='users' size='huge' />}
+                            />
+
+                            <Menu.Item
+                                icon={<Icon name='help' size='huge' />}
+                            />
+
                         </Menu.Menu>
                     </Menu>
 

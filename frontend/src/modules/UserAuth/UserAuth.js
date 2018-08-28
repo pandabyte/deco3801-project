@@ -84,8 +84,10 @@ export default class UserAuth extends React.Component {
 
         return (
             <div>
-                {logForm}
-            </div >
+                
+            {logForm}
+
+            </div>
         );
     }
 }

@@ -7,6 +7,7 @@ import ProfileStore from './ProfileStore';
 export default class Profile extends React.Component {
 
     componentDidMount() {
+        ProfileStore.setup();
     }
 
     onSaveChanges = () => {
