@@ -5,13 +5,12 @@ import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 
 // style sheets
 import '../../App.css';
-import { Menu, Icon } from 'semantic-ui-react';
+import { Menu, Icon, Container } from 'semantic-ui-react';
 
 // import custom components
 import Dashboard from '../Dashboard/Dashboard';
 import Process from '../../modules/Process/Process';
 import UserAuth from '../../modules/UserAuth/UserAuth';
-import Logo from './Logo';
 
 // import store
 import AppRouterStore from './AppRouterStore';
@@ -44,9 +43,6 @@ export default class AppRouter extends React.Component {
                 <div>
                     {/* semantic UI components for linking to url paths */}
                     <Menu pointing secondary>
-
-                        <Logo />
-
                         <Menu.Item
                             name='dashboard'
                             active={activeTab === 'dashboard'}
@@ -85,12 +81,14 @@ export default class AppRouter extends React.Component {
                     </Menu>
 
                     {/* Switch Component that holds Routes */}
-                    <Switch>
-                        <Route exact path='/' component={Dashboard} />
-                        <Route exact path='/profile' component={Profile} />
-                        <Route exact path='/process' component={Process} />
-                        <Route exact path='/user' component={UserAuth} />
-                    </Switch>
+                    <Container>
+                        <Switch>
+                            <Route exact path='/' component={Dashboard} />
+                            <Route exact path='/profile' component={Profile} />
+                            <Route exact path='/process' component={Process} />
+                            <Route exact path='/user' component={UserAuth} />
+                        </Switch>
+                    </Container>
 
                 </div>
             </BrowserRouter>

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 // style sheets
 import './App.css';
-import { } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 // custom components
 import AppFooter from './modules/Layout/AppFooter';
