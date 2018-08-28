@@ -5,16 +5,12 @@ class AppRouterStore {
 
     @action
     setup = () => {
-        this.activeTab = 'home';
-    }
-
-    @action
-    reset = () => {
-        this.activeTab = 'home';
+        this.activeTab = 'dashboard';
     }
 
     @action
     handleTabClick = (e, { name }) => {
+        console.log('switching to tab ' + name);
         this.activeTab = name;
     }
 }

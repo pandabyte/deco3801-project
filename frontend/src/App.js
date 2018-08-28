@@ -2,14 +2,12 @@ import * as React from 'react';
 
 // style sheets
 import './App.css';
-import { Form } from 'semantic-ui-react';
+import { } from 'semantic-ui-react';
 
 // custom components
 import AppFooter from './modules/Layout/AppFooter';
 import AppHeader from './modules/Layout/AppHeader';
 import AppRouter from './modules/Layout/AppRouter';
-import AppStore from './modules/UserAuth/UserAuthStore';
-import UserAuthApi from './api/UserAuthApi';
 
 export default class App extends React.Component {
 
@@ -17,10 +15,15 @@ export default class App extends React.Component {
 
         return (
             <div className="App" >
+
+
+                {/* Header for web app */}
                 <AppHeader />
 
+                {/* Navigation bar  and routing for web app */}
                 <AppRouter />
 
+                {/* Footer for web app */}
                 <AppFooter />
 
             </div>

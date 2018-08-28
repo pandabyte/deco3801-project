@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // style sheets
-import { Form, Input } from 'semantic-ui-react';
+import { Form, Input, Button, Link, Segment, Header } from 'semantic-ui-react';
 
 // custom components
 import UserAuthStore from './UserAuthStore';
@@ -22,7 +22,6 @@ export default class UserAuth extends React.Component {
 
     _handleLogin = () => {
         const { credentials } = UserAuthStore;
-
 
         UserAuthApi.login(credentials).then(res => {
 
@@ -86,7 +85,7 @@ export default class UserAuth extends React.Component {
         return (
             <div>
                 {logForm}
-            </div>
+            </div >
         );
     }
 }

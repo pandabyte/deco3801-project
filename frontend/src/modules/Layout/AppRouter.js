@@ -5,12 +5,13 @@ import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 
 // style sheets
 import '../../App.css';
-import { Menu, Header, Icon } from 'semantic-ui-react';
+import { Menu, Icon } from 'semantic-ui-react';
 
 // import custom components
-import Home from '../../Home';
+import Dashboard from '../Dashboard/Dashboard';
 import Process from '../../modules/Process/Process';
 import UserAuth from '../../modules/UserAuth/UserAuth';
+import Logo from './Logo';
 
 // import store
 import AppRouterStore from './AppRouterStore';
@@ -18,69 +19,72 @@ import AppRouterStore from './AppRouterStore';
 @observer
 export default class AppRouter extends React.Component {
 
+    // ComponentDidMount called immediately after a component is mounted
     componentDidMount() {
         AppRouterStore.setup();
     }
 
-    render() {
+    // Example function
+    _exampleFunction = (arg1, arg2, arg3) => {
+        console.log("calling example function");
+    }
 
+    render() {
+        /* Perform computation here */
+        var exampleComputation = 2 + 2;
+
+        // pull observable properties from AppRouterStore
         const { activeTab } = AppRouterStore;
 
+        // Return has to return one component
         return (
-            <div>
 
-                <BrowserRouter>
-                    <div>
+            <BrowserRouter>
+                <div>
+                    {/* semantic UI components for linking to url paths */}
+                    <Menu pointing secondary>
 
-                        <Menu pointing secondary>
-                            <Menu.Item>
-                                <div className='ui header'>
-                                    <Header as='h1' className='text-left' content='CECEWSN' />
-                                    <Header as='h3' className='text-left' content='Chemicals of Emerging Concern ' />
-                                    <Header as='h3' className='text-left' content='Early Warning Social Network' />
-                                </div>
-                            </Menu.Item>
+                        <Logo />
+                        
+                        <Menu.Item
+                            name='dashboard'
+                            active={activeTab === 'dashboard'}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/'
+                        />
 
+                        <Menu.Item
+                            name='process'
+                            active={activeTab === 'process'}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/process'
+                        />
+
+                        <Menu.Item
+                            name='user'
+                            active={activeTab === 'user'}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/user'
+                        />
+
+                        <Menu.Menu position='right'>
                             <Menu.Item
-                                name='home'
-                                active={activeTab === 'home'}
+                                active={activeTab === 'new-tab'}
                                 onClick={AppRouterStore.handleTabClick}
-                                as={Link} to='/home'
+                                icon={<Icon name='closed captioning' size='huge' />}
                             />
+                        </Menu.Menu>
+                    </Menu>
 
-                            <Menu.Item
-                                name='process'
-                                active={activeTab === 'process'}
-                                onClick={AppRouterStore.handleTabClick}
-                                as={Link} to='/process'
-                            />
+                    {/* Switch Component that holds Routes */}
+                    <Switch>
+                        <Route exact path='/' component={Dashboard} />
+                        <Route exact path='/process' component={Process} />
+                        <Route exact path='/user' component={UserAuth} />
+                    </Switch>
 
-                            <Menu.Item
-                                name='user'
-                                active={activeTab === 'user'}
-                                onClick={AppRouterStore.handleTabClick}
-                                as={Link} to='/user'
-                            />
-
-                            <Menu.Menu position='right'>
-                                <Menu.Item
-                                    active={activeTab === 'new-tab'}
-                                    onClick={AppRouterStore.handleTabClick}
-                                    icon={<Icon name='closed captioning' size='huge' />}
-                                />
-                            </Menu.Menu>
-                        </Menu>
-
-                        <Switch>
-                            <Route exact path='/home' component={Home} />
-                            <Route exact path='/process' component={Process} />
-                            <Route exact path='/user' component={UserAuth} />
-                        </Switch>
-
-                    </div>
-
-                </BrowserRouter>
-            </div>
+                </div>
+            </BrowserRouter>
         );
     }
 }
