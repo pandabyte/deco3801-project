@@ -42,11 +42,3 @@ class UserAuthApi {
 }
 
 export default new UserAuthApi();
-
-
-/*  create new user
-pipenv shell
-. set_test_scecret.sh   // sets secret key
-python manage.py createsuperuser
-    enter details
-*/
