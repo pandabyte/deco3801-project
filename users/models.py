@@ -66,11 +66,10 @@ class User(AbstractUser):
             'unique': _("A user with that username already exists."),
         },
     )
-    # Set email to be unique
     email = models.EmailField(_('email address'), unique=True)
-    # Remove email from required fields
-    # REQUIRED_FIELDS should not contain the USERNAME_FIELD or password
-    # https://docs.djangoproject.com/en/2.1/topics/auth/customizing/#django.contrib.auth.models.CustomUser.REQUIRED_FIELDS
-    REQUIRED_FIELDS = []
+    first_name = models.CharField(_('first name'), max_length=30)
+    last_name = models.CharField(_('last name'), max_length=150)
+
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = UserManager()
