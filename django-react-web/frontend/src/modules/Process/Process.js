@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, Divider, Header } from 'semantic-ui-react';
+import { Icon, Divider, Header, Button } from 'semantic-ui-react';
 import ProcessStore from './ProcessStore';
 
 export default class Process extends React.Component {
@@ -19,7 +19,7 @@ export default class Process extends React.Component {
 
         return (
             <div>
-                <div>
+                <div className='text-center'>
                     <Icon name='upload' size='massive' id='upload' onClick={this.onIconClick} />
                     <Icon style={{ 'margin': '25px' }} name='arrow alternate circle right' size='big' />
                     <Icon name='keyboard' size='massive' id='tools' onClick={this.onIconClick} />
