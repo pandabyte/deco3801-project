@@ -15,6 +15,7 @@ import UserAuth from '../../modules/UserAuth/UserAuth';
 // import store
 import AppRouterStore from './AppRouterStore';
 import Profile from '../Profile/Profile';
+import Home from '../Home/Home';
 
 @observer
 export default class AppRouter extends React.Component {
@@ -40,85 +41,108 @@ export default class AppRouter extends React.Component {
         return (
 
             <BrowserRouter>
-                <div>
+                <div className='text-center'>
+
                     {/* semantic UI components for linking to url paths */}
-                    <Menu pointing secondary>
+                    <Menu pointing secondary compact icon='labeled'>
                         <Menu.Item
-                            name='dashboard'
-                            active={activeTab === 'dashboard'}
+                            name='home'
+                            active={activeTab === 'home'}
+                            icon={<Icon name='home' />}
                             onClick={AppRouterStore.handleTabClick}
                             as={Link} to='/'
                         />
 
                         <Menu.Item
+                            name='dashboard'
+                            active={activeTab === 'dashboard'}
+                            icon={<Icon name='dashboard' />}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/dashboard'
+                        />
+
+                        <Menu.Item
                             name='profile'
                             active={activeTab === 'profile'}
+                            icon={<Icon name='user' />}
                             onClick={AppRouterStore.handleTabClick}
                             as={Link} to='/profile'
                         />
 
                         <Menu.Item
+                            name='users'
+                            active={activeTab === 'users'}
+                            icon={<Icon name='users' />}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/users'
+                        />
+
+                        <Menu.Item
                             name='process'
                             active={activeTab === 'process'}
+                            icon={<Icon name='cloud upload' />}
                             onClick={AppRouterStore.handleTabClick}
                             as={Link} to='/process'
                         />
 
                         <Menu.Item
-                            name='user'
-                            active={activeTab === 'user'}
+                            name='reports'
+                            active={activeTab === 'reports'}
+                            icon={<Icon name='cloud download' />}
                             onClick={AppRouterStore.handleTabClick}
-                            as={Link} to='/user'
+                            as={Link} to='/reports'
                         />
 
-                        {/* Icon nav bar */}
-                        <Menu.Menu position='right'>
+                        <Menu.Item
+                            name='search'
+                            active={activeTab === 'search'}
+                            icon={<Icon name='globe' />}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/search'
+                        />
 
-                            <Menu.Item
-                                icon={<Icon name='cloud upload' size='huge' />}
-                            />
-                            <Menu.Item
-                                icon={<Icon name='cloud download' size='huge' />}
-                            />
+                        <Menu.Item
+                            name='acquisition'
+                            active={activeTab === 'acquisition'}
+                            icon={<Icon name='wrench' />}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/acquisition'
+                        />
 
-                            <Menu.Item
-                                icon={<Icon name='globe' size='huge' />}
-                            />
+                        <Menu.Item
+                            name='forum'
+                            active={activeTab === 'forum'}
+                            icon={<Icon name='wechat' />}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/forum'
+                        />
 
-                            <Menu.Item
-                                icon={<Icon name='user' size='huge' />}
-                            />
+                        <Menu.Item
+                            name='information'
+                            active={activeTab === 'information'}
+                            icon={<Icon name='graduation hat' />}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/information'
+                        />
 
-                            <Menu.Item
-                                icon={<Icon name='wrench' size='huge' />}
-                            />
+                        <Menu.Item
+                            name='help'
+                            active={activeTab === 'help'}
+                            icon={<Icon name='help' />}
+                            onClick={AppRouterStore.handleTabClick}
+                            as={Link} to='/help'
+                        />
 
-                            <Menu.Item
-                                icon={<Icon name='wechat' size='huge' />}
-                            />
-
-                            <Menu.Item
-                                icon={<Icon name='graduation cap' size='huge' />}
-                            />
-
-                            <Menu.Item
-                                icon={<Icon name='users' size='huge' />}
-                            />
-
-                            <Menu.Item
-                                icon={<Icon name='help' size='huge' />}
-                            />
-
-                        </Menu.Menu>
                     </Menu>
 
                     {/* Switch Component that holds Routes */}
                     <Container>
                         <Switch>
-                            <Route exact path='/' component={Dashboard} />
+                            <Route exact path='/' component={Home} />
+                            <Route exact path='/dashboard' component={Dashboard} />
                             <Route exact path='/profile' component={Profile} />
                             <Route exact path='/process' component={Process} />
-                            <Route exact path='/user' component={UserAuth} />
+                            <Route exact path='/auth' component={UserAuth} />
                         </Switch>
                     </Container>
 
