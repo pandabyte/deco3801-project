@@ -10,7 +10,14 @@ class ProcessStore {
     /* Component to be rendered */
     @observable component = {}
 
+    /* Fields for upload stage */
     @observable selectedFiles = [];
+
+    /* Fields for sample stage */
+    @observable sampleLocation = '';
+    @observable sampleType = '';
+    @observable sampleDate = '';
+    
 
     @action
     setup = () => {
