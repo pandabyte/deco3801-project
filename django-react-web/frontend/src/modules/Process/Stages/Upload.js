@@ -6,18 +6,19 @@ import { observer } from 'mobx-react';
 @observer
 export default class Upload extends React.Component {
 
-    onUploadSingleFile = (e) => {
-        console.log("uploading single file");
-
+    onChangeSingleFile = (e) => {
+        console.log(e.target.files);
+        ProcessStore.updateSelectedFile(e.target.files[0]);
+        ProcessStore.updateProperty('isSingleFile', true);
     }
 
-    onUploadMultipleFile = (e) => {
-        console.log("uploading multiple file");
+    onChangeMultipleFile = (e) => {
+        console.log(e.target.files);
+        ProcessStore.updateSelectedFile(e.target.files);
+        ProcessStore.updateProperty('isSingleFile', false);
     }
-
 
     render() {
-
 
         return (
             <div>
@@ -27,23 +28,29 @@ export default class Upload extends React.Component {
                 <div >
 
                     <div className='d-inline-block'>
-                        <Label as="label" htmlFor="singleFile" size="big">
+                        <Label
+                            as="label" htmlFor="singleFile" size="big">
                             <Icon name='file text' size='big' />
                             Upload Single File
-                    </Label>
-                        <input id="singleFile" hidden type="file" />
+                        </Label>
+                        <input
+                            id="singleFile" hidden type="file"
+                            onChange={this.onChangeSingleFile}
+                        />
                     </div>
 
                     <div className='d-inline-block'>
-                        <Label as="label" htmlFor="multipleFile" size="big">
+                        <Label
+                            as="label" htmlFor="multipleFile" size="big">
                             <Icon name='file text' size='big' />
                             Upload Multiple File
-                    </Label>
-                        <input id="multipleFile" hidden type="file" multiple />
+                        </Label>
+                        <input
+                            id="multipleFile" hidden type="file" multiple
+                            onChange={this.onChangeMultipleFile}
+                        />
                     </div>
                 </div>
-
-
             </div>
         )
     }
