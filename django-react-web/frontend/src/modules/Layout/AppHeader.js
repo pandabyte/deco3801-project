@@ -11,6 +11,7 @@ export default class AppHeader extends React.Component {
                 <Header className='App-Header-Text' as='h1' content='CECEWSN' />
                 <Header className='App-Header-Text' as='h3' content='Chemicals of Emerging Concern Early Warning Social Network' />
                 <br />
+                <br />
             </div>
         )
     }

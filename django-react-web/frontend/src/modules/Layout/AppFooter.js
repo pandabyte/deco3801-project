@@ -7,7 +7,8 @@ export default class AppFooter extends React.Component {
 
         return (
             <div className='App-Header'>
-                <Container>
+                <br />
+                <Container >
                     <Grid divided='vertically'>
                         <Grid.Row columns={2}>
 
@@ -40,6 +41,8 @@ export default class AppFooter extends React.Component {
                         </Grid.Row>
                     </Grid>
                 </Container>
+                <br />
+
             </div>
         )
     }

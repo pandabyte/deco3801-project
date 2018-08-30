@@ -137,6 +137,7 @@ export default class AppRouter extends React.Component {
 
                     {/* Switch Component that holds Routes */}
                     <Container>
+                        <br />
                         <Switch>
                             <Route exact path='/' component={Home} />
                             <Route exact path='/dashboard' component={Dashboard} />
@@ -144,6 +145,7 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/process' component={Process} />
                             <Route exact path='/auth' component={UserAuth} />
                         </Switch>
+                        <br />
                     </Container>
 
                 </div>

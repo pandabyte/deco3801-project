@@ -12,7 +12,6 @@ export default class Home extends React.Component {
                 <Header as='h1' content='Test Landing Page' />
                 <Image large src='https://i.ytimg.com/vi/XrWuFUSELrg/maxresdefault.jpg' />
                 <br />
-
             </div>
         )
     }

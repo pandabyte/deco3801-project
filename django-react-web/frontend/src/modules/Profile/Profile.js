@@ -3,7 +3,9 @@ import { Segment, Checkbox, Form, Container, Grid, Icon, Image } from 'semantic-
 
 import ProfileQuestion from './ProfileQuestion';
 import ProfileStore from './ProfileStore';
+import { observer } from 'mobx-react';
 
+@observer
 export default class Profile extends React.Component {
 
     componentDidMount() {

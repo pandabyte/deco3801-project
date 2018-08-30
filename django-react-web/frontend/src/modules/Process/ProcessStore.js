@@ -4,24 +4,18 @@ class ProcessStore {
     @observable config = {
         stage: ''
     };
-    @observable title = '';
+
+    @observable component = {}
 
     @action
     setup = () => {
-        this.config['stage'] = 'Start configuration!';
-        this.title = 'swag';
-    }
-
-    @action
-    reset = () => {
+        console.log('Setting up Process fields');
+        this.config['stage'] = 'upload';
     }
 
     @action
     updateProperty = (key, value) => {
         this.config[key] = value;
-        console.log(this.config['stage']);
-
-        this.title = 'test';
     }
 
 }
