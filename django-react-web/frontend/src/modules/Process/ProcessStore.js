@@ -10,13 +10,23 @@ class ProcessStore {
     /* Component to be rendered */
     @observable component = {}
 
-    @observable selectedFile = '';
+    @observable selectedFiles = [];
 
     @action
     setup = () => {
         console.log('Setting up Process fields');
         this.config['stage'] = 'upload';
         this.config['isSingleFile'] = true;
+        this.selectedFiles = {
+            0: {
+                name: 'name one',
+                size: 'size one'
+            },
+            1: {
+                name: 'name two',
+                size: 'size two'
+            }
+        }
     }
 
     @action
@@ -25,8 +35,8 @@ class ProcessStore {
     }
 
     @action
-    updateSelectedFile = (file) => {
-        this.selectedFile = file;
+    updateSelectedFiles = (file) => {
+        this.selectedFiles = file;
     }
 
 
