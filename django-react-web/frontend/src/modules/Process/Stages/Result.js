@@ -24,16 +24,12 @@ export default class Result extends React.Component {
 
     render() {
 
-        const { config } = ProcessStore;
-        const numberFiles = config['isSingleFile'] ? 'Single' : 'Multiple';
         return (
             <div>
 
                 <Header> Processing/Result Stage </Header>
 
-                <p>Stage: {config['stage']}</p>
-                <p>Number of files: {numberFiles}</p>
-
+                
             </div>
         )
     }

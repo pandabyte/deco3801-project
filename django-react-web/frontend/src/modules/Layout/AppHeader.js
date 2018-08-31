@@ -6,10 +6,10 @@ export default class AppHeader extends React.Component {
 
     render() {
         return (
-            <div className='App-Header'>
+            <div className='bg-dark'>
                 <br />
-                <Header className='App-Header-Text' as='h1' content='CECEWSN' />
-                <Header className='App-Header-Text' as='h3' content='Chemicals of Emerging Concern Early Warning Social Network' />
+                <Header className='text-center text-success' as='h1' content='CECEWSN' />
+                <Header className='text-center text-success' as='h2' content='Chemicals of Emerging Concern Early Warning Social Network' />
                 <br />
                 <br />
             </div>

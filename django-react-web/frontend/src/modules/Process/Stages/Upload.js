@@ -22,6 +22,7 @@ export default class Upload extends React.Component {
 
 
         const { selectedFiles } = ProcessStore;
+        console.log('files', selectedFiles);
         const keys = Object.keys(selectedFiles);
         var files = [];
         keys.forEach(key => {
@@ -35,7 +36,7 @@ export default class Upload extends React.Component {
 
                 {/* Form to select files */}
                 <div >
-                    <div className='d-inline-block'>
+                    <div className='d-inline-block p-5'>
                         <Label
                             as="label" htmlFor="singleFile" size="big">
                             <Icon name='file text' size='big' />
@@ -47,7 +48,7 @@ export default class Upload extends React.Component {
                         />
                     </div>
 
-                    <div className='d-inline-block'>
+                    <div className='d-inline-block p-5'>
                         <Label
                             as="label" htmlFor="multipleFile" size="big">
                             <Icon name='file text' size='big' />
@@ -59,6 +60,7 @@ export default class Upload extends React.Component {
                         />
                     </div>
                 </div>
+                <br />
 
                 {/* Table to display currently selected files */}
                 <div>

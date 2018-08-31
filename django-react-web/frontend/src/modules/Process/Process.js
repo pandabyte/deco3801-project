@@ -44,7 +44,6 @@ export default class Process extends React.Component {
     render() {
 
         const { config } = ProcessStore;
-        const title = config['stage'];
 
         const renderedStageComponent = this.renderStage(config['stage']);
 
@@ -63,8 +62,6 @@ export default class Process extends React.Component {
                 </div>
 
                 <Divider />
-
-                <Header as='h3'> {title} </Header>
 
                 {renderedStageComponent}
 

@@ -6,7 +6,7 @@ export default class AppFooter extends React.Component {
     render() {
 
         return (
-            <div className='App-Header'>
+            <div className='bg-dark'>
                 <br />
                 <Container >
                     <Grid divided='vertically'>

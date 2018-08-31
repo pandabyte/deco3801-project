@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx';
+import files from './Constants/files';
 
 class ProcessStore {
     /* Configurations to track stage progress */
@@ -24,16 +25,7 @@ class ProcessStore {
         console.log('Setting up Process fields');
         this.config['stage'] = 'upload';
         this.config['isSingleFile'] = true;
-        this.selectedFiles = {
-            0: {
-                name: 'name one',
-                size: 'size one'
-            },
-            1: {
-                name: 'name two',
-                size: 'size two'
-            }
-        }
+        this.selectedFiles = files;
     }
 
     @action

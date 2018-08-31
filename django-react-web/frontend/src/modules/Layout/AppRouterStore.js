@@ -5,7 +5,7 @@ class AppRouterStore {
 
     @action
     setup = () => {
-        this.activeTab = 'dashboard';
+        this.activeTab = 'home';
     }
 
     @action

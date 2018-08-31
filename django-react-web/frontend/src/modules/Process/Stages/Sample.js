@@ -34,6 +34,14 @@ export default class Sample extends React.Component {
 
                 <Form>
                     <Form.Group widths='equal'>
+                        <Form.Button className='p-5' fluid type='button' positive content='Add Sample Information' />
+                        <Form.Button className='p-5' fluid type='button' negative content='Upload Sample Information' />
+                    </Form.Group>
+                </Form>
+
+
+                <Form>
+                    <Form.Group widths='equal'>
 
                         <Form.Select
                             placeholder='Select Location'

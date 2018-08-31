@@ -11,6 +11,7 @@ import { Menu, Icon, Container } from 'semantic-ui-react';
 import Dashboard from '../Dashboard/Dashboard';
 import Process from '../../modules/Process/Process';
 import UserAuth from '../../modules/UserAuth/UserAuth';
+import ChemicalSearch from '../../modules/Search/ChemicalSearch';
 
 // import store
 import AppRouterStore from './AppRouterStore';
@@ -143,6 +144,7 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/dashboard' component={Dashboard} />
                             <Route exact path='/profile' component={Profile} />
                             <Route exact path='/process' component={Process} />
+                            <Route exact path='/search' component={ChemicalSearch} />
                             <Route exact path='/auth' component={UserAuth} />
                         </Switch>
                         <br />
