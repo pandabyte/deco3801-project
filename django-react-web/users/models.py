@@ -1,5 +1,5 @@
-import time
-import hashlib
+import random
+import string
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core import validators
@@ -29,10 +29,10 @@ class UserManager(BaseUserManager):
         username = extra_fields.get('username')
         # Generate a unique username if not given
         if username is None:
-            username = hashlib.sha256((email + str(time.time())).encode('utf-8')).hexdigest()[:8]
+            pool = string.ascii_lowercase + string.digits
+            username = ''.join(random.choice(pool) for i in range(8))
             while self.filter(username__iexact=username):
-                username = \
-                    hashlib.sha256((email + str(time.time())).encode('utf-8')).hexdigest()[:8]
+                username = ''.join(random.choice(pool) for i in range(8))
         # If username is given check that it is unique
         elif self.filter(username__iexact=username):
             raise ValueError('An account with this username already exists')
