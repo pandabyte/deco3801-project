@@ -26,7 +26,7 @@ class UserAuthApi {
         console.log('email ' + email + ' Password ' + password);
         UserAuthStore.clearCredentials();
         
-        return axios.post('/api/auth/token/obtain/',
+        return axios.post('/api/token/obtain/',
             {
                 email: email,
                 password: password
