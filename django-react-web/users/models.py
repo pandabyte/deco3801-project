@@ -11,22 +11,24 @@ class UserManager(BaseUserManager):
     """
     use_in_migrations = True
 
-    def _create_user(self, email, first_name, last_name, password, **extra_fields):
+    def _create_user(self, email, first_name, last_name, password, username=None, **extra_fields):
         """
         Create and save a User with the given email and password.
         """
         if not email:
-            raise ValueError('The given email must be set')
+            raise ValueError('Email must be given')
         elif self.filter(email__iexact=email):
             raise ValueError('An account with this email already exists')
 
         if not first_name:
-            raise ValueError('The given first name must be set')
+            raise ValueError('First name must be given')
 
         if not last_name:
-            raise ValueError('The given last name must be set')
+            raise ValueError('Last name must be given')
 
-        username = extra_fields.get('username')
+        if not password:
+            raise ValueError('A password must be given')
+
         # Generate a unique username if not given
         if username is None:
             pool = string.ascii_lowercase + string.digits
@@ -39,7 +41,13 @@ class UserManager(BaseUserManager):
 
         email = self.normalize_email(email)
         username = self.model.normalize_username(username)
-        user = self.model(username=username, email=email, **extra_fields)
+        user = self.model(
+            username=username,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            **extra_fields
+        )
         user.set_password(password)
         user.save(using=self._db)
         return user
