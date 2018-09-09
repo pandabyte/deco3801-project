@@ -137,7 +137,7 @@ export default class AppRouter extends React.Component {
                     </Menu>
 
                     {/* Switch Component that holds Routes */}
-                    <Container>
+                    <Container className='text-left'>
                         <br />
                         <Switch>
                             <Route exact path='/' component={Home} />

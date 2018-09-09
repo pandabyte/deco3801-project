@@ -12,6 +12,17 @@ class ChemicalSearchStore {
 
         /* TODO: add mock data in the mean time */
     }
+
+    clear = () => {
+        this.isLoading = false;
+        this.results = [];
+        this.value = '';
+    }
+
+    updateValue = (value) => {
+        this.isLoading = true;
+        this.value = value;
+    }
 }
 
 export default new ChemicalSearchStore();

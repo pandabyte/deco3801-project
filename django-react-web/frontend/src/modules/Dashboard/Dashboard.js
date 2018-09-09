@@ -5,7 +5,7 @@ export default class Dashboard extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container className='text-center'>
                 <Grid columns={3} padded>
                     <Grid.Column>
                         <Icon name='cloud upload' size='massive' />
