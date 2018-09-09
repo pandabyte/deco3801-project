@@ -1,5 +1,5 @@
+#!/bin/bash
 # DO NOT USE IN PRODUCTION
 # Run npm run build before this script
-. set_test_secret.sh
-. $(pipenv --venv)/bin/activate
+. activate_venv.sh
 python manage.py runserver

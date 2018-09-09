@@ -92,7 +92,7 @@ module.exports = function(proxy, allowedHost) {
       app.use(noopServiceWorkerMiddleware());
     },
     headers: {
-      'Access-Control-Allow-Origin': 'localhost:8000'
+      'Access-Control-Allow-Origin': '*'
     },
   };
 };

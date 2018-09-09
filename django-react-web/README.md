@@ -20,38 +20,23 @@ npm install
 
 Use when making changes to React.
 
-1. Run Webpack dev server: `npm start`
-2. Run the Django dev server in a second terminal
-    - Bash: `./test_live.sh`
-    - Cmd:
-        ```
-        pipenv shell
-        set SECRET_KEY=<secret>
-        set DJANGO_DEV=true
-        python manage.py runserver
-        ```
-6. View the site at `localhost:8000`
+`npm start:live`
+
+View the site at `localhost:8000` for Django + React or `localhost:3000` for
+only React
 
 ## Test With Built React App
 
 Use when only making changes to Django.
 
 1. Bundle React files: `npm run build`
-2. Run the Django dev server
-    - Bash: `./test_built.sh`
-    - Cmd:
-        ```
-        pipenv shell
-        set SECRET_KEY=<secret>
-        set DJANGO_DEV=
-        python manage.py runserver
-        ```
-3. View the site at `localhost:8000`
+1. Run the Django dev server: `./test_built.sh`
+
+View the site at `localhost:8000`
 
 ## Create a New Super User
 
 ```
-pipenv shell
-. set_test_secret.sh
+. activate_venv.sh
 python manage.py createsuperuser
 ```

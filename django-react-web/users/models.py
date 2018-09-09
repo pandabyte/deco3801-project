@@ -1,5 +1,5 @@
-import time
-import hashlib
+import random
+import string
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core import validators
@@ -11,35 +11,43 @@ class UserManager(BaseUserManager):
     """
     use_in_migrations = True
 
-    def _create_user(self, email, first_name, last_name, password, **extra_fields):
+    def _create_user(self, email, first_name, last_name, password, username=None, **extra_fields):
         """
         Create and save a User with the given email and password.
         """
         if not email:
-            raise ValueError('The given email must be set')
+            raise ValueError('Email must be given')
         elif self.filter(email__iexact=email):
             raise ValueError('An account with this email already exists')
 
         if not first_name:
-            raise ValueError('The given first name must be set')
+            raise ValueError('First name must be given')
 
         if not last_name:
-            raise ValueError('The given last name must be set')
+            raise ValueError('Last name must be given')
 
-        username = extra_fields.get('username')
+        if not password:
+            raise ValueError('A password must be given')
+
         # Generate a unique username if not given
         if username is None:
-            username = hashlib.sha256((email + str(time.time())).encode('utf-8')).hexdigest()[:8]
+            pool = string.ascii_lowercase + string.digits
+            username = ''.join(random.choice(pool) for i in range(8))
             while self.filter(username__iexact=username):
-                username = \
-                    hashlib.sha256((email + str(time.time())).encode('utf-8')).hexdigest()[:8]
+                username = ''.join(random.choice(pool) for i in range(8))
         # If username is given check that it is unique
         elif self.filter(username__iexact=username):
             raise ValueError('An account with this username already exists')
 
         email = self.normalize_email(email)
         username = self.model.normalize_username(username)
-        user = self.model(username=username, email=email, **extra_fields)
+        user = self.model(
+            username=username,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            **extra_fields
+        )
         user.set_password(password)
         user.save(using=self._db)
         return user
