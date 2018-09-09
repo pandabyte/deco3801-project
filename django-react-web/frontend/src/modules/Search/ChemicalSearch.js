@@ -18,7 +18,6 @@ export default class ChemicalSearch extends React.Component {
 
                 <Header> Perform global chemical search </Header>
                 <Search
-                    fluid
                     loading={isLoading}
                     results={results}
                 />
@@ -26,7 +25,6 @@ export default class ChemicalSearch extends React.Component {
                 <Header> Results of Search </Header>
 
                 <Divider />
-
             </div>
         )
     }
