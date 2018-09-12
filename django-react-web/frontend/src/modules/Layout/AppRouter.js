@@ -5,6 +5,8 @@ import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 
 // style sheets
 import '../../App.css';
+import './style.css';
+
 import { Menu, Icon, Container, Sticky } from 'semantic-ui-react';
 
 // import custom components
