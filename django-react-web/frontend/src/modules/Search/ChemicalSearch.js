@@ -51,7 +51,8 @@ export default class ChemicalSearch extends React.Component {
                 <Header> Perform global chemical search </Header>
 
                 <Search
-                    fluid
+                    input={{ fluid: true }}
+                    placeholder={'Please insert the identifier of your chemical (e.g. name, CAS, SMILES)'}
                     loading={isLoading}
                     onResultSelect={this.handleResultSelect}
                     onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
