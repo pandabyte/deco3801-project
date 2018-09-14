@@ -1,7 +1,7 @@
 // import dependencies
 import axios from 'axios';
 
-import UserAuthStore from '../modules/UserAuth/UserAuthStore';
+import UserAuthStore from '../modules/Home/UserAuthStore';
 
 
 class UserAuthApi {

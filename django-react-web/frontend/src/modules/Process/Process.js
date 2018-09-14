@@ -48,8 +48,8 @@ export default class Process extends React.Component {
         const renderedStageComponent = this.renderStage(config['stage']);
 
         return (
-            <div>
-                <div className='text-center'>
+            <div className='text-center'>
+                <div>
                     <Icon name='upload' size='massive' id='upload' onClick={this.onIconClick} />
                     <Icon style={{ 'margin': '25px' }} name='arrow alternate circle right' size='big' />
                     <Icon name='keyboard' size='massive' id='sample' onClick={this.onIconClick} />

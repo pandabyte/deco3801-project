@@ -6,18 +6,18 @@ export default class AppFooter extends React.Component {
     render() {
 
         return (
-            <div className='bg-dark'>
+            <div className='bg-dark text-center'>
                 <br />
                 <Container >
                     <Grid divided='vertically'>
-                        <Grid.Row columns={2}>
+                        <Grid.Row columns={2} className='text-success'>
 
                             <Grid.Column>
                                 <p>Email</p>
                                 <p>Phone</p>
                             </Grid.Column>
 
-                            <Grid.Column>
+                            <Grid.Column >
                                 <p>Lorem Ipsum</p>
                                 <p>Lorem Ipsum</p>
                             </Grid.Column>
@@ -27,7 +27,7 @@ export default class AppFooter extends React.Component {
                     <Divider />
 
                     <Grid divided='vertically'>
-                        <Grid.Row columns={2}>
+                        <Grid.Row columns={2} className='text-success'>
 
                             <Grid.Column>
                                 <p>Privacy & Term of Use</p>

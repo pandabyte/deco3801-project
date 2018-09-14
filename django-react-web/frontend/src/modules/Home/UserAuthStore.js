@@ -1,6 +1,8 @@
 import { observable, action } from 'mobx';
 
 class UserAuthStore {
+    @observable isRegistered = true;
+
     @observable credentials = {
         email: '',
         password: ''
@@ -9,6 +11,9 @@ class UserAuthStore {
     @observable isLoggedIn = false;
     @observable userID = '';
 
+    setup = () => {
+        this.isRegistered = true;
+    }
     @action
     updateProperty = (key, value) => {
         this.credentials[key] = value;
@@ -20,6 +25,10 @@ class UserAuthStore {
             email: '',
             password: ''
         }
+    }
+    @action
+    toggleForm = () => {
+        this.isRegistered = !this.isRegistered;
     }
 }
 
