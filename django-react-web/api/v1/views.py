@@ -1,9 +1,10 @@
 from django.http import JsonResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 
 from users.models import User
 
 @api_view(['POST'])
+@permission_classes(())
 def register(request):
     try:
         user = User.objects.create_user(
