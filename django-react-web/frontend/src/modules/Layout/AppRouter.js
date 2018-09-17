@@ -36,17 +36,12 @@ export default class AppRouter extends React.Component {
         console.log("calling example function");
     }
 
-
-    handleContextRef = (contextRef) => {
-        AppRouterStore.contextRef = contextRef;
-    }
-
     render() {
         /* Perform computation here */
         var exampleComputation = 2 + 2;
 
         // pull observable properties from AppRouterStore
-        const { activeTab, contextRef } = AppRouterStore;
+        const { activeTab } = AppRouterStore;
 
         // Return has to return one component
         return (
@@ -55,7 +50,7 @@ export default class AppRouter extends React.Component {
                 <div className='text-center'>
 
                     {/* Scrollable nav bar */}
-                    <Sticky context={contextRef}>
+                    <Sticky>
                         {/* semantic UI components for linking to url paths */}
                         <Menu className='bg-light' pointing secondary icon='labeled' >
                             <Menu.Item
@@ -133,7 +128,7 @@ export default class AppRouter extends React.Component {
                             <Menu.Item
                                 name='information'
                                 active={activeTab === 'information'}
-                                icon={<Icon name='graduation hat' />}
+                                icon={<Icon name='graduation cap' />}
                                 onClick={AppRouterStore.handleTabClick}
                                 as={Link} to='/information'
                             />

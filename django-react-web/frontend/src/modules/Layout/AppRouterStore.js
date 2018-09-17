@@ -2,7 +2,6 @@ import { observable, action } from 'mobx';
 
 class AppRouterStore {
     @observable activeTab = '';
-    @observable contextRef = '';
 
     @action
     setup = () => {

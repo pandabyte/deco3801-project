@@ -1,12 +1,39 @@
 import * as React from 'react';
 import { Icon, Divider, Header, Button, Form, Grid, Container, List, Label } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
+import SigninStore from './SigninStore';
+import UserAuthApi from '../../api/UserAuthApi';
 
 @observer
 export default class Signup extends React.Component {
 
+    /* Event handler for sign up*/
+
+    handleSignup = () => {
+        console.log("signing up with : " + JSON.stringify(SigninStore.credentials));
+
+        UserAuthApi.register(SigninStore.credentials)
+            .then(res => console.log('res', res))
+            .catch(err => console.log('err', err));
+    }
+
+    /* Redirect to sign in page */
     handleRedirectSignin = () => {
         this.props.history.push('/signin')
+    }
+
+    /* Update information information */
+    handleInformationChange = (e) => {
+        const key = e.target.name;
+        const value = e.target.value;
+        SigninStore.updateInformationProperty(key, value); 
+    }
+
+    /* Update credential information */
+    handleCredentialChange = (e) => {
+        const key = e.target.name;
+        const value = e.target.value;
+        SigninStore.updateCredentialProperty(key, value);
     }
 
     render() {
@@ -14,8 +41,6 @@ export default class Signup extends React.Component {
         return (
             <div>
                 <Container className='text-left'>
-
-
 
                     <Grid divided='vertically'>
                         <Grid.Row columns={2}>
@@ -35,31 +60,43 @@ export default class Signup extends React.Component {
                                 <Form>
 
                                     <Form.Input
-                                        name='first' placeholder='First Name'
-                                        onChange={this.handleChange}
+                                        name='email' placeholder='Email'
+                                        onChange={this.handleCredentialChange}
                                     />
                                     <Form.Input
-                                        name='last' placeholder='Last Name'
-                                        onChange={this.handleChange}
+                                        name='username' placeholder='Username'
+                                        onChange={this.handleCredentialChange}
                                     />
+                                    <Form.Input
+                                        name='password' type='password' placeholder='Password'
+                                        onChange={this.handleCredentialChange}
+                                    />
+
+                                    <Form.Input
+                                        name='firstname' placeholder='First Name'
+                                        onChange={this.handleCredentialChange}
+                                    />
+                                    <Form.Input
+                                        name='lastname' placeholder='Last Name'
+                                        onChange={this.handleCredentialChange}
+                                    />
+
+
                                     <Form.Input
                                         name='affiliation' placeholder='Affiliation'
-                                        onChange={this.handleChange}
+                                        onChange={this.handleInformationChange}
                                     />
                                     <Form.Input
                                         name='position' placeholder='Position'
-                                        onChange={this.handleChange}
+                                        onChange={this.handleInformationChange}
                                     />
-                                    <Form.Input
-                                        name='email' placeholder='Email Address'
-                                        onChange={this.handleChange}
-                                    />
+
 
                                     <Form.Button
                                         style={{ backgroundColor: '#27d3ff' }}
                                         fluid type="button"
                                         content='Sign me up!'
-                                        onClick={this.handleLogin}
+                                        onClick={this.handleSignup}
                                     />
 
                                 </Form>
