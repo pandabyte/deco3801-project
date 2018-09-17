@@ -19,40 +19,19 @@ export default class Home extends React.Component {
 
     render() {
 
-        const { isRegistered } = UserAuthStore;
-
-        var renderedForm = isRegistered ? <LoginForm /> : <RegistrationForm />;
-
         return (
             <div>
+                <Container>
 
-                <Grid divided='vertically'>
-                    <Grid.Row columns={2}>
-                        <Grid.Column>
-                            <br />
-                            <Header as='h1' content='Test Landing Page' />
-                            <Image size={'big'} src={information} />
-                            <br />
-                        </Grid.Column>
+                    <Header as='h1' content='Test Landing Page' />
+                    <Image size={'big'} src={information} />
 
-                        <Grid.Column>
-                            {renderedForm}
+                    <Header as='h1' content='Test Landing Page' />
+                    <Image large src='https://i.ytimg.com/vi/XrWuFUSELrg/maxresdefault.jpg' />
+                    <br />
 
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
+                </Container>
 
-                <Header as='h1' content='Test Landing Page' />
-                <Image large src='https://i.ytimg.com/vi/XrWuFUSELrg/maxresdefault.jpg' />
-                <br />
-
-                <Header as='h1' content='Test Landing Page' />
-                <Image large src='https://i.ytimg.com/vi/XrWuFUSELrg/maxresdefault.jpg' />
-                <br />
-
-                <Header as='h1' content='Test Landing Page' />
-                <Image large src='https://i.ytimg.com/vi/XrWuFUSELrg/maxresdefault.jpg' />
-                <br />
             </div>
         )
     }

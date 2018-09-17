@@ -11,6 +11,8 @@ import { Menu, Icon, Container, Sticky } from 'semantic-ui-react';
 
 // import custom components
 import Dashboard from '../Dashboard/Dashboard';
+import Signup from '../Account/Signup';
+import Signin from '../Account/Signin';
 import Process from '../../modules/Process/Process';
 import ChemicalSearch from '../../modules/Search/ChemicalSearch';
 import Help from '../../modules/Help/Help';
@@ -19,6 +21,7 @@ import Help from '../../modules/Help/Help';
 import AppRouterStore from './AppRouterStore';
 import Profile from '../Profile/Profile';
 import Home from '../Home/Home';
+import Error404 from '../Error/Error404';
 
 @observer
 export default class AppRouter extends React.Component {
@@ -54,8 +57,7 @@ export default class AppRouter extends React.Component {
                     {/* Scrollable nav bar */}
                     <Sticky context={contextRef}>
                         {/* semantic UI components for linking to url paths */}
-
-                        <Menu pointing secondary compact icon='labeled' >
+                        <Menu className='bg-light' pointing secondary icon='labeled' >
                             <Menu.Item
                                 name='home'
                                 active={activeTab === 'home'}
@@ -149,18 +151,20 @@ export default class AppRouter extends React.Component {
 
 
                     {/* Switch Component that holds Routes */}
-                    <Container className='text-left'>
-                        <br />
-                        <Switch>
-                            <Route exact path='/' component={Home} />
-                            <Route exact path='/dashboard' component={Dashboard} />
-                            <Route exact path='/profile' component={Profile} />
-                            <Route exact path='/process' component={Process} />
-                            <Route exact path='/search' component={ChemicalSearch} />
-                            <Route exact path='/help' component={Help} />
-                        </Switch>
-                        <br />
-                    </Container>
+                    <br />
+                    <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route exact path='/signup' component={Signup} />
+                        <Route exact path='/signin' component={Signin} />
+                        <Route exact path='/dashboard' component={Dashboard} />
+                        <Route exact path='/profile' component={Profile} />
+                        <Route exact path='/process' component={Process} />
+                        <Route exact path='/search' component={ChemicalSearch} />
+                        <Route exact path='/help' component={Help} />
+                        <Route component={Error404} />
+
+                    </Switch>
+                    <br />
 
                 </div>
             </BrowserRouter>
