@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Icon, Divider, Header, Button, Form, Grid, Container, List, Label } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
-import SigninStore from './SigninStore';
+import SignupStore from './SignupStore';
 import UserAuthApi from '../../api/UserAuthApi';
 
 @observer
@@ -10,9 +10,9 @@ export default class Signup extends React.Component {
     /* Event handler for sign up*/
 
     handleSignup = () => {
-        console.log("signing up with : " + JSON.stringify(SigninStore.credentials));
+        console.log("signing up with : " + JSON.stringify(SignupStore.credentials));
 
-        UserAuthApi.register(SigninStore.credentials)
+        UserAuthApi.register(SignupStore.credentials)
             .then(res => console.log('res', res))
             .catch(err => console.log('err', err));
     }
@@ -26,14 +26,14 @@ export default class Signup extends React.Component {
     handleInformationChange = (e) => {
         const key = e.target.name;
         const value = e.target.value;
-        SigninStore.updateInformationProperty(key, value); 
+        SignupStore.updateInformationProperty(key, value); 
     }
 
     /* Update credential information */
     handleCredentialChange = (e) => {
         const key = e.target.name;
         const value = e.target.value;
-        SigninStore.updateCredentialProperty(key, value);
+        SignupStore.updateCredentialProperty(key, value);
     }
 
     render() {
@@ -80,7 +80,6 @@ export default class Signup extends React.Component {
                                         name='lastname' placeholder='Last Name'
                                         onChange={this.handleCredentialChange}
                                     />
-
 
                                     <Form.Input
                                         name='affiliation' placeholder='Affiliation'

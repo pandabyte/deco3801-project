@@ -1,12 +1,58 @@
 import * as React from 'react';
 import { Icon, Divider, Header, Form, Button, Container } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
+import SigninStore from './SigninStore';
+import UserAuthApi from '../../api/UserAuthApi';
+import UserAuthStore from '../Home/UserAuthStore';
+
 
 @observer
 export default class Signin extends React.Component {
 
-    handleLogin = () => { }
+    /* Use provided credentials to log into account and receive refresh and access tokens */
+    handleLogin = () => {
+        const { credentials } = SigninStore;
 
+        // Returns a 'refresh' and 'access' token
+        UserAuthApi.login(credentials).then(res => {
+            console.log("response from login \n", res.data);
+
+            // store on state manager
+            SigninStore.updateTokenProperty('refresh', res.data.refresh);
+            SigninStore.updateTokenProperty('access', res.data.access);
+
+            // store on local storage
+            localStorage.setItem('refresh', res.data.refresh);
+            localStorage.setItem('access', res.data.access);
+
+        }).catch(err => {
+            console.log(err);
+            this.handleLogout();
+        });
+    }
+
+    handleGetUserID = () => {
+        UserAuthApi.getUserID().then(res => {
+            SigninStore.setUserID(res.data.userId);
+        });
+    }
+
+    /* Update credential information */
+    handleCredentialChange = (e) => {
+        const key = e.target.name;
+        const value = e.target.value;
+        SigninStore.updateCredentialProperty(key, value);
+    }
+
+    /* Clear tokens */
+    handleLogout = () => {
+
+        console.log("Token removed, state reset");
+        localStorage.removeItem('refresh');
+        localStorage.removeItem('access');
+
+        SigninStore.clear();
+    }
 
     handleRedirectSignup = () => {
         this.props.history.push('/signup')
@@ -26,30 +72,36 @@ export default class Signin extends React.Component {
                     <Form>
                         <Form.Group>
                             <Form.Input
-                                width={7}
+                                width={6}
                                 iconPosition='left'
                                 icon={{ name: 'user' }}
                                 placeholder='Email...'
                                 name="email"
                                 type="email"
-                                onChange={this.handleChange}
+                                onChange={this.handleCredentialChange}
                             />
 
                             <Form.Input
-                                width={7}
+                                width={6}
                                 iconPosition='left'
                                 icon={{ name: 'lock' }}
                                 placeholder='Password...'
                                 name="password"
                                 type="password"
-                                onChange={this.handleChange}
+                                onChange={this.handleCredentialChange}
                             />
 
                             <Form.Button
                                 width={2}
                                 fluid type="button"
-                                content='Signin!'
+                                content='Sign in!'
                                 onClick={this.handleLogin}
+                            />
+                            <Form.Button
+                                width={2}
+                                fluid type="button"
+                                content='Get User ID!'
+                                onClick={this.handleGetUserID}
                             />
                         </Form.Group>
 
