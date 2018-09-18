@@ -22,15 +22,50 @@ export default class Help extends React.Component {
 
     handleSubmitQuestion = () => {
         console.log("submitting the following form data\n", JSON.stringify(HelpStore.form));
+        HelpStore.clear();
     }
 
     render() {
 
-        const { activeIndex } = HelpStore;
+        const { activeIndex, form } = HelpStore;
 
         return (
-            <Container className='text-left'>
-                <Segment>
+            <div className='text-left p-5'>
+
+                <Segment className='p-4'>
+                    <Header as='h1'> Ask A Question! </Header>
+                    <Form onSubmit={this.handleSubmitQuestion}>
+
+                        <Form.Group widths='equal'>
+                            <Form.Input
+                                fluid placeholder='first name'
+                                onChange={this.handleChange}
+                                value={form['firstname']}
+                            />
+                            <Form.Input
+                                fluid placeholder='last name'
+                                onChange={this.handleChange}
+                                value={form['lastname']}
+                            />
+                        </Form.Group>
+
+                        <Form.Input
+                            type='email' placeholder='email'
+                            onChange={this.handleChange}
+                            value={form['email']}
+                        />
+                        <Form.TextArea
+                            type='text' placeholder='enter message'
+                            onChange={this.handleChange}
+                            value={form['text']}
+                        />
+                        <Form.Button type='submit' content='Submit Question!' />
+                    </Form>
+                </Segment>
+
+                <br/>
+
+                <Segment className='p-4'>
                     <Header as='h1'> Frequently Asked Questions! </Header>
 
                     {/* Map question and answers to a dropdown accordian component */}
@@ -53,21 +88,7 @@ export default class Help extends React.Component {
                     </Accordion>
                 </Segment>
 
-                <Segment>
-                    <Header as='h1'> Ask A Question! </Header>
-                    <Form onSubmit={this.handleSubmitQuestion}>
-
-                        <Form.Group widths='equal'>
-                            <Form.Input fluid placeholder='first name' onChange={this.handleChange} />
-                            <Form.Input fluid placeholder='last name' onChange={this.handleChange} />
-                        </Form.Group>
-
-                        <Form.Input type='email' placeholder='email' onChange={this.handleChange} />
-                        <Form.TextArea type='TEXT' placeholder='QUESTION AND MESSAGE' onChange={this.handleChange} />
-                        <Form.Button type='submit' content='Submit Question!' />
-                    </Form>
-                </Segment>
-            </Container>
+            </div>
         )
     }
 }

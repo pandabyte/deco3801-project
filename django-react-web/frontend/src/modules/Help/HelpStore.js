@@ -10,6 +10,15 @@ class HelpStore {
         email: '',
         text: ''
     }
+    @action
+    clear = () => {
+        this.form = {
+            firstname: '',
+            lastname: '',
+            email: '',
+            text: ''
+        }
+    }
 
     @action
     updateFormProperty = (key, value) => {
