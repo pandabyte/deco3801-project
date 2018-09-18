@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Header, Label, Button, Icon, Input, Table } from 'semantic-ui-react';
+import { Header, Label, Segment, Button, Icon, Input, Table } from 'semantic-ui-react';
 import ProcessStore from '../ProcessStore';
 import { observer } from 'mobx-react';
 
@@ -32,11 +32,9 @@ export default class Upload extends React.Component {
         return (
             <div>
 
-                <Header> Uploading Stage </Header>
-
                 {/* Form to select files */}
-                <div >
-                    <div className='d-inline-block p-5'>
+                <Segment className='text-center p-4'>
+                    <div className='d-inline-block p-4'>
                         <Label
                             as="label" htmlFor="singleFile" size="big">
                             <Icon name='file text' size='big' />
@@ -59,11 +57,11 @@ export default class Upload extends React.Component {
                             onChange={this.onChangeMultipleFile}
                         />
                     </div>
-                </div>
+                </Segment>
                 <br />
 
                 {/* Table to display currently selected files */}
-                <div>
+                <Segment className='text-left p-4'>
                     <Header as='h3'> Currently Selected Files </Header>
 
                     <Table celled singleLine>
@@ -85,7 +83,7 @@ export default class Upload extends React.Component {
                             })}
                         </Table.Body>
                     </Table>
-                </div>
+                </Segment>                    
 
             </div>
         )

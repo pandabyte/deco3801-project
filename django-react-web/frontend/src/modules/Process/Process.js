@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, Divider, Header, Button } from 'semantic-ui-react';
+import { Grid, Icon, Divider, Header, Button, Segment, Container, Step, GridRow, GridColumn } from 'semantic-ui-react';
 import ProcessStore from './ProcessStore';
 import { observer } from 'mobx-react';
 
@@ -25,15 +25,15 @@ export default class Process extends React.Component {
     /* Renders the component based on the stage that is selected */
     renderStage = (stage) => {
         switch (stage) {
-            case 'upload':
+            case 'Upload':
                 return <Upload />;
-            case 'sample':
+            case 'Sample':
                 return <Sample />;
-            case 'acquisition':
+            case 'Acquisition':
                 return <Acquisition />;
-            case 'config':
+            case 'Configuration':
                 return <Config />;
-            case 'result':
+            case 'Process':
                 return <Result />;
             default:
                 console.log('wot ... no stage selected');
@@ -41,29 +41,66 @@ export default class Process extends React.Component {
     }
 
 
+    handleSelectStage = (e) => {
+        ProcessStore.activeStage = e.target.id;
+    }
+
+
     render() {
 
-        const { config } = ProcessStore;
+        const { config, stages, activeStage } = ProcessStore;
 
-        const renderedStageComponent = this.renderStage(config['stage']);
+        const renderedStageComponent = this.renderStage(activeStage);
+
+        const focusedStage = stages.filter(stage => stage.name === activeStage)[0];
 
         return (
-            <div className='text-center'>
-                <div>
-                    <Icon name='upload' size='massive' id='upload' onClick={this.onIconClick} />
-                    <Icon style={{ 'margin': '25px' }} name='arrow alternate circle right' size='big' />
-                    <Icon name='keyboard' size='massive' id='sample' onClick={this.onIconClick} />
-                    <Icon style={{ 'margin': '25px' }} name='arrow alternate circle right' size='big' />
-                    <Icon name='setting' size='massive' id='acquisition' onClick={this.onIconClick} />
-                    <Icon style={{ 'margin': '25px' }} name='arrow alternate circle right' size='big' />
-                    <Icon name='adjust' size='massive' id='config' onClick={this.onIconClick} />
-                    <Icon style={{ 'margin': '25px' }} name='arrow alternate circle right' size='big' />
-                    <Icon name='google play' size='massive' id='result' onClick={this.onIconClick} />
-                </div>
+            <div className='text-left'>
+                <Grid>
+                    <Grid.Row columns='2'>
+
+                        {/* Stages Navigation Bar */}
+                        <Grid.Column width='4'>
+                            <Step.Group fluid vertical>
+                                {stages.map((stage, index) => {
+                                    return (<Step id={stage.name} key={index} active={ProcessStore.activeStage === stage.name} onClick={this.handleSelectStage}>
+                                        <Icon name={stage.icon} />
+                                        <Step.Content>
+                                            <Step.Title>{stage.name}</Step.Title>
+                                        </Step.Content>
+                                    </Step>)
+                                })}
+                            </Step.Group>
+                        </Grid.Column>
+
+                        {/* Stages Rendered Content*/}
+                        <Grid.Column width='12'>
+
+                            {/* display instructions for stage */}
+                            <Segment fluid>
+                                <Header as='h2'> Instructions for {focusedStage['name']} Stage!</Header>
+                                <Divider />
+                                {focusedStage['instructions'].map(step => {
+                                    return <p>{step}</p>
+                                })}
+                            </Segment>
+
+                            <Segment>
+                                {/* display stage */}
+                                {renderedStageComponent}
+                            </Segment>
+
+
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+
+
+
+
 
                 <Divider />
 
-                {renderedStageComponent}
 
             </div>
         )

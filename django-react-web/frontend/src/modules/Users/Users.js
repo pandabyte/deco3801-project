@@ -8,15 +8,10 @@ import mock from './mock';
 @observer
 export default class Users extends React.Component {
 
-    componentDidMount() {
-
-    }
-
     render() {
 
         return (
             <div className='p-5 text-left'>
-
                 <Grid columns={4}>
                     {mock.map((user, index) => {
                         return (
