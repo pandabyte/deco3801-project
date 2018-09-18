@@ -8,6 +8,7 @@ import { Menu, Icon, Container, Sticky } from 'semantic-ui-react';
 import Home from '../Home/Home';
 import Dashboard from '../Dashboard/Dashboard';
 import Profile from '../Profile/Profile';
+import Users from '../Users/Users';
 import Signup from '../Account/Signup';
 import Signin from '../Account/Signin';
 import Process from '../Process/Process';
@@ -66,8 +67,6 @@ export default class AppRouter extends React.Component {
             ) :
             (
                 <Menu.Menu position='right'>
-
-
                     <Menu.Item
                         name='sign out'
                         icon={<Icon name='sign-out' />}
@@ -88,7 +87,7 @@ export default class AppRouter extends React.Component {
                     {/* Scrollable nav bar */}
                     <Sticky>
                         {/* semantic UI components for linking to url paths */}
-                        <Menu className='bg-light' pointing secondary icon='labeled' >
+                        <Menu className='bg-light p-4' pointing secondary icon='labeled' >
                             <Menu.Item
                                 name='home'
                                 active={activeTab === 'home'}
@@ -191,6 +190,7 @@ export default class AppRouter extends React.Component {
                         <Route exact path='/signin' component={Signin} />
                         <Route exact path='/dashboard' component={Dashboard} />
                         <Route exact path='/profile' component={Profile} />
+                        <Route exact path='/users' component={Users} />
                         <Route exact path='/process' component={Process} />
                         <Route exact path='/search' component={ChemicalSearch} />
                         <Route exact path='/help' component={Help} />
