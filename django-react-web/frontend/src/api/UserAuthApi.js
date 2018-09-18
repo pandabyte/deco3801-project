@@ -36,15 +36,21 @@ class UserAuthApi {
     }
 
     register = (data) => {
-        var token = localStorage.getItem('access');
         console.log('Signing up with the following\n', JSON.stringify(data));
 
-        return axios.post('/api/v1/register/', data,
+        var newData = {
+            email: data.email,
+            username: data.email,
+            password: data.password,
+            first_name: data.firstname,
+            last_name: data.lastname,
+        }
+
+        return axios.post('/api/v1/register/', newData,
             {
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
+                    'Content-Type': 'application/json'
                 }
             }
         );

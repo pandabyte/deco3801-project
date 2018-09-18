@@ -1,10 +1,15 @@
 import * as React from 'react';
-import { Grid, Container, Divider } from 'semantic-ui-react'
+import { Grid, Container, Divider, Header, Icon } from 'semantic-ui-react'
 
 export default class AppFooter extends React.Component {
 
     render() {
 
+        const clickers = [
+            { href: "https://www.facebook.com/minh.nguyen.14661", icon: 'facebook square icon big' },
+            { href: "https://github.com/minhhho2", icon: 'git square icon big' },
+            { href: "https://www.linkedin.com", icon: 'linkedin square icon big' }
+        ];
         return (
             <div className='bg-dark text-center'>
                 <br />
@@ -42,6 +47,9 @@ export default class AppFooter extends React.Component {
                     </Grid>
                 </Container>
                 <br />
+                <br />
+
+
 
             </div>
         )

@@ -15,6 +15,10 @@ pipenv install
 npm install
 ./test_migrate.sh
 ```
+OR 
+```
+npm run setup
+```
 
 ## Test With Hot Reloading React App
 

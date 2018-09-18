@@ -14,7 +14,7 @@ export default class Signup extends React.Component {
 
         UserAuthApi.register(SignupStore.credentials)
             .then(res => console.log('res', res))
-            .catch(err => console.log('err', err));
+            .catch(err => console.log(err));
     }
 
     /* Redirect to sign in page */

@@ -63,6 +63,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
+    "setup": "pipenv install && npm install && ./test_migrate.sh",
     "start:live": "DJANGO_DEV=true concurrently \"npm start\" \"./test_built.sh\""
   },
   "jest": {

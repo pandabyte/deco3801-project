@@ -141,6 +141,21 @@ export default class AppRouter extends React.Component {
                                 as={Link} to='/help'
                             />
 
+                            <Menu.Menu position='right'>
+                                <Menu.Item
+                                    name='sign in'
+                                    active={activeTab === 'sign in'}
+                                    onClick={AppRouterStore.handleTabClick}
+                                    as={Link} to='/signin'
+                                />
+                                <Menu.Item
+                                    name='sign up'
+                                    active={activeTab === 'sign up'}
+                                    onClick={AppRouterStore.handleTabClick}
+                                    as={Link} to='/signup'
+                                />
+                            </Menu.Menu>
+
                         </Menu>
                     </Sticky>
 

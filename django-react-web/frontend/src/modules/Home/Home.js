@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { Container, Divider, Image, Header, Grid } from 'semantic-ui-react';
+import { Container, Divider, Image, Header, Grid, Icon } from 'semantic-ui-react';
 
 import information from './CECEWSN_IMG.png' // relative path to image 
 import UserAuthStore from './UserAuthStore';
