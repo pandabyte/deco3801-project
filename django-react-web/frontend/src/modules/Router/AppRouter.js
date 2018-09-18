@@ -2,26 +2,24 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
-
-// style sheets
-import '../../App.css';
-import './style.css';
-
 import { Menu, Icon, Container, Sticky } from 'semantic-ui-react';
 
 // import custom components
+import Home from '../Home/Home';
 import Dashboard from '../Dashboard/Dashboard';
+import Profile from '../Profile/Profile';
+import Users from '../Users/Users';
 import Signup from '../Account/Signup';
 import Signin from '../Account/Signin';
-import Process from '../../modules/Process/Process';
-import ChemicalSearch from '../../modules/Search/ChemicalSearch';
-import Help from '../../modules/Help/Help';
+import Process from '../Process/Process';
+import ChemicalSearch from '../Search/ChemicalSearch';
+import Help from '../Help/Help';
+import Error404 from '../Error/Error404';
 
 // import store
 import AppRouterStore from './AppRouterStore';
-import Profile from '../Profile/Profile';
-import Home from '../Home/Home';
-import Error404 from '../Error/Error404';
+import SigninStore from '../Account/SigninStore';
+
 
 @observer
 export default class AppRouter extends React.Component {
@@ -31,9 +29,10 @@ export default class AppRouter extends React.Component {
         AppRouterStore.setup();
     }
 
-    // Example function
-    _exampleFunction = (arg1, arg2, arg3) => {
-        console.log("calling example function");
+
+    handleSignout = () => {
+        console.log("Signout out and clearing tokens from local and state management and userID");
+        SigninStore.clear();
     }
 
     render() {
@@ -42,6 +41,42 @@ export default class AppRouter extends React.Component {
 
         // pull observable properties from AppRouterStore
         const { activeTab } = AppRouterStore;
+
+        var mask = SigninStore.tokens.refresh === '' && SigninStore.tokens.access === '' && SigninStore.userID === '';
+
+        var authTabs = mask ? 1 : 2;
+
+        var secondaryMenu = mask ?
+            (
+                <Menu.Menu position='right'>
+                    <Menu.Item
+                        name='sign in'
+                        active={activeTab === 'sign in'}
+                        icon={<Icon name='sign-in' />}
+                        onClick={AppRouterStore.handleTabClick}
+                        as={Link} to='/signin'
+                    />
+                    <Menu.Item
+                        name='sign up'
+                        active={activeTab === 'sign up'}
+                        icon={<Icon name='signup' />}
+                        onClick={AppRouterStore.handleTabClick}
+                        as={Link} to='/signup'
+                    />
+                </Menu.Menu>
+            ) :
+            (
+                <Menu.Menu position='right'>
+                    <Menu.Item
+                        name='sign out'
+                        icon={<Icon name='sign-out' />}
+                        active={activeTab === 'sign out'}
+                        onClick={SigninStore.handleSignout}
+                    />
+                </Menu.Menu>
+            );
+
+
 
         // Return has to return one component
         return (
@@ -52,7 +87,7 @@ export default class AppRouter extends React.Component {
                     {/* Scrollable nav bar */}
                     <Sticky>
                         {/* semantic UI components for linking to url paths */}
-                        <Menu className='bg-light' pointing secondary icon='labeled' >
+                        <Menu className='bg-light p-4' pointing secondary icon='labeled' >
                             <Menu.Item
                                 name='home'
                                 active={activeTab === 'home'}
@@ -141,20 +176,7 @@ export default class AppRouter extends React.Component {
                                 as={Link} to='/help'
                             />
 
-                            <Menu.Menu position='right'>
-                                <Menu.Item
-                                    name='sign in'
-                                    active={activeTab === 'sign in'}
-                                    onClick={AppRouterStore.handleTabClick}
-                                    as={Link} to='/signin'
-                                />
-                                <Menu.Item
-                                    name='sign up'
-                                    active={activeTab === 'sign up'}
-                                    onClick={AppRouterStore.handleTabClick}
-                                    as={Link} to='/signup'
-                                />
-                            </Menu.Menu>
+                            {secondaryMenu}
 
                         </Menu>
                     </Sticky>
@@ -168,6 +190,7 @@ export default class AppRouter extends React.Component {
                         <Route exact path='/signin' component={Signin} />
                         <Route exact path='/dashboard' component={Dashboard} />
                         <Route exact path='/profile' component={Profile} />
+                        <Route exact path='/users' component={Users} />
                         <Route exact path='/process' component={Process} />
                         <Route exact path='/search' component={ChemicalSearch} />
                         <Route exact path='/help' component={Help} />

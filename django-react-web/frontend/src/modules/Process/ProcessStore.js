@@ -8,6 +8,48 @@ class ProcessStore {
         isSingleFile: true,
     };
 
+    @observable activeStage = 'Upload';
+
+    @observable stages = [
+        {
+            name: 'Upload',
+            icon: 'upload',
+            instructions: [
+                `1. Click 'upload single file or 'upload multiple file`,
+                `2. Select your files in the file explorer`,
+                `3. Click next stage`
+            ]
+        },
+        {
+            name: 'Sample',
+            icon: 'keyboard',
+            instructions: [
+                `1. Click 'add sample information' for manual entry or 'upload sample information'`,
+                `2. Enter the required information or select the sample file from the file explorer`,
+                `3. Click next stage`
+            ]
+        },
+        {
+            name: 'Acquisition',
+            icon: 'setting',
+            instructions: ['three']
+
+        },
+        {
+            name: 'Configuration',
+            icon: 'adjust',
+            instructions: ['four']
+
+        },
+        {
+            name: 'Process',
+            icon: 'google play',
+            instructions: ['five']
+        }
+    ];
+
+
+
     /* Component to be rendered */
     @observable component = {}
 
@@ -18,7 +60,7 @@ class ProcessStore {
     @observable sampleLocation = '';
     @observable sampleType = '';
     @observable sampleDate = '';
-    
+
 
     @action
     setup = () => {

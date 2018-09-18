@@ -14,7 +14,7 @@ class SigninStore {
     @observable userID = '';
 
     @action
-    clear = () => {
+    handleSignout = () => {
         this.credentials = {
             email: '',
             password: ''
@@ -23,6 +23,9 @@ class SigninStore {
             refresh: '',
             access: ''
         }
+        this.userID = '';
+        localStorage.removeItem('refresh');
+        localStorage.removeItem('access');
     }
     @action 
     setUserID = (value) => {

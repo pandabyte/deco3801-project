@@ -37,41 +37,24 @@ export default class Profile extends React.Component {
                 <Grid divided='vertically'>
                     <Grid.Row columns={2}>
                         <Grid.Column>
-                            <Image
-                                src='http://www.nyan.cat/cats/original.gif'
-                                size='small'
-                            />
-                        </Grid.Column>
-                        <Grid.Column>
-                            <Form>
-                                <Form.Group width='equal'>
-                                    <Form.Button
-                                        positive type="button" content='Save Changes'
-                                        onClick={this.onSaveChanges}
-                                    />
-                                    <Form.Button
-                                        negative type="button" content='Cancel Changes'
-                                        onClick={this.onCancelChanges}
-                                    />
-                                </Form.Group>
-                            </Form>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
+                            <Segment>
+                                <Image
+                                    src='http://www.nyan.cat/cats/original.gif'
+                                    size='medium'
+                                    rounded fluid centered
+                                />
+                            </Segment>
 
-                <Grid divided='vertically'>
-                    <Grid.Row columns={2}>
-                        <Grid.Column>
                             <Form>
-                                <Form.Group width='2'>
+                                <Form.Group widths='equal'>
                                     <Form.Input
-                                        name='first' placeholder='First Name'
+                                        fluid name='first' placeholder='First Name'
                                         onChange={this.onChange}
                                         value={input['first']}
                                         icon={<Icon name='asterisk' />}
                                     />
                                     <Form.Input
-                                        name='last' placeholder='Last Name'
+                                        fluid name='last' placeholder='Last Name'
                                         onChange={this.onChange}
                                         value={input['last']}
                                         icon={<Icon name='asterisk' />}
@@ -95,24 +78,34 @@ export default class Profile extends React.Component {
                                     icon={<Icon name='asterisk' />}
                                 />
 
-
+                                <Form.Group widths='equal'>
+                                    <Form.Button
+                                        fluid positive type="button" content='Save Changes'
+                                        onClick={this.onSaveChanges}
+                                    />
+                                    <Form.Button
+                                        fluid negative type="button" content='Cancel Changes'
+                                        onClick={this.onCancelChanges}
+                                    />
+                                </Form.Group>
                             </Form>
                         </Grid.Column>
+
                         <Grid.Column>
                             <Form>
-                                <Segment compact>
+                                <Segment fluid>
                                     <Checkbox toggle label={ProfileQuestion.zero} />
                                 </Segment>
                                 <Form.TextArea
                                     placeholder={ProfileQuestion.one}
                                 />
-                                <Segment compact>
+                                <Segment fluid>
                                     <Checkbox toggle label={ProfileQuestion.two} />
                                 </Segment>
-                                <Segment compact>
+                                <Segment fluid>
                                     <Checkbox toggle label={ProfileQuestion.three} />
                                 </Segment>
-                                <Segment compact>
+                                <Segment fluid>
                                     <Checkbox toggle label={ProfileQuestion.four} />
                                 </Segment>
                             </Form>
