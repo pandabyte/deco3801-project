@@ -79,8 +79,17 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=150)
+    position = models.TextField(blank=True)
+    aid = models.ForeignKey('Affiliation', blank=True, null=True, on_delete=models.SET_NULL)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = UserManager()
+
+class Affiliation(models.Model):
+    aid = models.CharField(max_length=100, unique=True)
+    location = models.TextField()
+
+    def __str__(self):
+        return self.aid
