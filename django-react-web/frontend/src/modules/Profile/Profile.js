@@ -99,20 +99,20 @@ export default class Profile extends React.Component {
                             </Form>
                         </Grid.Column>
                         <Grid.Column>
-                            <Form widths='equal'>
-                                <Segment compact>
+                            <Form>
+                                <Segment fluid>
                                     <Checkbox toggle label={ProfileQuestion.zero} />
                                 </Segment>
                                 <Form.TextArea
                                     placeholder={ProfileQuestion.one}
                                 />
-                                <Segment compact>
+                                <Segment fluid>
                                     <Checkbox toggle label={ProfileQuestion.two} />
                                 </Segment>
-                                <Segment compact>
+                                <Segment fluid>
                                     <Checkbox toggle label={ProfileQuestion.three} />
                                 </Segment>
-                                <Segment compact>
+                                <Segment fluid>
                                     <Checkbox toggle label={ProfileQuestion.four} />
                                 </Segment>
                             </Form>

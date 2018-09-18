@@ -29,10 +29,12 @@ export default class Signin extends React.Component {
             UserAuthApi.getUserID().then(res => {
                 SigninStore.setUserID(res.data.userId);
             });
+            this.props.history.push('/')
 
         }).catch(err => {
             console.log(err);
-            this.handleLogout();
+            SigninStore.handleSignout();
+            this.props.history.push('/')
         });
     }
 
@@ -41,16 +43,6 @@ export default class Signin extends React.Component {
         const key = e.target.name;
         const value = e.target.value;
         SigninStore.updateCredentialProperty(key, value);
-    }
-
-    /* Clear tokens */
-    handleLogout = () => {
-
-        console.log("Token removed, state reset");
-        localStorage.removeItem('refresh');
-        localStorage.removeItem('access');
-
-        SigninStore.clear();
     }
 
     handleRedirectSignup = () => {

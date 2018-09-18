@@ -16,6 +16,14 @@ export default class Help extends React.Component {
         HelpStore.activeIndex = newIndex;
     }
 
+    handleChange = (e) => {
+        HelpStore.updateFormProperty(e.target.name, e.target.value);
+    }
+
+    handleSubmitQuestion = () => {
+        console.log("submitting the following form data\n", JSON.stringify(HelpStore.form));
+    }
+
     render() {
 
         const { activeIndex } = HelpStore;
@@ -46,14 +54,17 @@ export default class Help extends React.Component {
                 </Segment>
 
                 <Segment>
-                <Header as='h1'> Ask A Question! </Header>
-                    <Form>
+                    <Header as='h1'> Ask A Question! </Header>
+                    <Form onSubmit={this.handleSubmitQuestion}>
+
                         <Form.Group widths='equal'>
-                            <Form.Input fluid placeholder='first name' />
-                            <Form.Input fluid placeholder='last name' />
+                            <Form.Input fluid placeholder='first name' onChange={this.handleChange} />
+                            <Form.Input fluid placeholder='last name' onChange={this.handleChange} />
                         </Form.Group>
-                        <Form.Input type='email' placeholder='email' />
-                        <Form.Input type='TEXT' placeholder='QUESTION AND MESSAGE' />
+
+                        <Form.Input type='email' placeholder='email' onChange={this.handleChange} />
+                        <Form.TextArea type='TEXT' placeholder='QUESTION AND MESSAGE' onChange={this.handleChange} />
+                        <Form.Button type='submit' content='Submit Question!' />
                     </Form>
                 </Segment>
             </Container>

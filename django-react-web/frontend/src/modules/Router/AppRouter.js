@@ -72,7 +72,7 @@ export default class AppRouter extends React.Component {
                         name='sign out'
                         icon={<Icon name='sign-out' />}
                         active={activeTab === 'sign out'}
-                        onClick={this.handleSignout}
+                        onClick={SigninStore.handleSignout}
                     />
                 </Menu.Menu>
             );
