@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
 
 from users.models import User
+from users.serializers import UserSerializer
 
 @api_view(['POST'])
 @permission_classes(())
@@ -30,6 +31,12 @@ def register(request):
             'first_name': user.first_name,
             'last_name': user.last_name,
         })
+
+@api_view(['GET'])
+def users(request):
+    queryset = User.objects.all()
+    serializer = UserSerializer(queryset, many=True)
+    return JsonResponse(serializer.data, safe=False)
 
 @api_view(['GET'])
 def user_id(request):
