@@ -63,15 +63,15 @@ export default class Profile extends React.Component {
                     <Grid.Row columns={2}>
                         <Grid.Column>
                             <Form>
-                                <Form.Group width='2'>
+                                <Form.Group widths='equal'>
                                     <Form.Input
-                                        name='first' placeholder='First Name'
+                                        fluid name='first' placeholder='First Name'
                                         onChange={this.onChange}
                                         value={input['first']}
                                         icon={<Icon name='asterisk' />}
                                     />
                                     <Form.Input
-                                        name='last' placeholder='Last Name'
+                                        fluid name='last' placeholder='Last Name'
                                         onChange={this.onChange}
                                         value={input['last']}
                                         icon={<Icon name='asterisk' />}
@@ -99,7 +99,7 @@ export default class Profile extends React.Component {
                             </Form>
                         </Grid.Column>
                         <Grid.Column>
-                            <Form>
+                            <Form widths='equal'>
                                 <Segment compact>
                                     <Checkbox toggle label={ProfileQuestion.zero} />
                                 </Segment>

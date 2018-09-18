@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, Divider, Header, Form, Button, Container } from 'semantic-ui-react';
+import { Header, Form, Container, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 import SigninStore from './SigninStore';
 import UserAuthApi from '../../api/UserAuthApi';
@@ -15,7 +15,7 @@ export default class Signin extends React.Component {
 
         // Returns a 'refresh' and 'access' token
         UserAuthApi.login(credentials).then(res => {
-            console.log("response from login \n", res.data);
+            console.log("API Call Login Response: \n", res.data);
 
             // store on state manager
             SigninStore.updateTokenProperty('refresh', res.data.refresh);
@@ -25,15 +25,14 @@ export default class Signin extends React.Component {
             localStorage.setItem('refresh', res.data.refresh);
             localStorage.setItem('access', res.data.access);
 
+            // store user ID
+            UserAuthApi.getUserID().then(res => {
+                SigninStore.setUserID(res.data.userId);
+            });
+
         }).catch(err => {
             console.log(err);
             this.handleLogout();
-        });
-    }
-
-    handleGetUserID = () => {
-        UserAuthApi.getUserID().then(res => {
-            SigninStore.setUserID(res.data.userId);
         });
     }
 
@@ -65,53 +64,51 @@ export default class Signin extends React.Component {
             <div>
                 <Container>
 
-                    <div className='text-center p-5'>
-                        <Header as='h1'>Enter your email and password to log in to your account! </Header>
-                    </div>
+                    <Segment>
 
-                    <Form>
-                        <Form.Group>
-                            <Form.Input
-                                width={6}
-                                iconPosition='left'
-                                icon={{ name: 'user' }}
-                                placeholder='Email...'
-                                name="email"
-                                type="email"
-                                onChange={this.handleCredentialChange}
-                            />
+                        <div className='text-left p-5'>
+                            <Header as='h1'>Enter your email and password to log in to your account! </Header>
+                        </div>
 
-                            <Form.Input
-                                width={6}
-                                iconPosition='left'
-                                icon={{ name: 'lock' }}
-                                placeholder='Password...'
-                                name="password"
-                                type="password"
-                                onChange={this.handleCredentialChange}
-                            />
+                        <Form>
+                            <Form.Group>
+                                <Form.Input
+                                    width={7}
+                                    iconPosition='left'
+                                    icon={{ name: 'user' }}
+                                    placeholder='Email...'
+                                    name="email"
+                                    type="email"
+                                    onChange={this.handleCredentialChange}
+                                />
 
-                            <Form.Button
-                                width={2}
-                                fluid type="button"
-                                content='Sign in!'
-                                onClick={this.handleLogin}
-                            />
-                            <Form.Button
-                                width={2}
-                                fluid type="button"
-                                content='Get User ID!'
-                                onClick={this.handleGetUserID}
-                            />
-                        </Form.Group>
+                                <Form.Input
+                                    width={7}
+                                    iconPosition='left'
+                                    icon={{ name: 'lock' }}
+                                    placeholder='Password...'
+                                    name="password"
+                                    type="password"
+                                    onChange={this.handleCredentialChange}
+                                />
 
-                    </Form>
+                                <Form.Button
+                                    width={2}
+                                    fluid type="button"
+                                    content='Sign in!'
+                                    onClick={this.handleLogin}
+                                />
+                            </Form.Group>
+                        </Form>
 
+                        <div className='text-center p-5'>
+                            <span>
+                                Don't have an account? <a onClick={this.handleRedirectSignup}><u>Sign up here!</u></a>
+                            </span>
+                            <u>Forgot password?</u>
+                        </div>
+                    </Segment>
 
-                    <div className='text-center'>
-                        <span>Don't have an account? <a onClick={this.handleRedirectSignup}><u>Sign up here!</u></a></span>
-                        <u>Forgot password?</u>
-                    </div>
                 </Container>
             </div>
         )

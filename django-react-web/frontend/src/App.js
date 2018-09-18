@@ -7,7 +7,7 @@ import { Container } from 'semantic-ui-react';
 // custom components
 import AppFooter from './modules/Layout/AppFooter';
 import AppHeader from './modules/Layout/AppHeader';
-import AppRouter from './modules/Layout/AppRouter';
+import AppRouter from './modules/Router/AppRouter';
 
 export default class App extends React.Component {
 

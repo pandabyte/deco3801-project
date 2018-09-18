@@ -23,6 +23,7 @@ class SigninStore {
             refresh: '',
             access: ''
         }
+        this.userID = '';
     }
     @action 
     setUserID = (value) => {
