@@ -7,7 +7,6 @@ import { observer } from 'mobx-react';
 
 import mock from './mock';
 
-
 @observer
 export default class Help extends React.Component {
 
@@ -34,15 +33,17 @@ export default class Help extends React.Component {
 
                 <Segment className='p-4'>
                     <Header as='h1'> Ask A Question! </Header>
-                    <Form onSubmit={this.handleSubmitQuestion}>
 
+                    <Form onSubmit={this.handleSubmitQuestion}>
                         <Form.Group widths='equal'>
                             <Form.Input
+                                name='firstname'
                                 fluid placeholder='first name'
                                 onChange={this.handleChange}
                                 value={form['firstname']}
                             />
                             <Form.Input
+                                name='lastname'
                                 fluid placeholder='last name'
                                 onChange={this.handleChange}
                                 value={form['lastname']}
@@ -50,11 +51,13 @@ export default class Help extends React.Component {
                         </Form.Group>
 
                         <Form.Input
+                            name='email'
                             type='email' placeholder='email'
                             onChange={this.handleChange}
                             value={form['email']}
                         />
                         <Form.TextArea
+                            name='text'
                             type='text' placeholder='enter message'
                             onChange={this.handleChange}
                             value={form['text']}
@@ -63,7 +66,7 @@ export default class Help extends React.Component {
                     </Form>
                 </Segment>
 
-                <br/>
+                <br />
 
                 <Segment className='p-4'>
                     <Header as='h1'> Frequently Asked Questions! </Header>
@@ -71,7 +74,7 @@ export default class Help extends React.Component {
                     {/* Map question and answers to a dropdown accordian component */}
                     <Accordion fluid styled>
                         {mock.map((el, index) => {
-                            return (<div>
+                            return (<div key={index}>
                                 <Accordion.Title
                                     active={activeIndex === index}
                                     index={index}
@@ -82,8 +85,7 @@ export default class Help extends React.Component {
                                 <Accordion.Content active={activeIndex === index}>
                                     <p> {el.answer} </p>
                                 </Accordion.Content>
-                            </div>
-                            )
+                            </div>)
                         })}
                     </Accordion>
                 </Segment>

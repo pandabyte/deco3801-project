@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, Divider, Header, Button, Form, Grid, Container, List, Label, Segment } from 'semantic-ui-react';
+import { Icon, Message, Header, Button, Form, Grid, Container, List, Label, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 import SignupStore from './SignupStore';
 import UserAuthApi from '../../api/UserAuthApi';
@@ -14,7 +14,7 @@ export default class Signup extends React.Component {
 
         UserAuthApi.register(SignupStore.credentials)
             .then(res => console.log('res', res))
-            .catch(err => console.log(err));
+            .catch(err => SignupStore.setMessage(err.response.data.error));
     }
 
     /* Redirect to sign in page */
@@ -36,20 +36,40 @@ export default class Signup extends React.Component {
         SignupStore.updateCredentialProperty(key, value);
     }
 
+    getMessage = () => {
+        if (SignupStore.visible) {
+            return (<Message
+                negative
+                content={SignupStore.message}
+                onDismiss={SignupStore.clearMessage}
+            />)
+        } else {
+            return (<div></div>)
+        }
+    }
+
     render() {
+
+        const message = this.getMessage();
 
         return (
             <div>
                 <Container className='text-left'>
+
+                    {message}
 
                     <Grid divided='vertically'>
                         <Grid.Row columns={2}>
                             <Grid.Column >
 
                                 <Header as='h1'>Your free account includes </Header>
-                                <p> TODO: Enter functionalities of the website</p>
-                                <p>tester 2</p>
-                                <p>tester 3</p>
+                                <p> Upload HRMS data </p>
+                                <p> Upload suspect data to suspect database </p>
+                                <p> Upload HRMS data and suspect list</p>
+                                <p> Subscribe to early warning CEC alert </p>
+                                <p> Global report of CEC locations </p>
+                                <p> Search for a CEC </p>
+                                <p> Reports of CEC </p>
 
                             </Grid.Column>
 
@@ -97,7 +117,7 @@ export default class Signup extends React.Component {
                                         />
 
                                     </Form>
-                                    <span>
+                                    <span className='p-5'>
                                         Already have an account? <a onClick={this.handleRedirectSignin}><u>Sign in here!</u></a>
                                     </span>
                                 </Segment>

@@ -23,11 +23,8 @@ export default class Home extends React.Component {
             <div>
                 <Container>
 
-                    <Header as='h1' content='Test Landing Page' />
-                    <Image size={'big'} src={information} />
+                    <Image size='huge' src={information} />
 
-                    <Header as='h1' content='Test Landing Page' />
-                    <Image large src='https://i.ytimg.com/vi/XrWuFUSELrg/maxresdefault.jpg' />
                     <br />
 
                 </Container>

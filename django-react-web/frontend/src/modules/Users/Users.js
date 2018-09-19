@@ -2,18 +2,26 @@ import * as React from 'react';
 import { Card, Segment, Checkbox, Form, Container, Grid, Icon, Image } from 'semantic-ui-react';
 
 import UsersStore from './UsersStore';
+import UserApi from '../../api/UserApi';
+
 import { observer } from 'mobx-react';
 import mock from './mock';
 
 @observer
 export default class Users extends React.Component {
 
+    componentDidMount() {
+        UsersStore.setup();
+    }
+
     render() {
+
+        const { users } = UsersStore;
 
         return (
             <div className='p-5 text-left'>
                 <Grid columns={4}>
-                    {mock.map((user, index) => {
+                    {users.map((user, index) => {
                         return (
                             <Grid.Column key={index}>
                                 <Card>
@@ -23,7 +31,8 @@ export default class Users extends React.Component {
 
                                         <Card.Description>
                                             <p>{user.position}</p>
-                                            <p>{user.affiliation}</p>
+                                            <p>{user.email}</p>
+                                            <p>{user.username}</p>
                                         </Card.Description>
                                     </Card.Content>
                                 </Card>

@@ -32,19 +32,30 @@ class ProcessStore {
         {
             name: 'Acquisition',
             icon: 'setting',
-            instructions: ['three']
+            instructions: [
+                `1. Intruction one`,
+                `2. Intrution two`,
+                `3. Intrution two`
+            ]
 
         },
         {
             name: 'Configuration',
             icon: 'adjust',
-            instructions: ['four']
-
+            instructions: [
+                `1. Intruction one`,
+                `2. Intrution two`,
+                `3. Intrution two`
+            ]
         },
         {
             name: 'Process',
             icon: 'google play',
-            instructions: ['five']
+            instructions: [
+                `1. Intruction one`,
+                `2. Intrution two`,
+                `3. Intrution two`
+            ]
         }
     ];
 

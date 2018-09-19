@@ -10,6 +10,7 @@ class HelpStore {
         email: '',
         text: ''
     }
+
     @action
     clear = () => {
         this.form = {
@@ -22,6 +23,7 @@ class HelpStore {
 
     @action
     updateFormProperty = (key, value) => {
+        console.log(JSON.stringify(this.form));
         this.form[key] = value;
     }
 

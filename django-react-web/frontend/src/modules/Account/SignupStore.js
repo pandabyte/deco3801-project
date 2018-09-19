@@ -9,7 +9,11 @@ class SignupStore {
         firstname: 'minh',
         lastname: 'nguyen'
     }
-    
+
+    @observable visible = false;
+    @observable message = '';
+
+
     @observable informations = {
         affiliation: '',
         position: ''
@@ -18,10 +22,21 @@ class SignupStore {
     @observable isLoggedIn = false;
 
     @action
+    setMessage = (text) => {
+        this.message = text;
+        this.visible = true;
+    }
+
+    clearMessage = () => {
+        this.message = '';
+        this.visible = false;
+    }
+
+    @action
     updateCredentialProperty = (key, value) => {
         this.credentials[key] = value;
     }
-    
+
     @action
     updateInformationProperty = (key, value) => {
         this.informations[key] = value;
