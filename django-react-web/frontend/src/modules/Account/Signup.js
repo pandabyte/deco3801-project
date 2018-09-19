@@ -47,9 +47,13 @@ export default class Signup extends React.Component {
                             <Grid.Column >
 
                                 <Header as='h1'>Your free account includes </Header>
-                                <p> TODO: Enter functionalities of the website</p>
-                                <p>tester 2</p>
-                                <p>tester 3</p>
+                                <p> Upload HRMS data </p>
+                                <p> Upload suspect data to suspect database </p>
+                                <p> Upload HRMS data and suspect list</p>
+                                <p> Subscribe to early warning CEC alert </p>
+                                <p> Global report of CEC locations </p> 
+                                <p> Search for a CEC </p>
+                                <p> Reports of CEC </p>
 
                             </Grid.Column>
 
