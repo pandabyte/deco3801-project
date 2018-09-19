@@ -9,7 +9,7 @@ class UserApi {
     user = (userID) => {
         var token = localStorage.getItem('access');
 
-        return axios.get('/api/v1/userprofile/', userID,
+        return axios.post('/api/v1/userprofile/', userID,
             {
                 headers: {
                     'Accept': 'application/json',

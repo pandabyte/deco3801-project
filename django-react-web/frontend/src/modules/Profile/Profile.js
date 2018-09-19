@@ -30,7 +30,6 @@ export default class Profile extends React.Component {
     render() {
 
         const { input } = ProfileStore;
-        console.log(JSON.stringify(input));
 
         return (
             <Container>
