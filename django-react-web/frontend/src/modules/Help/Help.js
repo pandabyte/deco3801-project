@@ -63,7 +63,7 @@ export default class Help extends React.Component {
                     </Form>
                 </Segment>
 
-                <br/>
+                <br />
 
                 <Segment className='p-4'>
                     <Header as='h1'> Frequently Asked Questions! </Header>
@@ -71,7 +71,7 @@ export default class Help extends React.Component {
                     {/* Map question and answers to a dropdown accordian component */}
                     <Accordion fluid styled>
                         {mock.map((el, index) => {
-                            return (<div>
+                            return (<div key={index}>
                                 <Accordion.Title
                                     active={activeIndex === index}
                                     index={index}
@@ -82,8 +82,7 @@ export default class Help extends React.Component {
                                 <Accordion.Content active={activeIndex === index}>
                                     <p> {el.answer} </p>
                                 </Accordion.Content>
-                            </div>
-                            )
+                            </div>)
                         })}
                     </Accordion>
                 </Segment>

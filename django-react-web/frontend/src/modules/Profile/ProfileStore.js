@@ -3,19 +3,17 @@ import UserApi from '../../api/UserApi';
 
 
 class ProfileStore {
-    @observable input = {}
+    @observable input = {
+        first: '',
+        last: '',
+        affiliation: '',
+        position: '',
+        email: ''
+    }
 
     /* Sets all form inputs to current value from database */
     @action
     setup = () => {
-        // TODO: pull existing data from database
-        this.input = {
-            first: 'Minh',
-            last: 'Nguyen',
-            affiliation: 'UQ',
-            position: 'Developer',
-            email: 'minh@example.com'
-        }
 
         UserApi.user()
             .then(res => {

@@ -77,11 +77,11 @@ export default class Process extends React.Component {
                         <Grid.Column width='12'>
 
                             {/* display instructions for stage */}
-                            <Segment fluid>
+                            <Segment fluid='true'>
                                 <Header as='h2'> Instructions for {focusedStage['name']} Stage!</Header>
                                 <Divider />
-                                {focusedStage['instructions'].map(step => {
-                                    return <p>{step}</p>
+                                {focusedStage['instructions'].map((step, index) => {
+                                    return <p key={index}>{step}</p>
                                 })}
                             </Segment>
 

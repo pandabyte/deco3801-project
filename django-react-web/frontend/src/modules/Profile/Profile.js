@@ -40,7 +40,7 @@ export default class Profile extends React.Component {
                                 <Image
                                     src='http://www.nyan.cat/cats/original.gif'
                                     size='medium'
-                                    rounded fluid centered
+                                    rounded centered
                                 />
                             </Segment>
 
@@ -92,19 +92,19 @@ export default class Profile extends React.Component {
 
                         <Grid.Column>
                             <Form>
-                                <Segment fluid>
+                                <Segment fluid='true'>
                                     <Checkbox toggle label={ProfileQuestion.zero} />
                                 </Segment>
                                 <Form.TextArea
                                     placeholder={ProfileQuestion.one}
                                 />
-                                <Segment fluid>
+                                <Segment fluid='true'>
                                     <Checkbox toggle label={ProfileQuestion.two} />
                                 </Segment>
-                                <Segment fluid>
+                                <Segment fluid='true'>
                                     <Checkbox toggle label={ProfileQuestion.three} />
                                 </Segment>
-                                <Segment fluid>
+                                <Segment fluid='true'>
                                     <Checkbox toggle label={ProfileQuestion.four} />
                                 </Segment>
                             </Form>
