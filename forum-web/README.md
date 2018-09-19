@@ -1,5 +1,3 @@
-Install php-cli
-sudo apt-get install php php-xml
+All of these are third party library from PHPBB https://www.phpbb.com/
 
-Start PHP server
-php -S localhost:<PORT>
+Please do not try to mark them.
