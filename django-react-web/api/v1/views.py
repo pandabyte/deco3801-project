@@ -7,6 +7,9 @@ from users.serializers import UserSerializer
 @api_view(['POST'])
 @permission_classes(())
 def register(request):
+    """
+    Creates a user with the given details.
+    """
     try:
         user = User.objects.create_user(
             email=request.data.get('email'),
@@ -34,10 +37,16 @@ def register(request):
 
 @api_view(['GET'])
 def users(request):
+    """
+    Returns a list of all users.
+    """
     queryset = User.objects.all()
     serializer = UserSerializer(queryset, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 @api_view(['GET'])
 def user_id(request):
+    """
+    Returns the username of the logged in user.
+    """
     return JsonResponse({'userId': request.user.username})

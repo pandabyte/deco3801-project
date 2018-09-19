@@ -53,11 +53,17 @@ class UserManager(BaseUserManager):
         return user
 
     def create_user(self, email, first_name, last_name, password=None, **extra_fields):
+        """
+        Create and save a User with the given email and password.
+        """
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(email, first_name, last_name, password, **extra_fields)
 
     def create_superuser(self, email, first_name, last_name, password, **extra_fields):
+        """
+        Create and save a User with the given email and password with superuser access.
+        """
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
@@ -88,6 +94,9 @@ class User(AbstractUser):
     objects = UserManager()
 
 class Affiliation(models.Model):
+    """
+    Affiliation associated with a User.
+    """
     aid = models.CharField(max_length=100, unique=True)
     location = models.TextField()
 
