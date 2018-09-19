@@ -87,17 +87,17 @@ export default class Signin extends React.Component {
                                 <Form.Button
                                     width={2}
                                     fluid type="button"
-                                    content='Sign in!'
+                                    content='Sign me in!'
                                     onClick={this.handleLogin}
                                 />
                             </Form.Group>
                         </Form>
 
                         <div className='text-center p-5'>
-                            <span>
+                            <span className='p-5'>
                                 Don't have an account? <a onClick={this.handleRedirectSignup}><u>Sign up here!</u></a>
                             </span>
-                            <u>Forgot password?</u>
+                            <u className='p-5'>Forgot password?</u>
                         </div>
                     </Segment>
 

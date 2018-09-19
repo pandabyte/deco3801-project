@@ -97,7 +97,7 @@ export default class Signup extends React.Component {
                                         />
 
                                     </Form>
-                                    <span>
+                                    <span className='p-5'>
                                         Already have an account? <a onClick={this.handleRedirectSignin}><u>Sign in here!</u></a>
                                     </span>
                                 </Segment>
