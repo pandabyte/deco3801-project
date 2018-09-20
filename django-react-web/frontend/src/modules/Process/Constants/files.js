@@ -7,7 +7,18 @@ const files = {
         name: 'name two',
         size: 'size two'
     }
+}
 
+const mock = {
+    // TODO: INSERT MOCK FILE DATA
+    files: {
+
+    },
+
+    // TODO: INSERT STAGE INFORMATION
+    stages: {
+
+    }
 }
 
 export default files;

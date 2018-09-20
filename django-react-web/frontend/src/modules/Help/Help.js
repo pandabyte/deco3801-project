@@ -1,14 +1,23 @@
 
 import * as React from 'react';
-import { Container, Segment, Header, Icon, Accordion, Form } from 'semantic-ui-react';
-
-import HelpStore from './HelpStore';
+import { Segment, Header, Icon, Accordion, Form } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 
+import HelpStore from './HelpStore';
 import mock from './mock';
 
 @observer
 export default class Help extends React.Component {
+
+    /* Click event handler for FAQ */
+    onAccordionClick = (e) => { }
+
+    /* Event handler for when the new question form input changes */
+    onNewQuestionFormChange = (e) => { }
+
+    /* Event handler for submitting the new question form */
+    onNewQuestionFormSubmit = (e) => { }
+
 
     handleClick = (e, titleProps) => {
         const newIndex = HelpStore.activeIndex === titleProps.index ? -1 : titleProps.index;
@@ -29,11 +38,13 @@ export default class Help extends React.Component {
         const { activeIndex, form } = HelpStore;
 
         return (
+
+
             <div className='text-left p-5'>
 
+                {/* Form for submitting a new question */}
                 <Segment className='p-4'>
                     <Header as='h1'> Ask A Question! </Header>
-
                     <Form onSubmit={this.handleSubmitQuestion}>
                         <Form.Group widths='equal'>
                             <Form.Input
@@ -66,12 +77,19 @@ export default class Help extends React.Component {
                     </Form>
                 </Segment>
 
+                {/* 
+                    <Question Form />
+                    <br />
+                    <Faq />
+                */}
+
                 <br />
 
+                {/* Form for submitting a new question */}
                 <Segment className='p-4'>
-                    <Header as='h1'> Frequently Asked Questions! </Header>
 
-                    {/* Map question and answers to a dropdown accordian component */}
+                    {/* Map question and answers to a dropdown accordion component */}
+                    <Header as='h1'> Frequently Asked Questions! </Header>
                     <Accordion fluid styled>
                         {mock.map((el, index) => {
                             return (<div key={index}>

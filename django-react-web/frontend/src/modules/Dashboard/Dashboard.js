@@ -4,8 +4,31 @@ import { Container, Icon, Grid } from 'semantic-ui-react';
 export default class Dashboard extends React.Component {
 
     render() {
+
+        /* Array of tabs. One tab is associated with one react page */
+        const tabs = [
+            {
+                iconName: 'cloud upload',
+                tabName: 'Upload and process my data',
+                url: '/uploadprocess',
+                onClick: 'handler'
+            }
+        ];
+
         return (
             <Container className='text-center'>
+                
+                {/* Map each tab to its presentation*/}
+                <Grid columns={3} padded>
+                    {tabs.map((tab, index) => {
+                        return (<Grid.Column>
+                            <Icon name={tab.iconName} size='massive' />
+                            <p>{tab.tabName}</p>
+                        </Grid.Column>)
+                    })}
+                </Grid>
+
+
                 <Grid columns={3} padded>
                     <Grid.Column>
                         <Icon name='cloud upload' size='massive' />

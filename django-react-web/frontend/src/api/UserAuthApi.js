@@ -1,8 +1,6 @@
 // import dependencies
 import axios from 'axios';
 
-import UserAuthStore from '../modules/Home/UserAuthStore';
-
 const HEADER = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',

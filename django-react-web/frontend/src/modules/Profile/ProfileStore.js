@@ -3,6 +3,8 @@ import UserApi from '../../api/UserApi';
 
 
 class ProfileStore {
+
+    /* Form input states */
     @observable input = {
         first: '',
         last: '',

@@ -2,22 +2,16 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 
-
-import { Menu, Icon, Container, Header, Sticky } from 'semantic-ui-react';
-
+import { Header } from 'semantic-ui-react';
 
 @observer
-export default class Error extends React.Component {
-
-
+export default class Error404 extends React.Component {
 
     render() {
-
         return (
-
+            
             <div>
                 <Header>Error Page</Header>
-
             </div>
 
         );

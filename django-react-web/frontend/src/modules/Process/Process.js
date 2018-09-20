@@ -13,11 +13,12 @@ import Result from './Stages/Result';
 @observer
 export default class Process extends React.Component {
 
+    /* Set up initial states */
     componentDidMount = () => {
         ProcessStore.setup();
     }
 
-    /* Updates the selected stage */
+    /* Updates the selected rendered stage */
     onIconClick = (e) => {
         ProcessStore.updateProperty('stage', e.target.id);
     }
@@ -40,11 +41,9 @@ export default class Process extends React.Component {
         }
     }
 
-
     handleSelectStage = (e) => {
         ProcessStore.activeStage = e.target.id;
     }
-
 
     render() {
 

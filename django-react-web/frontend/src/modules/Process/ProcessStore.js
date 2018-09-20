@@ -3,6 +3,23 @@ import files from './Constants/files';
 
 class ProcessStore {
     /* Configurations to track stage progress */
+    @observable data = {
+        configuration: {
+            activeStage: 'Upload',
+            componentView: ''
+        },
+        upload: {
+            files: []
+        },
+        sample: {
+            location: '',
+            type: '',
+            date: ''
+        },
+        acquisition: {},
+        result: {}
+    };
+
     @observable config = {
         stage: '',
         isSingleFile: true,
@@ -73,6 +90,23 @@ class ProcessStore {
     @observable sampleDate = '';
 
 
+    /* Set up initial states */
+    @action
+    setup = () => { }
+
+    /* Set key value for configuration */
+    @action
+    updateConfigurationKeyValue = (key, value) => { }
+
+    /* Set key value for selected files */
+    @action
+    setSelectedFiles = (files) => { }
+
+    /* Set key value for sample */
+    @action
+    setSample = (location, type, date) => { }
+
+    // TODO: swap to above
     @action
     setup = () => {
         console.log('Setting up Process fields');

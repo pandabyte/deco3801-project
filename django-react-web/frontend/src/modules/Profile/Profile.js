@@ -8,18 +8,19 @@ import { observer } from 'mobx-react';
 @observer
 export default class Profile extends React.Component {
 
+    /* Set up initial states */
     componentDidMount() {
         ProfileStore.setup();
     }
 
+    /* Event handler for saving profile detail changes */
     onSaveChanges = () => {
-        console.log('saving ' + JSON.stringify(ProfileStore.input));
         ProfileStore.reset();
     }
 
+    /* Event handler for canceling profile detail changes */
     onCancelChanges = () => {
         ProfileStore.reset();
-        console.log('resetting ' + JSON.stringify(ProfileStore.input));
     }
 
     /* Event handler for updating the state of the form inputs on interaction */
@@ -36,6 +37,8 @@ export default class Profile extends React.Component {
                 <Grid divided='vertically'>
                     <Grid.Row columns={2}>
                         <Grid.Column>
+
+                            {/* Display picture*/}
                             <Segment>
                                 <Image
                                     src='http://www.nyan.cat/cats/original.gif'
@@ -43,7 +46,8 @@ export default class Profile extends React.Component {
                                     rounded centered
                                 />
                             </Segment>
-
+                            
+                            {/* Form details */}
                             <Form>
                                 <Form.Group widths='equal'>
                                     <Form.Input
@@ -91,6 +95,8 @@ export default class Profile extends React.Component {
                         </Grid.Column>
 
                         <Grid.Column>
+
+                            {/* More form details */}
                             <Form>
                                 <Segment fluid='true'>
                                     <Checkbox toggle label={ProfileQuestion.zero} />
