@@ -1,9 +1,9 @@
-
+// import dependencies
 import * as React from 'react';
 import { } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 
-import HelpStore from './HelpStore';
+// Custom components
 import QuestionForm from './QuestionForm';
 import Faq from './Faq';
 

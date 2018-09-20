@@ -15,17 +15,19 @@ export default class Profile extends React.Component {
 
     /* Event handler for saving profile detail changes */
     onSaveChanges = () => {
-        ProfileStore.reset();
+        // TODO: post information to database
+        // TODO: add flash message for successful
+        ProfileStore.clear();
     }
 
     /* Event handler for canceling profile detail changes */
     onCancelChanges = () => {
-        ProfileStore.reset();
+        ProfileStore.clear();
     }
 
     /* Event handler for updating the state of the form inputs on interaction */
     onChange = (e) => {
-        ProfileStore.updateInputProperty(e.target.name, e.target.value);
+        ProfileStore.updateInputKeyValue(e.target.name, e.target.value);
     }
 
     render() {
@@ -46,7 +48,7 @@ export default class Profile extends React.Component {
                                     rounded centered
                                 />
                             </Segment>
-                            
+
                             {/* Form details */}
                             <Form>
                                 <Form.Group widths='equal'>

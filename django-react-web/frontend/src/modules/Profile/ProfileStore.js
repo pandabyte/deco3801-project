@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 import UserApi from '../../api/UserApi';
-
+import _ from 'lodash';
 
 class ProfileStore {
 
@@ -16,39 +16,29 @@ class ProfileStore {
     /* Sets all form inputs to current value from database */
     @action
     setup = () => {
-
-        UserApi.user()
-            .then(res => {
-                const user = res.data;
-                this.input = {
-                    first: user.first_name,
-                    last: user.last_name,
-                    affiliation: user.affiliation,
-                    position: user.position,
-                    email: user.email,
-                    username: user.username
-                }
-            })
-            .catch(err => console.log(err));
+        UserApi.user().then(res => {
+            const user = res.data;
+            this.input = {
+                first: user.first_name,
+                last: user.last_name,
+                affiliation: user.affiliation,
+                position: user.position,
+                email: user.email,
+                username: user.username
+            }
+        }).catch(err => console.log(err));
     }
 
     /* Clears all form inputs */
     @action
     reset = () => {
-        this.input = {
-            first: '',
-            last: '',
-            affiliation: '',
-            position: '',
-            email: ''
-        }
+        this.input = _.mapValues(this.input, () => '');
     }
 
     /* Updates the state */
     @action
-    updateInputProperty = (key, value) => {
+    updateInputKeyValue = (key, value) => {
         this.input[key] = value;
-        console.log('updating ' + this.input[key]);
     }
 }
 

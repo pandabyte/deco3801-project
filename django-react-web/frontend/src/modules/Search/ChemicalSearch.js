@@ -18,14 +18,17 @@ const source = _.times(5, () => ({
 @observer
 export default class ChemicalSearch extends React.Component {
 
+    /* Set initial states */
     componentWillMount = () => {
         ChemicalSearchStore.clear();
     }
 
+    /* Event handler for selecting element from search bar */
     handleResultSelect = (e, { result }) => {
         ChemicalSearchStore.value = result.title;
     }
 
+    /* Event handler for search bar changing values */
     handleSearchChange = (e, { value }) => {
         ChemicalSearchStore.isLoading = true;
         ChemicalSearchStore.value = value;

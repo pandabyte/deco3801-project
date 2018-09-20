@@ -8,6 +8,7 @@ export default class AppFooter extends React.Component {
             <div className='bg-dark text-center'>
 
                 <Container >
+
                     {/*  Main footer content */}
                     <Grid divided='vertically'>
                         <Grid.Row columns={3} className='text-white text-left p-5'>
@@ -32,7 +33,6 @@ export default class AppFooter extends React.Component {
 
                         </Grid.Row>
                     </Grid>
-
                     <Divider className='bg-white' />
 
                     {/*  T&A footer content */}

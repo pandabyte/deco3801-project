@@ -6,6 +6,7 @@ class UsersStore {
 
     @observable users = [];
 
+    /* Pull user from user database */
     @action
     setup = () => {
         UserApi.users().then(res => {
@@ -19,8 +20,7 @@ class UsersStore {
                     username: user.username
                 });
             });
-        })
-            .catch(err => console.log(err));
+        }).catch(err => console.log(err));
     }
 }
 

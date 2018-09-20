@@ -13,12 +13,14 @@ class ChemicalSearchStore {
         /* TODO: add mock data in the mean time */
     }
 
+    /* Clear search states*/
     clear = () => {
         this.isLoading = false;
         this.results = [];
         this.value = '';
     }
 
+    /* Set key value pair for search states */
     updateValue = (value) => {
         this.isLoading = true;
         this.value = value;

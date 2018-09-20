@@ -7,9 +7,7 @@ import information from './CECEWSN_IMG.png';
 
 @observer
 export default class Home extends React.Component {
-
     render() {
-
         return (
             <div>
                 <Container>

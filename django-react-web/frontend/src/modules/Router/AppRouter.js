@@ -38,7 +38,9 @@ export default class AppRouter extends React.Component {
 
         const { activeTab } = AppRouterStore;
 
-        var secondaryMenu = (SigninStore.tokens.refresh === '' && SigninStore.tokens.access === '' && SigninStore.userID === '') ?
+        var secondaryMenu = (SigninStore.tokens.refresh === ''
+            && SigninStore.tokens.access === ''
+            && SigninStore.userID === '') ?
             (<Menu.Menu position='right'>
                 <Menu.Item
                     name='sign in'
@@ -73,7 +75,7 @@ export default class AppRouter extends React.Component {
 
                     <div className='text-center'>
                         <Sticky>    {/* Allows scrollable nav bar */}
-                            
+
                             {/* semantic UI components for linking to url paths */}
                             <Menu className='bg-light p-4' pointing secondary icon='labeled' >
                                 <Menu.Item
@@ -173,10 +175,9 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/search' component={ChemicalSearch} />
                             <Route exact path='/help' component={Help} />
                             <Route component={Error404} />
-
                         </Switch>
                         <br />
-
+                        
                     </div>
                 </BrowserRouter>
             </div>
