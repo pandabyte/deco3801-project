@@ -17,14 +17,7 @@ class HelpStore {
     /* Clear form values */
     @action
     clear = () => {
-        // this.form = _.mapValues(this.form, () => '');
-        /* TODO: swap below to top */
-        this.form = {
-            firstname: '',
-            lastname: '',
-            email: '',
-            text: ''
-        }
+        this.form = _.mapValues(this.form, () => '');
     }
 
     /* Set key value for form */
@@ -32,14 +25,6 @@ class HelpStore {
     updateFormKeyValue = (key, value) => {
         this.form[key] = value;
     }
-
-    /* TODO: remove this */
-    @action
-    updateFormProperty = (key, value) => {
-        console.log(JSON.stringify(this.form));
-        this.form[key] = value;
-    }
-
 }
 
 export default new HelpStore();
