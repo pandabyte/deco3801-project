@@ -52,52 +52,51 @@ export default class Signin extends React.Component {
     render() {
 
         return (
-            <div>
-                <Container>
+            <Container>
 
-                    <Segment>
+                <Segment>
+                    {/* Login header */}
+                    <div className='text-left p-5'>
+                        <Header as='h1'>Enter your email and password to log in to your account! </Header>
+                    </div>
 
-                        <div className='text-left p-5'>
-                            <Header as='h1'>Enter your email and password to log in to your account! </Header>
-                        </div>
+                    {/* Login form */}
+                    <Form>
+                        <Form.Group>
+                            <Form.Input
+                                width={7} name="email" type="email"
+                                iconPosition='left' icon={{ name: 'user' }}
+                                placeholder='Email...'
+                                onChange={this.handleCredentialChange}
+                            />
 
-                        <Form>
-                            <Form.Group>
-                                <Form.Input
-                                    width={7} name="email" type="email"
-                                    iconPosition='left' icon={{ name: 'user' }}
-                                    placeholder='Email...'
-                                    onChange={this.handleCredentialChange}
-                                />
+                            <Form.Input
+                                width={7} name="password" type="password"
+                                iconPosition='left' icon={{ name: 'lock' }}
+                                placeholder='Password...'
+                                onChange={this.handleCredentialChange}
+                            />
 
-                                <Form.Input
-                                    width={7} name="password" type="password"
-                                    iconPosition='left' icon={{ name: 'lock' }}
-                                    placeholder='Password...'
-                                    onChange={this.handleCredentialChange}
-                                />
-
-                                <Form.Button
-                                    width={2} fluid type="button"
-                                    content='Sign me in!'
-                                    onClick={this.handleLogin}
-                                />
-                            </Form.Group>
-                        </Form>
-
-                        <div className='text-center p-5'>
-                            <span className='p-5'>
-                                Don't have an account?
+                            <Form.Button
+                                width={2} fluid type="button"
+                                content='Sign me in!'
+                                onClick={this.handleLogin}
+                            />
+                        </Form.Group>
+                    </Form>
+                    {/* Login footer message */}
+                    <div className='text-center p-5'>
+                        <span className='p-5'>
+                            Don't have an account?
                                 <a onClick={this.handleRedirectSignup}>
-                                    <u>Sign up here!</u>
-                                </a>
-                            </span>
-                            <u className='p-5'>Forgot password?</u>
-                        </div>
-                    </Segment>
+                                <u>Sign up here!</u>
+                            </a>
+                        </span>
+                        <u className='p-5'>Forgot password?</u>
+                    </div>
+                </Segment>
 
-                </Container>
-            </div>
+            </Container>
         )
     }
 }

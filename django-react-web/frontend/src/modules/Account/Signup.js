@@ -17,7 +17,7 @@ export default class Signup extends React.Component {
 
         UserAuthApi.register(SignupStore.credentials)
             .then(res => {
-                // sign in
+
 
                 const credentials = {
                     email: SignupStore.credentials.email,
@@ -115,25 +115,30 @@ export default class Signup extends React.Component {
                                         onChange={this.handleCredentialChange}
                                     />
                                     <Form.Input
-                                        name='password' type='password' placeholder='Password'
+                                        name='password' type='password' 
+                                        placeholder='Password'
                                         onChange={this.handleCredentialChange}
                                     />
 
                                     <Form.Input
-                                        name='firstname' placeholder='First Name'
+                                        name='firstname' 
+                                        placeholder='First Name'
                                         onChange={this.handleCredentialChange}
                                     />
                                     <Form.Input
-                                        name='lastname' placeholder='Last Name'
+                                        name='lastname' 
+                                        placeholder='Last Name'
                                         onChange={this.handleCredentialChange}
                                     />
 
                                     <Form.Input
-                                        name='affiliation' placeholder='Affiliation'
+                                        name='affiliation' 
+                                        placeholder='Affiliation'
                                         onChange={this.handleInformationChange}
                                     />
                                     <Form.Input
-                                        name='position' placeholder='Position'
+                                        name='position' 
+                                        placeholder='Position'
                                         onChange={this.handleInformationChange}
                                     />
 

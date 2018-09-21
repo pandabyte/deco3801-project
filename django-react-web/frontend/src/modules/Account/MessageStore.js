@@ -5,12 +5,14 @@ class MessageStore {
     @observable content = '';
     @observable visible = false;
 
+    /* Clear message states */
     @action
     clear = () => {
         this.content = '';
         this.visible = false;
     }
 
+    /* Create message format */
     @action
     createMessageComponent = () {
         return (<Message
@@ -18,7 +20,7 @@ class MessageStore {
         />)
     }
 
-
+    /* Create message format */
     getMessage = (color) => {
         // Add color to message component
 
