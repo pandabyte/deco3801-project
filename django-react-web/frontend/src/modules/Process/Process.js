@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Grid, Icon, Divider, Header, Button, Segment, Container, Step, GridRow, GridColumn } from 'semantic-ui-react';
+import {
+    Grid, Icon, Divider, Header, Segment, Step,
+} from 'semantic-ui-react';
 import ProcessStore from './ProcessStore';
 import { observer } from 'mobx-react';
-
 
 import Upload from './Stages/Upload';
 import Sample from './Stages/Sample';
@@ -47,7 +48,7 @@ export default class Process extends React.Component {
 
     render() {
 
-        const { config, stages, activeStage } = ProcessStore;
+        const { stages, activeStage } = ProcessStore;
 
         const renderedStageComponent = this.renderStage(activeStage);
 
@@ -62,12 +63,17 @@ export default class Process extends React.Component {
                         <Grid.Column width='4'>
                             <Step.Group fluid vertical>
                                 {stages.map((stage, index) => {
-                                    return (<Step id={stage.name} key={index} active={ProcessStore.activeStage === stage.name} onClick={this.handleSelectStage}>
-                                        <Icon name={stage.icon} />
-                                        <Step.Content>
-                                            <Step.Title>{stage.name}</Step.Title>
-                                        </Step.Content>
-                                    </Step>)
+                                    return (
+                                        <Step
+                                            id={stage.name} key={index}
+                                            active={ProcessStore.activeStage === stage.name}
+                                            onClick={this.handleSelectStage}>
+                                            <Icon name={stage.icon} />
+                                            <Step.Content>
+                                                <Step.Title>{stage.name}</Step.Title>
+                                            </Step.Content>
+                                        </Step>
+                                    )
                                 })}
                             </Step.Group>
                         </Grid.Column>
