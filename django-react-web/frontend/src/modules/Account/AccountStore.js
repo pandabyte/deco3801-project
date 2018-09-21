@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx';
 import _ from 'lodash';
+import UserAuthApi from '../../api/UserAuthApi';
 
 class AccountStore {
 
@@ -38,7 +39,8 @@ class AccountStore {
     }
 
     @action
-    onSignin = () => { }
+    onSignin = () => {
+    }
 
     /* Set key value for auth */
 
