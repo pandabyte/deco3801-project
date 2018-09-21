@@ -85,11 +85,13 @@ export default class Profile extends React.Component {
 
                                 <Form.Group widths='equal'>
                                     <Form.Button
-                                        fluid positive type="button" content='Save Changes'
+                                        fluid positive type="button" 
+                                        content='Save Changes'
                                         onClick={this.onSaveChanges}
                                     />
                                     <Form.Button
-                                        fluid negative type="button" content='Cancel Changes'
+                                        fluid negative type="button" 
+                                        content='Cancel Changes'
                                         onClick={this.onCancelChanges}
                                     />
                                 </Form.Group>

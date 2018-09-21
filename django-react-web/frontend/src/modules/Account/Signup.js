@@ -87,7 +87,7 @@ export default class Signup extends React.Component {
 
                 {message}
 
-                < Grid divided='vertically' >
+                <Grid divided='vertically' >
                     <Grid.Row columns={2}>
                         <Grid.Column >
 
@@ -157,7 +157,7 @@ export default class Signup extends React.Component {
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
-            </Container >
+            </Container>
         )
     }
 }

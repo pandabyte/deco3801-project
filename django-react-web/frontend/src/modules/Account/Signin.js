@@ -8,7 +8,7 @@ import UserAuthApi from '../../api/UserAuthApi';
 @observer
 export default class Signin extends React.Component {
 
-    /* Use provided credentials to log into account and receive refresh and access tokens */
+    /* Use  credentials to sign in and receive refresh and access tokens */
     handleLogin = () => {
         const { credentials } = SigninStore;
 
@@ -64,28 +64,21 @@ export default class Signin extends React.Component {
                         <Form>
                             <Form.Group>
                                 <Form.Input
-                                    width={7}
-                                    iconPosition='left'
-                                    icon={{ name: 'user' }}
+                                    width={7} name="email" type="email"
+                                    iconPosition='left' icon={{ name: 'user' }}
                                     placeholder='Email...'
-                                    name="email"
-                                    type="email"
                                     onChange={this.handleCredentialChange}
                                 />
 
                                 <Form.Input
-                                    width={7}
-                                    iconPosition='left'
-                                    icon={{ name: 'lock' }}
+                                    width={7} name="password" type="password"
+                                    iconPosition='left' icon={{ name: 'lock' }}
                                     placeholder='Password...'
-                                    name="password"
-                                    type="password"
                                     onChange={this.handleCredentialChange}
                                 />
 
                                 <Form.Button
-                                    width={2}
-                                    fluid type="button"
+                                    width={2} fluid type="button"
                                     content='Sign me in!'
                                     onClick={this.handleLogin}
                                 />
@@ -94,7 +87,10 @@ export default class Signin extends React.Component {
 
                         <div className='text-center p-5'>
                             <span className='p-5'>
-                                Don't have an account? <a onClick={this.handleRedirectSignup}><u>Sign up here!</u></a>
+                                Don't have an account?
+                                <a onClick={this.handleRedirectSignup}>
+                                    <u>Sign up here!</u>
+                                </a>
                             </span>
                             <u className='p-5'>Forgot password?</u>
                         </div>
