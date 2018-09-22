@@ -23,6 +23,7 @@ def user_profile_update(request):
     Updates details of the signed in user
     """
     try:
+        # TODO NEED TO DO VALIDATION
         request.user.email=request.data.get('email')
         request.user.first_name=request.data.get('first_name')
         request.user.last_name=request.data.get('last_name')
