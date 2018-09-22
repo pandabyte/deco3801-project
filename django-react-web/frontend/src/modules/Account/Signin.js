@@ -1,14 +1,30 @@
 import * as React from 'react';
 import { Header, Form, Container, Segment, Message } from 'semantic-ui-react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 
 import SigninStore from './SigninStore';
 import UserAuthApi from '../../api/UserAuthApi';
 
+@inject("rootStore")
 @observer
 export default class Signin extends React.Component {
 
-    state = { loading: false, error: false }
+    state = { loading: false, error: false, update: false }
+
+    componentWillMount() {
+        this.verifyToken();
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        this.verifyToken();
+    }
+
+    verifyToken() {
+        this.props.rootStore.verifyToken();
+        if (this.props.rootStore.tokenVerified) {
+            this.props.history.push('/');
+        }
+    }
 
     /* Use  credentials to sign in and receive refresh and access tokens */
     handleLogin = () => {
@@ -30,7 +46,8 @@ export default class Signin extends React.Component {
             UserAuthApi.getUserID().then(res => {
                 SigninStore.setUserID(res.data.userId);
             });
-            this.props.history.push('/')
+            // this.props.history.push('/')
+            this.setState({ update: true });
 
         }).catch(err => {
             console.log(err);

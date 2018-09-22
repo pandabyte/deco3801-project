@@ -8,24 +8,39 @@ import { Container } from 'semantic-ui-react';
 import AppFooter from './modules/Layout/AppFooter';
 import AppHeader from './modules/Layout/AppHeader';
 import AppRouter from './modules/Router/AppRouter';
+import { Provider, observer } from 'mobx-react';
+import RootStore from './RootStore';
 
+@observer
 export default class App extends React.Component {
 
+    componentWillMount() {
+        RootStore.verifyToken();
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        RootStore.verifyToken();
+    }
+
     render() {
-
         return (
-            <div className="App" >
+            <Provider rootStore={RootStore}>
+                <div className="App" >
+                    
 
-                {/* Header for web app */}
-                <AppHeader />
+                        {/* Header for web app */}
+                        <AppHeader />
 
-                {/* Navigation bar  and routing for web app */}
-                <AppRouter />
+                        {/* Navigation bar  and routing for web app */}
+                        <AppRouter />
 
-                {/* Footer for web app */}
-                <AppFooter />
+                        {/* Footer for web app */}
+                        <AppFooter />
+                    
+                    
 
-            </div>
+                </div>
+            </Provider>
         );
     }
 
