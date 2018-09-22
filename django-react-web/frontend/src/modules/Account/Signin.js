@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Header, Form, Container, Segment } from 'semantic-ui-react';
+import { Header, Form, Container, Segment, Message } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 
 import SigninStore from './SigninStore';
@@ -8,10 +8,12 @@ import UserAuthApi from '../../api/UserAuthApi';
 @observer
 export default class Signin extends React.Component {
 
+    state = { loading: false, error: false }
+
     /* Use  credentials to sign in and receive refresh and access tokens */
     handleLogin = () => {
         const { credentials } = SigninStore;
-
+        this.setState({ loading: true });
         // Returns a 'refresh' and 'access' token
         UserAuthApi.login(credentials).then(res => {
             console.log("API Call Login Response: \n", res.data);
@@ -33,7 +35,8 @@ export default class Signin extends React.Component {
         }).catch(err => {
             console.log(err);
             SigninStore.handleSignout();
-            this.props.history.push('/')
+            this.setState({ error: true, loading: false});
+            //this.props.history.push('/')
         });
     }
 
@@ -48,9 +51,8 @@ export default class Signin extends React.Component {
         this.props.history.push('/signup')
     }
 
-
     render() {
-
+        
         return (
             <Container>
 
@@ -61,13 +63,19 @@ export default class Signin extends React.Component {
                     </div>
 
                     {/* Login form */}
-                    <Form>
+                    <Form onSubmit={this.handleLogin} loading={this.state.loading} error={this.state.error}>
+                        <Message
+                                error
+                                header='Signin Failed'
+                                content='Please check your email and password.'
+                        /> 
                         <Form.Group>
                             <Form.Input
                                 width={7} name="email" type="email"
                                 iconPosition='left' icon={{ name: 'user' }}
                                 placeholder='Email...'
                                 onChange={this.handleCredentialChange}
+                                required
                             />
 
                             <Form.Input
@@ -75,12 +83,12 @@ export default class Signin extends React.Component {
                                 iconPosition='left' icon={{ name: 'lock' }}
                                 placeholder='Password...'
                                 onChange={this.handleCredentialChange}
+                                required
                             />
 
                             <Form.Button
-                                width={2} fluid type="button"
+                                width={2} fluid type="submit"
                                 content='Sign me in!'
-                                onClick={this.handleLogin}
                             />
                         </Form.Group>
                     </Form>
