@@ -8,6 +8,7 @@ import { Container } from 'semantic-ui-react';
 import AppFooter from './modules/Layout/AppFooter';
 import AppHeader from './modules/Layout/AppHeader';
 import AppRouter from './modules/Router/AppRouter';
+import RootContainer from './RootContainer';
 import { Provider, observer } from 'mobx-react';
 import RootStore from './RootStore';
 
@@ -25,21 +26,7 @@ export default class App extends React.Component {
     render() {
         return (
             <Provider rootStore={RootStore}>
-                <div className="App" >
-                    
-
-                        {/* Header for web app */}
-                        <AppHeader />
-
-                        {/* Navigation bar  and routing for web app */}
-                        <AppRouter />
-
-                        {/* Footer for web app */}
-                        <AppFooter />
-                    
-                    
-
-                </div>
+                <RootContainer />
             </Provider>
         );
     }
