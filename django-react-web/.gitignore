@@ -70,3 +70,5 @@ webpack-stats.*
 # Editor
 
 .vscode/
+
+static/
