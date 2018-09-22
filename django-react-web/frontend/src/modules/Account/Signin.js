@@ -35,6 +35,8 @@ export default class Signin extends React.Component {
         }).catch(err => {
             console.log(err);
             SigninStore.handleSignout();
+            // TODO Fix this to actual message
+            SigninStore.setErrorMessage(err.response.data.error);
             this.setState({ error: true, loading: false});
             //this.props.history.push('/')
         });
@@ -51,8 +53,22 @@ export default class Signin extends React.Component {
         this.props.history.push('/signup')
     }
 
+    getErrorMessage = () => {
+        console.log(SigninStore.errorVisible);
+        if (SigninStore.errorVisible) {
+            return (<Message
+                negative
+                content={SigninStore.errorMessage ? SigninStore.errorMessage 
+                    : "Unspecified error when logging in, please try again."}
+                onDismiss={SigninStore.clearErrorMessage}
+            />)
+        } else {
+            return (<div></div>)
+        }
+    }
+
     render() {
-        
+        let errorMessage = this.getErrorMessage();
         return (
             <Container>
 
@@ -64,11 +80,7 @@ export default class Signin extends React.Component {
 
                     {/* Login form */}
                     <Form onSubmit={this.handleLogin} loading={this.state.loading} error={this.state.error}>
-                        <Message
-                                error
-                                header='Signin Failed'
-                                content='Please check your email and password.'
-                        /> 
+                        {errorMessage}
                         <Form.Group>
                             <Form.Input
                                 width={7} name="email" type="email"
