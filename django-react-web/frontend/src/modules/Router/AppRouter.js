@@ -134,21 +134,21 @@ export default class AppRouter extends React.Component {
         var renderedNav = [];
         if (!this.props.rootStore.tokenVerified) {
             renderedNav.push(
-                <Menu.Menu position='right'>,
+                <Menu.Menu position='right'>
                     <Menu.Item
                         name='sign in'
                         active={activeTab === 'sign in'}
                         icon={<Icon name='sign-in' />}
                         onClick={AppRouterStore.handleTabClick}
                         as={Link} to='/signin'
-                    />,
+                    />
                     <Menu.Item
                         name='sign up'
                         active={activeTab === 'sign up'}
                         icon={<Icon name='signup' />}
                         onClick={AppRouterStore.handleTabClick}
                         as={Link} to='/signup'
-                    />,
+                    />
                     </Menu.Menu>
                 );
         } else {
