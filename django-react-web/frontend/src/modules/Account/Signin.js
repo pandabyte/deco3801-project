@@ -1,17 +1,35 @@
 import * as React from 'react';
-import { Header, Form, Container, Segment } from 'semantic-ui-react';
-import { observer } from 'mobx-react';
+import { Header, Form, Container, Segment, Message } from 'semantic-ui-react';
+import { observer, inject } from 'mobx-react';
 
 import SigninStore from './SigninStore';
 import UserAuthApi from '../../api/UserAuthApi';
 
+@inject("rootStore")
 @observer
 export default class Signin extends React.Component {
+
+    state = { loading: false, error: false, update: false }
+
+    componentWillMount() {
+        this.verifyToken();
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        this.verifyToken();
+    }
+
+    verifyToken() {
+        this.props.rootStore.verifyToken();
+        if (this.props.rootStore.tokenVerified) {
+            this.props.history.push('/');
+        }
+    }
 
     /* Use  credentials to sign in and receive refresh and access tokens */
     handleLogin = () => {
         const { credentials } = SigninStore;
-
+        this.setState({ loading: true });
         // Returns a 'refresh' and 'access' token
         UserAuthApi.login(credentials).then(res => {
             console.log("API Call Login Response: \n", res.data);
@@ -28,12 +46,16 @@ export default class Signin extends React.Component {
             UserAuthApi.getUserID().then(res => {
                 SigninStore.setUserID(res.data.userId);
             });
-            this.props.history.push('/')
+            // this.props.history.push('/')
+            this.setState({ update: true });
 
         }).catch(err => {
             console.log(err);
             SigninStore.handleSignout();
-            this.props.history.push('/')
+            // TODO Fix this to actual message
+            SigninStore.setErrorMessage(err.response.data.error);
+            this.setState({ error: true, loading: false});
+            //this.props.history.push('/')
         });
     }
 
@@ -48,9 +70,22 @@ export default class Signin extends React.Component {
         this.props.history.push('/signup')
     }
 
+    getErrorMessage = () => {
+        console.log(SigninStore.errorVisible);
+        if (SigninStore.errorVisible) {
+            return (<Message
+                negative
+                content={SigninStore.errorMessage ? SigninStore.errorMessage 
+                    : "Unspecified error when logging in, please try again."}
+                onDismiss={SigninStore.clearErrorMessage}
+            />)
+        } else {
+            return (<div></div>)
+        }
+    }
 
     render() {
-
+        let errorMessage = this.getErrorMessage();
         return (
             <Container>
 
@@ -61,13 +96,15 @@ export default class Signin extends React.Component {
                     </div>
 
                     {/* Login form */}
-                    <Form>
+                    <Form onSubmit={this.handleLogin} loading={this.state.loading} error={this.state.error}>
+                        {errorMessage}
                         <Form.Group>
                             <Form.Input
                                 width={7} name="email" type="email"
                                 iconPosition='left' icon={{ name: 'user' }}
                                 placeholder='Email...'
                                 onChange={this.handleCredentialChange}
+                                required
                             />
 
                             <Form.Input
@@ -75,12 +112,12 @@ export default class Signin extends React.Component {
                                 iconPosition='left' icon={{ name: 'lock' }}
                                 placeholder='Password...'
                                 onChange={this.handleCredentialChange}
+                                required
                             />
 
                             <Form.Button
-                                width={2} fluid type="button"
+                                width={2} fluid type="submit"
                                 content='Sign me in!'
-                                onClick={this.handleLogin}
                             />
                         </Form.Group>
                     </Form>

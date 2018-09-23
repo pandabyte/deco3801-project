@@ -6,6 +6,8 @@ class UsersStore {
 
     @observable users = [];
 
+    @observable loading = true;
+
     /* Pull user from user database */
     @action
     setup = () => {
@@ -20,7 +22,21 @@ class UsersStore {
                     username: user.username
                 });
             });
-        }).catch(err => console.log(err));
+            this.setLoading(false);
+        }).catch(err => {
+            console.log(err);
+            this.setLoading(false);
+        });
+    }
+
+    @action
+    clearUsers = () => {
+        this.users.length = 0;
+    }
+
+    @action
+    setLoading = (value) => {
+        this.loading = value;
     }
 }
 

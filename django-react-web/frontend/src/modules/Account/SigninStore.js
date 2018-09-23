@@ -13,6 +13,9 @@ class SigninStore {
 
     @observable userID = '';
 
+    @observable errorVisible = false;
+    @observable errorMessage = '';
+
     @action
     handleSignout = () => {
         this.credentials = {
@@ -41,6 +44,20 @@ class SigninStore {
     @action
     updateCredentialProperty = (key, value) => {
         this.credentials[key] = value;
+    }
+
+    @action
+    setErrorMessage = (text) => {
+        console.log(text);
+        this.errorMessage = text;
+        this.errorVisible = true;
+        console.log(this.errorVisible);
+    }
+
+    @action
+    clearErrorMessage = () => {
+        this.errorMessage = '';
+        this.errorVisible = false;
     }
 }
 

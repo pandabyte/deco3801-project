@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Segment, Checkbox, Form, Container, Grid, Icon, Image } from 'semantic-ui-react';
+import { Card, Segment, Checkbox, Form, Container, Grid, Icon, Image, Dimmer, Loader } from 'semantic-ui-react';
 
 import UsersStore from './UsersStore';
 
@@ -10,16 +10,34 @@ export default class Users extends React.Component {
 
     /* Set initial states */
     componentDidMount() {
+        UsersStore.setLoading(true);
+        UsersStore.clearUsers();
         UsersStore.setup();
+    }
+
+    renderLoader = () => {
+        console.log(UsersStore.loading);
+        if (UsersStore.loading) {
+            return (
+                <div>
+                    <Loader active inline='centered'>
+                        Loading
+                    </Loader>
+                </div>
+            )
+        }
+        return (<div></div>)
     }
 
     render() {
 
         const { users } = UsersStore;
+        
+        const loader = this.renderLoader();
 
         return (
             <div className='p-5 text-left'>
-                
+                {loader}
                 <Grid columns={4}>
                     {/* Map each user to the following layout */}
                     {users.map((user, index) => {
