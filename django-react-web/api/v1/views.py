@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 
 from users.models import User
 from users.serializers import UserSerializer
+from api.utils import deprecated, deprecated_warn
 
 @api_view(['POST'])
 @permission_classes(())
@@ -50,3 +51,13 @@ def user_id(request):
     Returns the username of the logged in user.
     """
     return JsonResponse({'userId': request.user.username})
+
+
+
+@api_view(['GET'])
+@permission_classes(())
+@deprecated
+def deprecate_test(request):
+    return JsonResponse({'test':'not deprecated'})
+
+
