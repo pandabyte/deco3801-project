@@ -20,6 +20,7 @@ import Error404 from '../Error/Error404';
 import AppRouterStore from './AppRouterStore';
 import SigninStore from '../Account/SigninStore';
 import Acquisition from '../Acquisition/Acquisition';
+import HrmsInstrumentView from '../Acquisition/HrmsInstrument/HrmsInstrumentView';
 
 
 @inject("rootStore")
@@ -236,6 +237,7 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/process' component={Process} />
                             <Route exact path='/search' component={ChemicalSearch} />
                             <Route exact path='/acquisition' component={Acquisition} />
+                            <Route exact path='/acquisition/hrmsinstrument' component={HrmsInstrumentView} />
                             <Route exact path='/help' component={Help} />
                             <Route component={Error404} />
                         </Switch>
