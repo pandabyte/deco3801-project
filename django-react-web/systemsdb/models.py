@@ -4,6 +4,11 @@ class hrms_system(models.Model):
     brandName= models.TextField()
     modelName = models.TextField()
     #className = models.TextField()
+    def __unicode__(self):
+        return self.brandName, self.modelName
+    def __str__(self):
+        hrms_string = "BRAND: "+self.brandName+", MODEL: "+self.modelName
+        return hrms_string
     
     
 class acquisition_hrms(models.Model):
@@ -26,12 +31,21 @@ class analytical_column(models.Model):
     length = models.IntegerField()
     pore_size=models.IntegerField()
     inner_diameter=models.FloatField()
+    def __unicode__(self):
+        return self.brand, self.model
+    def __str__(self):
+        column_string = "BRAND: "+brand+", MODEL: "+brand
 
 class chromatography(models.Model):
     brandName= models.TextField()
     modelName = models.TextField()
     time_last_used= models.DateTimeField()
     component_type= models.TextField()
+    def __unicode__(self):
+        return self.brandName, self.modelName, self.component_type
+    def __str__(self):
+        chroma_string = "BRAND: "+self.brandName+", MODEL: "+self.modelName+", COMPONENT: "+component_type
+        return chroma_string
 
 class chrom_time(models.Model):
     chrom_events = models.IntegerField()
