@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core import validators
 from django.utils.translation import gettext_lazy as _
+from systemsdb.models import hrms_system, chromatography, analytical_column
 
 class UserManager(BaseUserManager):
     """
@@ -93,6 +94,9 @@ class User(AbstractUser):
 
     objects = UserManager()
 
+    def __unicode__(self):
+        return self.email
+
 class Affiliation(models.Model):
     """
     Affiliation associated with a User.
@@ -102,3 +106,16 @@ class Affiliation(models.Model):
 
     def __str__(self):
         return self.aid
+
+class user_hrms(models.Model):
+    User_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    HRMS_id = models.ForeignKey(hrms_system, on_delete=models.CASCADE)
+
+class user_column(models.Model):
+    User_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    Column_id = models.ForeignKey(analytical_column, on_delete=models.CASCADE)
+
+class user_chroma(models.Model):
+    User_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    Chroma_id = models.ForeignKey(chromatography, on_delete=models.CASCADE)
+    
