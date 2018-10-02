@@ -11,7 +11,7 @@ class UsersStore {
     /* Pull user from user database */
     @action
     setup = () => {
-        UserApi.users().then(res => {
+        UserApi.readAll().then(res => {
             const users = res.data;
             users.forEach(user => {
                 this.users.push({

@@ -18,6 +18,10 @@ export default class Error404 extends React.Component {
                 <div style={{ fontSize: '50px' }}>
                     <p>Oops! The page you requested could not be found...</p>
                 </div>
+
+                <ul>
+                    <li>HelpView: Submit Question button does not do anything with the content</li>
+                </ul>
             </div>
 
         );
