@@ -50,10 +50,12 @@ class chromatography(models.Model):
 class chrom_time(models.Model):
     chrom_events = models.IntegerField()
     event_stage=models.IntegerField()
-    over_temp=models.FloatField()
+    oven_temp=models.FloatField()
     AB=models.FloatField()
     gradient_AB=models.FloatField()
     flow_rate=models.FloatField()
+    def __str__(self):
+        time_string = self.chrom_events +", "+event_stage+" Temp: "+ oven_temp
 
 class acquisition_chromatography(models.Model):
     chroma_id =models.ForeignKey(chromatography,on_delete=models.CASCADE)
