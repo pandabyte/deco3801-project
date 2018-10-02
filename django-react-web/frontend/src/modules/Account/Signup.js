@@ -11,10 +11,12 @@ import UserAuthApi from '../../api/UserAuthApi';
 @observer
 export default class Signup extends React.Component {
 
+    state = { loading: false }
+
     /* Event handler for sign up*/
 
     handleSignup = () => {
-
+        this.setState({ loading: true });
         UserAuthApi.register(SignupStore.credentials)
             .then(res => {
 
@@ -42,7 +44,10 @@ export default class Signup extends React.Component {
                     this.props.history.push('/')
                 });
 
-            }).catch(err => SignupStore.setMessage(err.response.data.error));
+            }).catch(err => {
+                SignupStore.setMessage(err.response.data.error)
+                this.setState({ loading: false})
+            });
     }
 
 
@@ -70,7 +75,8 @@ export default class Signup extends React.Component {
         if (SignupStore.visible) {
             return (<Message
                 negative
-                content={SignupStore.message}
+                content={SignupStore.message ? SignupStore.message 
+                    : "Unspecified signup error occured, please try again."}
                 onDismiss={SignupStore.clearMessage}
             />)
         } else {
@@ -105,7 +111,7 @@ export default class Signup extends React.Component {
                         <Grid.Column>
                             <Segment className='p-5'>
                                 <Header as='h1'>Create your account! </Header>
-                                <Form>
+                                <Form onSubmit={this.handleSignup} loading={this.state.loading}> 
                                     <Form.Input
                                         name='email' placeholder='Email'
                                         onChange={this.handleCredentialChange}
@@ -145,9 +151,8 @@ export default class Signup extends React.Component {
 
                                     <Form.Button
                                         style={{ backgroundColor: '#27d3ff' }}
-                                        fluid type="button"
+                                        fluid type="submit"
                                         content='Sign me up!'
-                                        onClick={this.handleSignup}
                                     />
 
                                 </Form>

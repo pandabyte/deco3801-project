@@ -54,6 +54,16 @@ class UserAuthApi {
         );
     }
 
+    verifyToken = () => {
+        return axios.post('/api/token/verify/', {"token": localStorage.getItem('access')}, 
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('access')
+                }
+            }
+        );
+    }
+
 
 }
 
