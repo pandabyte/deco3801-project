@@ -21,6 +21,7 @@ import AppRouterStore from './AppRouterStore';
 import SigninStore from '../Account/SigninStore';
 import Acquisition from '../Acquisition/Acquisition';
 import HrmsInstrumentView from '../Acquisition/HrmsInstrument/HrmsInstrumentView';
+import ChromatographySystemView from '../Acquisition/ChromatographySystem/ChromatographySystemView';
 
 
 @inject("rootStore")
@@ -238,6 +239,7 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/search' component={ChemicalSearch} />
                             <Route exact path='/acquisition' component={Acquisition} />
                             <Route exact path='/acquisition/hrmsinstrument' component={HrmsInstrumentView} />
+                            <Route exact path='/acquisition/chromatagraphysystem' component={ChromatographySystemView} />
                             <Route exact path='/help' component={Help} />
                             <Route component={Error404} />
                         </Switch>
