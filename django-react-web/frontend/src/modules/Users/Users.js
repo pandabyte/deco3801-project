@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Segment, Checkbox, Form, Container, Grid, Icon, Image, Dimmer, Loader } from 'semantic-ui-react';
+import { Card, Segment, Header, Grid, Image, Loader } from 'semantic-ui-react';
 
 import UsersStore from './UsersStore';
 
@@ -21,7 +21,14 @@ export default class Users extends React.Component {
             return (
                 <div>
                     <Loader active inline='centered'>
-                        Loading
+                        <Segment>
+                            <Header as='h2' content='Loading' />
+                            <Image
+                                src='http://www.nyan.cat/cats/original.gif'
+                                size='medium' rounded centered
+                            />
+                        </Segment>
+
                     </Loader>
                 </div>
             )
@@ -32,19 +39,19 @@ export default class Users extends React.Component {
     render() {
 
         const { users } = UsersStore;
-        
+
         const loader = this.renderLoader();
 
         return (
-            <div className='p-5 text-left'>
+            <div className='text-left'>
                 {loader}
-                <Grid columns={4}>
+                <Grid container columns={4}>
                     {/* Map each user to the following layout */}
                     {users.map((user, index) => {
                         return (
                             <Grid.Column key={index}>
                                 <Card>
-                                    <Image className='p-3' src='http://www.nyan.cat/cats/original.gif' />
+                                    <Image className='' src='http://www.nyan.cat/cats/original.gif' />
                                     <Card.Content>
                                         <Card.Header>{user.firstname + ' ' + user.lastname}</Card.Header>
                                         <Card.Description>
