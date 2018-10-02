@@ -88,6 +88,15 @@ class ProcessStore {
     @observable sampleType = '';
     @observable sampleDate = '';
 
+    @observable instrument = {
+        instrument: '',
+        source: '',
+        mode: '',
+        sourceVoltge: '',
+        sourceGas1: '',
+        sourceGas2: '',
+        curtainGas: ''
+    }
 
     @observable results = {
         sampleId: 'sampleid',
