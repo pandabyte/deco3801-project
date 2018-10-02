@@ -24,12 +24,22 @@ export default class Result extends React.Component {
 
     render() {
 
+        const { results } = ProcessStore;
+
         return (
             <div>
 
+
+
                 <Header> Processing/Result Stage </Header>
 
-                
+                {Object.keys(results).map(key => {
+                    return (
+                        <p> {`${key} : ${results[key]}`} </p>
+                    )
+                })}
+
+
             </div>
         )
     }

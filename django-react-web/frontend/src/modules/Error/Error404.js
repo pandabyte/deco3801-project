@@ -10,16 +10,14 @@ export default class Error404 extends React.Component {
     render() {
         return (
 
-            <div>
-                <Header as='h1'>Error Page</Header>
-                <br />
+            <div className='text-center'>
+                <div style={{ fontSize: '150px' }}>
+                    <p><strong>4<span style={{ color: 'red' }}>0</span>4</strong></p>
+                </div>
                 <Divider />
-                <Header as='h1'>Error Page</Header>
-                <br />
-                <Divider />
-                <Header as='h1'>Error Page</Header>
-                <br />
-                <Divider />
+                <div style={{ fontSize: '50px' }}>
+                    <p>Oops! The page you requested could not be found...</p>
+                </div>
             </div>
 
         );

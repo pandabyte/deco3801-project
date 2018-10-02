@@ -19,6 +19,7 @@ import Error404 from '../Error/Error404';
 // import store
 import AppRouterStore from './AppRouterStore';
 import SigninStore from '../Account/SigninStore';
+import Acquisition from '../Acquisition/Acquisition';
 
 
 @inject("rootStore")
@@ -234,6 +235,7 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/users' component={Users} />
                             <Route exact path='/process' component={Process} />
                             <Route exact path='/search' component={ChemicalSearch} />
+                            <Route exact path='/acquisition' component={Acquisition} />
                             <Route exact path='/help' component={Help} />
                             <Route component={Error404} />
                         </Switch>

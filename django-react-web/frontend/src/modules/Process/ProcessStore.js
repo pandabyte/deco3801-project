@@ -50,9 +50,8 @@ class ProcessStore {
             name: 'Acquisition',
             icon: 'setting',
             instructions: [
-                `1. Intruction one`,
-                `2. Intrution two`,
-                `3. Intrution two`
+                `1. Choose a predefined High Resolution Mass Spectrometry (HRMS)`,
+                `2. Choose a predefined Chromatopgraphy System`
             ]
 
         },
@@ -89,6 +88,15 @@ class ProcessStore {
     @observable sampleType = '';
     @observable sampleDate = '';
 
+
+    @observable results = {
+        sampleId: 'sampleid',
+        datasetId: 'datasetid',
+        acquisitionMsId: 'acquisitionMsId',
+        acquisitionLcId: 'acquisition:cId',
+        columnId: 'columnId',
+        deconvFilePath: 'deconvFilePath'
+    }
 
     /* Set up initial states */
     @action
