@@ -23,6 +23,7 @@ export default class Error404 extends React.Component {
                     <li>HelpView: Submit Question button does not do anything with the content</li>
                     <li>ProfileView: Fix up sign-up-in/model/profile for affiliation and position</li>
                     <li>ProfileView: Delete question section or interface it with database - it has no purpose atm</li>
+                    <li>Sample: Create location database (id daturn long alt lat)</li>
                 </ul>
             </div>
 

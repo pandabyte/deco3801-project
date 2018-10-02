@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import Upload from './Stages/Upload';
 import Sample from './Stages/Sample';
 import Acquisition from './Stages/Acquisition';
+import Algorithm from './Stages/Algorithm';
 import Config from './Stages/Config';
 import Result from './Stages/Result';
 
@@ -33,6 +34,8 @@ export default class Process extends React.Component {
                 return <Sample />;
             case 'Acquisition':
                 return <Acquisition />;
+            case 'Algorithm':
+                return <Algorithm />;
             case 'Configuration':
                 return <Config />;
             case 'Process':

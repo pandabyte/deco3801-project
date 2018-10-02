@@ -16,7 +16,12 @@ class ProcessStore {
             type: '',
             date: ''
         },
-        acquisition: {},
+        acquisition: {
+            
+        },
+        algorithm: {
+            algorithm: 'ImportDeconv_v1'
+        },
         result: {}
     };
 
@@ -50,8 +55,18 @@ class ProcessStore {
             name: 'Acquisition',
             icon: 'setting',
             instructions: [
-                `1. Choose a predefined High Resolution Mass Spectrometry (HRMS)`,
-                `2. Choose a predefined Chromatopgraphy System`
+                `1. Choose a HRMS configuration`,
+                `2. Choose a Chromatographic conditions`,
+                `3. Choose a column information`
+            ]
+
+        },
+        {
+            name: 'Algorithm',
+            icon: 'setting',
+            instructions: [
+                `1. Select default dataset or specify your own threshold information`,
+                `2. Select the algorithm to implement`
             ]
 
         },
