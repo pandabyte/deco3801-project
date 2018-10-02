@@ -53,7 +53,7 @@ class CustomUserColumn(admin.ModelAdmin):
     list_display = ('User_id','Column_id')
     fieldsets = [('User',{'fields': ['User_id']}),('Column', {'fields': ['Column_id']}),
     ]
-    list_filter=('User_id__email','Column_id__brand','Column_Id__model')
+    list_filter=('User_id__email','Column_id__brand','Column_id__model')
     search_fields=('User_id__email','Column_id__brand','Column_Id__model')
         
 
@@ -63,5 +63,5 @@ class CustomUserColumn(admin.ModelAdmin):
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Affiliation)
 admin.site.register(user_hrms,CustomUserHRMS)
-admin.site.register(user_column)
+admin.site.register(user_column,CustomUserColumn)
 admin.site.register(user_chroma,CustomUserChroma)
