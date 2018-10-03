@@ -7,28 +7,12 @@ libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev libglfw3-dev libgles2-mesa-dev git
 
 RUN git clone https://SamualMac@bitbucket.org/SamualMac/qaehs_code.git
 RUN sudo curl -O https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
-RUN bash ./Anaconda3-5.2.0-Linux-x86_64.sh -b -f
+RUN sudo bash ./Anaconda3-5.2.0-Linux-x86_64.sh -b -f
 RUN sudo curl -O http://ssd.mathworks.com/supportfiles/downloads/R2017b/deployment_files/R2017b/installers/glnxa64/MCR_R2017b_glnxa64_installer.zip
 RUN mkdir -p install_runtime
 RUN mv MCR_R2017b_glnxa64_installer.zip install_runtime
 RUN unzip MCR_R2017b_glnxa64_installer.zip -d install_runtime/
 RUN sudo ./install_runtime/install -mode silent -agreeToLicense yes
-RUN sudo python3 qaehs_code/compiled/LibrarySearch_v1/for_redistribution_files_only/setup.py install
-
-
-
-
-
-# Install apache and write hello world message
-RUN echo 'Hello World!' > /var/www/html/index.html
-
-# Configure apache
-RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh
-RUN echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh
-RUN echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh
-RUN echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh
-RUN chmod 755 /root/run_apache.sh
-
-EXPOSE 80
-
-CMD /root/run_apache.sh
+RUN cd qaehs_code/compiled/DeconvLibrarySearch_v1/for_redistribution_files_only && sudo python3 setup.py install && cd
+RUN cd qaehs_code/compiled/ImportDeconv_v1/for_redistribution_files_only && sudo python3 setup.py install && cd
+RUN cd qaehs_code/compiled/LibrarySearch_v1/for_redistribution_files_only && sudo python3 setup.py install && cd
