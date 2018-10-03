@@ -49,7 +49,7 @@ export default class ChemicalSearch extends React.Component {
     render() {
         const { isLoading, results, value } = ChemicalSearchStore;
         return (
-            <div>
+            <div className='p-5'>
 
                 <Header> Perform global chemical search </Header>
 
