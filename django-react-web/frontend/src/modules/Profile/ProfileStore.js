@@ -16,7 +16,7 @@ class ProfileStore {
     /* Sets all form inputs to current value from database */
     @action
     setup = () => {
-        UserApi.user().then(res => {
+        UserApi.read().then(res => {
             const user = res.data;
             this.input = {
                 first: user.first_name,
@@ -31,7 +31,7 @@ class ProfileStore {
 
     /* Clears all form inputs */
     @action
-    reset = () => {
+    clear = () => {
         this.input = _.mapValues(this.input, () => '');
     }
 

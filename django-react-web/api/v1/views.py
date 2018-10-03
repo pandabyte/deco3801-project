@@ -3,6 +3,12 @@ from rest_framework.decorators import api_view, permission_classes
 
 from users.models import User
 from users.serializers import UserSerializer
+from api.utils import deprecated, deprecated_warn
+from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
+from django.core.mail import send_mail
+from smtplib import SMTPException
+import jwt, datetime
 
 @api_view(['POST'])
 @permission_classes(())
@@ -50,3 +56,48 @@ def user_id(request):
     Returns the username of the logged in user.
     """
     return JsonResponse({'userId': request.user.username})
+
+@api_view(['POST'])
+@permission_classes(())
+def password_recovery_request(request):
+    try:
+        user = User.objects.get(email=request.data.get('email'))
+        one_time_secret = user.username + '-' + user.password + settings.SECRET_KEY
+        payload = {
+            'email': user.email,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+        }
+        encoded_jwt = jwt.encode(payload, one_time_secret, algorithm='HS256')
+        email = 'jerryw4113@gmail.com'
+        one_time_link = request.get_host() + '/pwrecovery/?resetott=' + str(encoded_jwt)
+        print(one_time_link)
+        try:
+            send_mail(
+                'Forgot Passowrd - Reset Your Password',
+                'Click on this link to reset your password: ' + one_time_link,
+                'DO-NOT-REPLY@admin.com', # Prob should define a global variable for this
+                [email],
+                fail_silently=False,
+            )
+        except SMTPException:
+            return JsonResponse({'error': str(e)}, status=400, reason=str(e))
+        return JsonResponse({})
+    except ObjectDoesNotExist as e:
+        return JsonResponse({'error': str(e)}, status=400, reason=str(e))
+    
+
+@api_view(['GET'])
+def password_recovery_landing(request):
+    return
+
+@api_view(['POST'])
+def password_recovery_submit(request):
+    return
+
+@api_view(['GET'])
+@permission_classes(())
+@deprecated
+def deprecate_test(request):
+    return JsonResponse({'test':'not deprecated'})
+
+

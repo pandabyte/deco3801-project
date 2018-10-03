@@ -4,6 +4,7 @@ import { Segment, Checkbox, Form, Container, Grid, Icon, Image } from 'semantic-
 import ProfileQuestion from './ProfileQuestion';
 import ProfileStore from './ProfileStore';
 import { observer } from 'mobx-react';
+import UserApi from '../../api/UserApi';
 
 @observer
 export default class Profile extends React.Component {
@@ -15,14 +16,18 @@ export default class Profile extends React.Component {
 
     /* Event handler for saving profile detail changes */
     onSaveChanges = () => {
-        // TODO: post information to database
-        // TODO: add flash message for successful
-        ProfileStore.clear();
+        UserApi.update(ProfileStore.input).then(res => {
+            console.log(res);
+            ProfileStore.setup();
+        }).catch(err => {
+            console.log(JSON.stringify(err));
+        })
+        
     }
 
     /* Event handler for canceling profile detail changes */
     onCancelChanges = () => {
-        ProfileStore.clear();
+        ProfileStore.setup();
     }
 
     /* Event handler for updating the state of the form inputs on interaction */

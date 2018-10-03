@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    Grid, Icon, Divider, Header, Segment, Step,
+    Grid, Icon, Divider, Header, Segment, Step, Label
 } from 'semantic-ui-react';
 import ProcessStore from './ProcessStore';
 import { observer } from 'mobx-react';
@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import Upload from './Stages/Upload';
 import Sample from './Stages/Sample';
 import Acquisition from './Stages/Acquisition';
+import Algorithm from './Stages/Algorithm';
 import Config from './Stages/Config';
 import Result from './Stages/Result';
 
@@ -33,6 +34,8 @@ export default class Process extends React.Component {
                 return <Sample />;
             case 'Acquisition':
                 return <Acquisition />;
+            case 'Algorithm':
+                return <Algorithm />;
             case 'Configuration':
                 return <Config />;
             case 'Process':
@@ -60,18 +63,16 @@ export default class Process extends React.Component {
                     <Grid.Row columns='2'>
 
                         {/* Stages Navigation Bar */}
-                        <Grid.Column width='4'>
+                        <Grid.Column width='2'>
                             <Step.Group fluid vertical>
                                 {stages.map((stage, index) => {
                                     return (
-                                        <Step
-                                            id={stage.name} key={index}
-                                            active={ProcessStore.activeStage === stage.name}
-                                            onClick={this.handleSelectStage}>
-                                            <Icon name={stage.icon} />
-                                            <Step.Content>
-                                                <Step.Title>{stage.name}</Step.Title>
-                                            </Step.Content>
+                                        <Step active={ProcessStore.activeStage === stage.name} fluid>
+                                            <Label
+                                                id={stage.name} key={index}
+                                                onClick={this.handleSelectStage}
+                                                icon={<Icon name={stage.icon} />} content={stage.name}
+                                            />
                                         </Step>
                                     )
                                 })}
@@ -79,7 +80,7 @@ export default class Process extends React.Component {
                         </Grid.Column>
 
                         {/* Stages Rendered Content*/}
-                        <Grid.Column width='12'>
+                        <Grid.Column width='14'>
 
                             {/* display instructions for stage */}
                             <Segment fluid='true'>

@@ -16,7 +16,12 @@ class ProcessStore {
             type: '',
             date: ''
         },
-        acquisition: {},
+        acquisition: {
+            
+        },
+        algorithm: {
+            algorithm: 'ImportDeconv_v1'
+        },
         result: {}
     };
 
@@ -50,9 +55,18 @@ class ProcessStore {
             name: 'Acquisition',
             icon: 'setting',
             instructions: [
-                `1. Intruction one`,
-                `2. Intrution two`,
-                `3. Intrution two`
+                `1. Choose a HRMS configuration`,
+                `2. Choose a Chromatographic conditions`,
+                `3. Choose a column information`
+            ]
+
+        },
+        {
+            name: 'Algorithm',
+            icon: 'setting',
+            instructions: [
+                `1. Select default dataset or specify your own threshold information`,
+                `2. Select the algorithm to implement`
             ]
 
         },
@@ -89,6 +103,24 @@ class ProcessStore {
     @observable sampleType = '';
     @observable sampleDate = '';
 
+    @observable instrument = {
+        instrument: '',
+        source: '',
+        mode: '',
+        sourceVoltge: '',
+        sourceGas1: '',
+        sourceGas2: '',
+        curtainGas: ''
+    }
+
+    @observable results = {
+        sampleId: 'sampleid',
+        datasetId: 'datasetid',
+        acquisitionMsId: 'acquisitionMsId',
+        acquisitionLcId: 'acquisition:cId',
+        columnId: 'columnId',
+        deconvFilePath: 'deconvFilePath'
+    }
 
     /* Set up initial states */
     @action
