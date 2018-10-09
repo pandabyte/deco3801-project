@@ -1,8 +1,10 @@
 from django.http import JsonResponse
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, parser_classes
+from rest_framework.parsers import FileUploadParser
 
 from users.models import User
 from users.serializers import UserSerializer
+from home.models import FileUpload
 from api.utils import deprecated, deprecated_warn
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
@@ -73,7 +75,7 @@ def password_recovery_request(request):
         print(one_time_link)
         try:
             send_mail(
-                'Forgot Passowrd - Reset Your Password',
+                'Forgot Password - Reset Your Password',
                 'Click on this link to reset your password: ' + one_time_link,
                 'DO-NOT-REPLY@admin.com', # Prob should define a global variable for this
                 [email],
@@ -100,4 +102,12 @@ def password_recovery_submit(request):
 def deprecate_test(request):
     return JsonResponse({'test':'not deprecated'})
 
-
+@api_view(['PUT'])
+@parser_classes((FileUploadParser,))
+def upload(request):
+    if 'file' not in request.data:
+        return JsonResponse({'error': 'File not found'}, status=422)
+    file = request.data['file']
+    upload = FileUpload(owner=request.user)
+    upload.file.save(file.name, file, save=True)
+    return JsonResponse({'message': 'File saved'}, status=201)

@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+from users.models import User
+
+class FileUpload(models.Model):
+    upload_time = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    file = models.FileField()

@@ -12,6 +12,7 @@ urlpatterns = [
     path('password-recovery/request/', views.password_recovery_request),
     path('password-recovery/landing/', views.password_recovery_landing),
     path('password-recovery/submit/', views.password_recovery_submit),
+    path('upload/', views.upload),
 
     path('test/', views.deprecate_test)
 ]
