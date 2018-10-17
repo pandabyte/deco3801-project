@@ -108,6 +108,6 @@ def upload(request):
     if 'file' not in request.data:
         return JsonResponse({'error': 'File not found'}, status=422)
     file = request.data['file']
-    upload = FileUpload(owner=request.user)
+    upload = FileUpload()
     upload.file.save(file.name, file, save=True)
     return JsonResponse({'message': 'File saved'}, status=201)
