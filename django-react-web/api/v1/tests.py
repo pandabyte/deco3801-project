@@ -65,9 +65,7 @@ class TestApiV1(TestCase):
         Test getting the list of users.
         """
         # Get users without authorization
-        response = self.client.get(
-            '/api/v1/users/'
-        )
+        response = self.client.get('/api/v1/users/')
         self.assertEqual(response.status_code, 401)
 
         # Get users with authorization
@@ -78,5 +76,22 @@ class TestApiV1(TestCase):
         all_users = User.objects.all()
         serializer = UserSerializer(all_users, many=True)
         expected = [dict(user) for user in serializer.data]
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, json.dumps(expected).encode('utf-8'))
+
+    def test_user_id(self):
+        """
+        Test getting username.
+        """
+        # Get username without authorization
+        response = self.client.get('/api/v1/userid/')
+        self.assertEqual(response.status_code, 401)
+
+        # Get username with authorization
+        response = self.client.get(
+            '/api/v1/userid/',
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+        )
+        expected = {'userId': self.user.username}
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, json.dumps(expected).encode('utf-8'))
