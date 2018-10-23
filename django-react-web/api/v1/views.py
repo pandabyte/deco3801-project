@@ -111,3 +111,40 @@ def upload(request):
     upload = FileUpload(owner=request.user)
     upload.file.save(file.name, file, save=True)
     return JsonResponse({'message': 'File saved'}, status=201)
+
+@api_view(['GET'])
+def user_profile(request):
+    """
+    Returns details of the signed in user.
+    """
+    return JsonResponse({
+        'username': request.user.username,
+        'email': request.user.email,
+        'position': request.user.position,
+        'first_name': request.user.first_name,
+        'last_name': request.user.last_name,
+    })
+
+@api_view(['POST'])
+def user_profile_update(request):
+    """
+    Updates details of the signed in user
+    """
+    try:
+        user = request.user
+        user.email = request.data['email']
+        user.first_name = request.data['first_name']
+        user.last_name = request.data['last_name']
+        user.save()
+        return JsonResponse({
+            'username': user.username,
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+        })
+    except KeyError:
+        return JsonResponse(
+            {'error': 'Invalid parameters'},
+            status=422,
+            reason='Invalid parameters'
+        )
