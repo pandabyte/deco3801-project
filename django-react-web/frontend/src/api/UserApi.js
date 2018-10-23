@@ -32,13 +32,11 @@ class UserApi {
 
         var updatedUser = {
             email: data.email,
-            username: data.email,
-            //password: data.password, we dont get this from the return value on sign in?
             first_name: data.first,
             last_name: data.last,
         }
 
-        return axios.post(baseUrl + '/userprofile/update', updatedUser,
+        return axios.post(baseUrl + '/userprofile/update/', updatedUser,
             {
                 headers: {
                     'Accept': 'application/json',
