@@ -2,7 +2,6 @@ import json
 from django.test import TestCase
 
 from users.models import User
-from users.serializers import UserSerializer
 
 class TestApiV1(TestCase):
     def setUp(self):
@@ -73,9 +72,15 @@ class TestApiV1(TestCase):
             '/api/v1/users/',
             HTTP_AUTHORIZATION='Bearer ' + self.token,
         )
-        all_users = User.objects.all()
-        serializer = UserSerializer(all_users, many=True)
-        expected = [dict(user) for user in serializer.data]
+        expected = [{
+            'id': self.user.id,
+            'email': self.user.email,
+            'first_name': self.user.first_name,
+            'last_name': self.user.last_name,
+            'username': self.user.username,
+            'aid': self.user.aid,
+            'position': self.user.position,
+        }]
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, json.dumps(expected).encode('utf-8'))
 
@@ -93,5 +98,28 @@ class TestApiV1(TestCase):
             HTTP_AUTHORIZATION='Bearer ' + self.token,
         )
         expected = {'userId': self.user.username}
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, json.dumps(expected).encode('utf-8'))
+
+    def test_user_profile(self):
+        """
+        Test getting user profile.
+        """
+        # Get user profil without authorization
+        response = self.client.get('/api/v1/userprofile/')
+        self.assertEqual(response.status_code, 401)
+
+        # Get user profile with authorization
+        response = self.client.get(
+            '/api/v1/userprofile/',
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+        )
+        expected = {
+            'username': self.user.username,
+            'email': self.user.email,
+            'position': self.user.position,
+            'first_name': self.user.first_name,
+            'last_name': self.user.last_name,
+        }
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, json.dumps(expected).encode('utf-8'))
