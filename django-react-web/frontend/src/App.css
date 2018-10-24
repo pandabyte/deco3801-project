@@ -1,6 +1,14 @@
 .App {
+
 }
 
+.App-header {
+  background-color: #1E252F;
+}
+
+.App-footer {
+  background-color: #1E252F;
+}
 
 .App-title {
   font-size: 1.5em;
@@ -13,4 +21,21 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+
+/* Home Page */
+.home-top-div {
+  background-color: #27692C;
+  height: 200px;
+  color: white;
+}
+
+.home-mid-div {
+  background-color: #E4E8EE;
+}
+
+.home-bot-div {
+  background-color: #E4E8EE;
+  text-align-last: center;
 }

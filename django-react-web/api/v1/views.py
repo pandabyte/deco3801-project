@@ -1,3 +1,8 @@
+import jwt, datetime
+from smtplib import SMTPException
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
+from django.conf import settings
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes, parser_classes
 from rest_framework.parsers import FileUploadParser
@@ -5,12 +10,6 @@ from rest_framework.parsers import FileUploadParser
 from users.models import User
 from users.serializers import UserSerializer
 from home.models import FileUpload
-from api.utils import deprecated, deprecated_warn
-from django.core.exceptions import ObjectDoesNotExist
-from django.conf import settings
-from django.core.mail import send_mail
-from smtplib import SMTPException
-import jwt, datetime
 
 @api_view(['POST'])
 @permission_classes(())
@@ -95,12 +94,6 @@ def password_recovery_landing(request):
 @api_view(['POST'])
 def password_recovery_submit(request):
     return
-
-@api_view(['GET'])
-@permission_classes(())
-@deprecated
-def deprecate_test(request):
-    return JsonResponse({'test':'not deprecated'})
 
 @api_view(['PUT'])
 @parser_classes((FileUploadParser,))

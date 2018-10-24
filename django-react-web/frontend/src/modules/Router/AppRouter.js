@@ -52,6 +52,7 @@ export default class AppRouter extends React.Component {
 
     renderPrimaryNavByAuthState(activeTab) {
         var renderedNav = [<Menu.Item
+            key='0'
             name='home'
             active={activeTab === 'home'}
             icon={<Icon name='home' />}
@@ -59,6 +60,7 @@ export default class AppRouter extends React.Component {
             as={Link} to='/'
         />,
         <Menu.Item
+            key='1'
             name='dashboard'
             active={activeTab === 'dashboard'}
             icon={<Icon name='dashboard' />}
@@ -66,6 +68,7 @@ export default class AppRouter extends React.Component {
             as={Link} to='/dashboard'
         />,
         <Menu.Item
+            key='2'
             name='process'
             active={activeTab === 'process'}
             icon={<Icon name='cloud upload' />}
@@ -73,6 +76,7 @@ export default class AppRouter extends React.Component {
             as={Link} to='/process'
         />,
         <Menu.Item
+            key='3'
             name='reports'
             active={activeTab === 'reports'}
             icon={<Icon name='cloud download' />}
@@ -80,6 +84,7 @@ export default class AppRouter extends React.Component {
             as={Link} to='/reports'
         />,
         <Menu.Item
+            key='4'
             name='search'
             active={activeTab === 'search'}
             icon={<Icon name='globe' />}
@@ -87,6 +92,7 @@ export default class AppRouter extends React.Component {
             as={Link} to='/search'
         />,
         <Menu.Item
+            key='5'
             name='acquisition'
             active={activeTab === 'acquisition'}
             icon={<Icon name='wrench' />}
@@ -94,6 +100,8 @@ export default class AppRouter extends React.Component {
             as={Link} to='/acquisition'
         />,
         <Menu.Item
+            key='6'
+
             name='forum'
             active={activeTab === 'forum'}
             icon={<Icon name='wechat' />}
@@ -101,6 +109,8 @@ export default class AppRouter extends React.Component {
             as={Link} to='/forum'
         />,
         <Menu.Item
+            key='7'
+
             name='information'
             active={activeTab === 'information'}
             icon={<Icon name='graduation cap' />}
@@ -108,6 +118,8 @@ export default class AppRouter extends React.Component {
             as={Link} to='/information'
         />,
         <Menu.Item
+            key='8'
+
             name='help'
             active={activeTab === 'help'}
             icon={<Icon name='help' />}
@@ -116,19 +128,21 @@ export default class AppRouter extends React.Component {
         />];
         if (this.props.rootStore.tokenVerified) { // can be enhanced with auth level
             renderedNav.push(<Menu.Item
+                key='9'
                 name='profile'
                 active={activeTab === 'profile'}
                 icon={<Icon name='user' />}
                 onClick={AppRouterStore.handleTabClick}
                 as={Link} to='/profile'
             />,
-            <Menu.Item
-                name='users'
-                active={activeTab === 'users'}
-                icon={<Icon name='users' />}
-                onClick={AppRouterStore.handleTabClick}
-                as={Link} to='/users'
-            />)
+                <Menu.Item
+                    key='10'
+                    name='users'
+                    active={activeTab === 'users'}
+                    icon={<Icon name='users' />}
+                    onClick={AppRouterStore.handleTabClick}
+                    as={Link} to='/users'
+                />)
         }
         return renderedNav;
     }
@@ -139,6 +153,7 @@ export default class AppRouter extends React.Component {
             renderedNav.push(
                 <Menu.Menu position='right'>
                     <Menu.Item
+                        key='11'
                         name='sign in'
                         active={activeTab === 'sign in'}
                         icon={<Icon name='sign-in' />}
@@ -146,18 +161,20 @@ export default class AppRouter extends React.Component {
                         as={Link} to='/signin'
                     />
                     <Menu.Item
+                        key='12'
                         name='sign up'
                         active={activeTab === 'sign up'}
                         icon={<Icon name='signup' />}
                         onClick={AppRouterStore.handleTabClick}
                         as={Link} to='/signup'
                     />
-                    </Menu.Menu>
-                );
+                </Menu.Menu>
+            );
         } else {
             renderedNav.push(
                 <Menu.Menu position='right'>
                     <Menu.Item
+                        key='13'
                         name='sign out'
                         icon={<Icon name='sign-out' />}
                         active={activeTab === 'sign out'}
@@ -168,7 +185,7 @@ export default class AppRouter extends React.Component {
         }
         return renderedNav;
     }
-    
+
     handleSignout = () => {
         SigninStore.handleSignout();
         this.verifyToken();
@@ -236,7 +253,6 @@ export default class AppRouter extends React.Component {
                         </Sticky>
 
                         {/* Switch Component that holds Routes */}
-                        <br />
                         <Switch>
                             <Route exact path='/' component={Home} />
                             <Route exact path='/signup' component={Signup} />
@@ -252,8 +268,6 @@ export default class AppRouter extends React.Component {
                             {this.setRouteByAuthState()}
                             <Route component={Error404} />
                         </Switch>
-                        <br />
-                        
                     </div>
                 </BrowserRouter>
             </div>
