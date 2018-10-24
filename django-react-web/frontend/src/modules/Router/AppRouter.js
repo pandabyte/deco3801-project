@@ -193,6 +193,15 @@ export default class AppRouter extends React.Component {
         this.verifyToken();
     }
 
+    setRouteByAuthState = () => {
+        let push = []
+        if (this.props.rootStore.tokenVerified) {
+            push.push(<Route exact path='/profile' component={Profile} />);
+            push.push(<Route exact path='/users' component={Users} />);
+        }
+        return push;
+    }
+
     render() {
 
         const { activeTab } = AppRouterStore;
@@ -261,6 +270,7 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/acquisition/hrmsinstrument' component={HrmsInstrumentView} />
                             <Route exact path='/acquisition/chromatagraphysystem' component={ChromatographySystemView} />
                             <Route exact path='/help' component={Help} />
+                            {this.setRouteByAuthState()}
                             <Route component={Error404} />
                         </Switch>
                     </div>
