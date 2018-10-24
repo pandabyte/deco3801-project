@@ -27,9 +27,9 @@ export default class ReportView extends React.Component {
                         return (
                             <Card key={index} onClick={this.redirectReport}>
                                 <Card.Content>
-                                    {Object.keys(report).map((key) => {
+                                    {Object.keys(report).map((key, index) => {
                                         return (
-                                            <p>
+                                            <p key={index}>
                                                 <span className='float-left'>{`${key}`}</span>
                                                 <span className='float-right'>{`${report[key]}`}</span>
                                             </p>

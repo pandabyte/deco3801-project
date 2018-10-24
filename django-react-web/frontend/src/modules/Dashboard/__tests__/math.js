@@ -1,5 +1,32 @@
 import { sum, mul, sub, div } from '../math';
 
+beforeAll(() => {
+  // To do something once before all the tests run, use the beforeAll() function:
+});
+
+beforeEach(() => {
+  // To perform something before each test runs, use beforeEach():
+})
+
+/* Grouping Tests */
+
+describe('first set', () => {
+  beforeEach(() => {
+    //do something
+  });
+  afterAll(() => {
+    //do something
+  })
+  test("Adding 1 + 1 equals 2", () => {
+    expect(sum(1, 1)).toBe(2)
+  });
+  
+  test("Adding 1 + 1 equals 2", () => {
+    expect(sum(1, 1)).toBe(2)
+  });
+});
+
+/* Testing Values */
 test("Adding 1 + 1 equals 2", () => {
   expect(sum(1, 1)).toBe(2)
 })

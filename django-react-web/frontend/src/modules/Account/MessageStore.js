@@ -13,14 +13,6 @@ class MessageStore {
     }
 
     /* Create message format */
-    @action
-    createMessageComponent = () {
-        return (<Message
-
-        />)
-    }
-
-    /* Create message format */
     getMessage = (color) => {
         // Add color to message component
 

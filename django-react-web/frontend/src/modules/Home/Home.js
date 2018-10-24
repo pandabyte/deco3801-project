@@ -57,8 +57,8 @@ export default class Home extends React.Component {
 
                                         <Card.Description>
                                             <ul>
-                                                {card.text.map(text => {
-                                                    return <li> key={text}>{text}</li>
+                                                {card.text.map((text, index) => {
+                                                    return <li key={index}> key={text}>{text}</li>
                                                 })}
                                             </ul>
 
