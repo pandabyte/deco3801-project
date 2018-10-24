@@ -23,6 +23,7 @@ import Acquisition from '../Acquisition/Acquisition';
 import HrmsInstrumentView from '../Acquisition/HrmsInstrument/HrmsInstrumentView';
 import ChromatographySystemView from '../Acquisition/ChromatographySystem/ChromatographySystemView';
 import ReportView from '../Report/ReportView';
+import ForumView from '../Forum/ForumView';
 
 
 @inject("rootStore")
@@ -252,6 +253,7 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/dashboard' component={Dashboard} />
                             <Route exact path='/profile' component={Profile} />
                             <Route exact path='/reports' component={ReportView} />
+                            <Route exact path='/forum' component={ForumView} />
                             <Route exact path='/users' component={Users} />
                             <Route exact path='/process' component={Process} />
                             <Route exact path='/search' component={ChemicalSearch} />
