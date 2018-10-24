@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { Container, Icon, Grid } from 'semantic-ui-react';
+import { Container, Header, Icon, Grid, Menu } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
+import { Link } from 'react-router-dom';
 
 @observer
 export default class Dashboard extends React.Component {
 
-    redirectToTarget = (e) => {
-        this.props.history.push('/' + e.target.id)
+    redirectToTarget = (e, data) => {
+        console.log('redirecting to ' + data.id + ' ' + e.targte.id);
+        this.props.history.push('/' + data.id)
     }
 
     render() {
@@ -61,17 +63,28 @@ export default class Dashboard extends React.Component {
         ];
 
         return (
-            <Container className='text-center'>
-                
+            <Container className='text-center p-5'>
+
                 {/* Map each tab to its presentation*/}
                 <Grid columns={3} padded>
                     {tabs.map((tab, index) => {
-                        return (<Grid.Column key={index}>
-                            <Icon name={tab.iconName} size='massive' />
-                            <p id={tab.url} onClick={this.redirectToTarget}>{tab.tabName}</p>
-                        </Grid.Column>)
+                        return (
+
+
+                            <Grid.Column key={index}>
+                                <Menu.Item as={Link} name={tab.name} to={tab.url}>
+
+
+                                    <Icon name={tab.iconName} size='massive' link={true} />
+                                    <Header as='h2'> {tab.tabName} </Header>
+                                </Menu.Item>
+
+                            </Grid.Column>
+                        )
                     })}
                 </Grid>
+
+
             </Container>
         )
     }
