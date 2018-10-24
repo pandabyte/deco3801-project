@@ -35,7 +35,6 @@ class ProcessStore {
     @observable stages = [
         {
             name: 'Upload',
-            icon: 'upload',
             instructions: [
                 `1. Click 'upload single file or 'upload multiple file`,
                 `2. Select your files in the file explorer`,
@@ -44,7 +43,6 @@ class ProcessStore {
         },
         {
             name: 'Sample',
-            icon: 'keyboard',
             instructions: [
                 `1. Click 'add sample information' for manual entry or 'upload sample information'`,
                 `2. Enter the required information or select the sample file from the file explorer`,
@@ -53,7 +51,6 @@ class ProcessStore {
         },
         {
             name: 'Acquisition',
-            icon: 'setting',
             instructions: [
                 `1. Choose a HRMS configuration`,
                 `2. Choose a Chromatographic conditions`,
@@ -63,7 +60,6 @@ class ProcessStore {
         },
         {
             name: 'Algorithm',
-            icon: 'setting',
             instructions: [
                 `1. Select default dataset or specify your own threshold information`,
                 `2. Select the algorithm to implement`
@@ -72,7 +68,6 @@ class ProcessStore {
         },
         {
             name: 'Configuration',
-            icon: 'adjust',
             instructions: [
                 `1. Intruction one`,
                 `2. Intrution two`,
@@ -81,7 +76,6 @@ class ProcessStore {
         },
         {
             name: 'Process',
-            icon: 'google play',
             instructions: [
                 `1. Intruction one`,
                 `2. Intrution two`,

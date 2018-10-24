@@ -58,47 +58,44 @@ export default class Process extends React.Component {
         const focusedStage = stages.filter(stage => stage.name === activeStage)[0];
 
         return (
-            <div className='text-left'>
-                <Grid>
-                    <Grid.Row columns='2'>
+            <div className='text-left p-3'>
+                <Grid columns='2'>
 
-                        {/* Stages Navigation Bar */}
-                        <Grid.Column width='2'>
-                            <Step.Group fluid vertical>
-                                {stages.map((stage, index) => {
-                                    return (
-                                        <Step active={ProcessStore.activeStage === stage.name} fluid>
-                                            <Label
-                                                id={stage.name} key={index}
-                                                onClick={this.handleSelectStage}
-                                                icon={<Icon name={stage.icon} />} content={stage.name}
-                                            />
-                                        </Step>
-                                    )
-                                })}
-                            </Step.Group>
-                        </Grid.Column>
+                    {/* Stages Navigation Bar */}
+                    <Grid.Column width={2}>
+                        <Step.Group fluid vertical>
+                            {stages.map((stage, index) => {
+                                return (
+                                    <Step
+                                        active={ProcessStore.activeStage === stage.name}
+                                        id={stage.name} key={index}
+                                        onClick={this.handleSelectStage}
+                                        content={stage.name}>
+                                    </Step>
+                                )
+                            })}
+                        </Step.Group>
+                    </Grid.Column>
 
-                        {/* Stages Rendered Content*/}
-                        <Grid.Column width='14'>
+                    {/* Stages Rendered Content*/}
+                    <Grid.Column width={14}>
 
-                            {/* display instructions for stage */}
-                            <Segment fluid='true'>
-                                <Header as='h2'> Instructions for {focusedStage['name']} Stage!</Header>
-                                <Divider />
-                                {focusedStage['instructions'].map((step, index) => {
-                                    return <p key={index}>{step}</p>
-                                })}
-                            </Segment>
+                        {/* display instructions for stage */}
+                        <Segment fluid='true'>
+                            <Header as='h2'> Instructions for {focusedStage['name']} Stage!</Header>
+                            <Divider />
+                            {focusedStage['instructions'].map((step, index) => {
+                                return <p key={index}>{step}</p>
+                            })}
+                        </Segment>
 
-                            <Segment>
-                                {/* display stage */}
-                                {renderedStageComponent}
-                            </Segment>
+                        <Segment>
+                            {/* display stage */}
+                            {renderedStageComponent}
+                        </Segment>
 
 
-                        </Grid.Column>
-                    </Grid.Row>
+                    </Grid.Column>
                 </Grid>
 
 

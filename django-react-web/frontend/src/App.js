@@ -6,9 +6,6 @@ import { } from 'semantic-ui-react';
 import './App.css';
 
 // import custom components
-import AppFooter from './modules/Layout/AppFooter';
-import AppHeader from './modules/Layout/AppHeader';
-import AppRouter from './modules/Router/AppRouter';
 import RootContainer from './RootContainer';
 import { Provider, observer } from 'mobx-react';
 import RootStore from './RootStore';

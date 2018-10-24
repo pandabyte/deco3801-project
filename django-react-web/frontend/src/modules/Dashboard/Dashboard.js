@@ -6,11 +6,6 @@ import { Link } from 'react-router-dom';
 @observer
 export default class Dashboard extends React.Component {
 
-    redirectToTarget = (e, data) => {
-        console.log('redirecting to ' + data.id + ' ' + e.targte.id);
-        this.props.history.push('/' + data.id)
-    }
-
     render() {
 
         /* Array of tabs. One tab is associated with one react page */
@@ -63,27 +58,22 @@ export default class Dashboard extends React.Component {
         ];
 
         return (
-            <Container className='text-center p-5'>
+            <Container className='text-center p-5 App'>
 
                 {/* Map each tab to its presentation*/}
                 <Grid columns={3} padded>
                     {tabs.map((tab, index) => {
                         return (
 
-
                             <Grid.Column key={index}>
                                 <Menu.Item as={Link} name={tab.name} to={tab.url}>
-
-
                                     <Icon name={tab.iconName} size='massive' link={true} />
-                                    <Header as='h2'> {tab.tabName} </Header>
+                                    <Header as='h3'> {tab.tabName} </Header>
                                 </Menu.Item>
-
                             </Grid.Column>
                         )
                     })}
                 </Grid>
-
 
             </Container>
         )
