@@ -1,6 +1,6 @@
-// import dependencies
 import axios from 'axios';
 
+/* Reusable header */
 const HEADER = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -9,14 +9,11 @@ class UserAuthApi {
 
     /* Get tokens */
     login = (credentials) => {
-        console.log('Email ' + credentials.email);
-        console.log('Password ' + credentials.password);
+        const { email, password } = credentials;
 
-        return axios.post('/api/token/obtain/', credentials,
-            {
-                headers: HEADER
-            }
-        );
+        if (email === undefined || password === undefined) { return; }
+
+        return axios.post('/api/token/obtain/', credentials, { headers: HEADER });
     }
 
     /* Get user ID from given token */
@@ -34,8 +31,6 @@ class UserAuthApi {
     }
 
     register = (data) => {
-        console.log('Signing up with the following\n', JSON.stringify(data));
-
         var newData = {
             email: data.email,
             username: data.email,
@@ -44,18 +39,11 @@ class UserAuthApi {
             last_name: data.lastname,
         }
 
-        return axios.post('/api/v1/register/', newData,
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
+        return axios.post('/api/v1/register/', newData, { headers: HEADER });
     }
 
     verifyToken = () => {
-        return axios.post('/api/token/verify/', {"token": localStorage.getItem('access')}, 
+        return axios.post('/api/token/verify/', { "token": localStorage.getItem('access') },
             {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('access')
@@ -63,8 +51,6 @@ class UserAuthApi {
             }
         );
     }
-
-
 }
 
 export default new UserAuthApi();

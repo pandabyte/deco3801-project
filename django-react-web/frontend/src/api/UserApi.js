@@ -15,7 +15,8 @@ class UserApi {
     /* Get user */
     read = () => {
         var token = localStorage.getItem('access');
-        return axios.get(baseUrl + '/userprofile/',
+        token = 'swag';
+        var promise =  axios.get(baseUrl + '/userprofile/',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -24,6 +25,8 @@ class UserApi {
                 }
             }
         );
+        console.log(JSON.stringify(promise));
+        return promise;
     }
 
     /* Update user */

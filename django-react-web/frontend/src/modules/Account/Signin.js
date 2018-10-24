@@ -32,7 +32,7 @@ export default class Signin extends React.Component {
         this.setState({ loading: true });
         // Returns a 'refresh' and 'access' token
         UserAuthApi.login(credentials).then(res => {
-            console.log("API Call Login Response: \n", res.data);
+            console.log("API Call Login Response: \n", res);
 
             // store on state manager
             SigninStore.updateTokenProperty('refresh', res.data.refresh);
@@ -52,10 +52,8 @@ export default class Signin extends React.Component {
         }).catch(err => {
             console.log(err);
             SigninStore.handleSignout();
-            // TODO Fix this to actual message
             SigninStore.setErrorMessage(err.response.data.error);
             this.setState({ error: true, loading: false});
-            //this.props.history.push('/')
         });
     }
 

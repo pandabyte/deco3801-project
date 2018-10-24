@@ -8,17 +8,16 @@ import Home from '../modules/Home/Home';
 import AppHeader from '../modules/Layout/AppHeader';
 import AppFooter from '../modules/Layout/AppFooter';
 import Process from '../modules/Process/Process';
-
 import ReportView from '../modules/Report/ReportView';
 import ChemicalSearch from '../modules/Search/ChemicalSearch';
 
 /**
  * Test suite for checking UI does not change unexpectedly.
- * Test suite runs unit test for each major component.
+ * Test suite runs unit test for each major UI react component.
+ * Test fails if the images do not match.
  */
 describe('Set: Rendering react components', () => {
 
-    
     it('Help component', () => {
         const tree = renderer
             .create(<Help />)
