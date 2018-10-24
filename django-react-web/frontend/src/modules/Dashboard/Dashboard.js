@@ -61,7 +61,7 @@ export default class Dashboard extends React.Component {
         ];
 
         return (
-            <Container className='text-center'>
+            <Container className='text-center p-5'>
                 
                 {/* Map each tab to its presentation*/}
                 <Grid columns={3} padded>

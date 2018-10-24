@@ -5,6 +5,7 @@ class ChemicalSearchStore {
     @observable isLoading = false;
     @observable results = [];
     @observable value = [];
+    @observable isFluid = false;
 
     @action
     setup = () => {
