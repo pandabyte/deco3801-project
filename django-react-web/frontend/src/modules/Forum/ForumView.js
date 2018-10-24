@@ -28,7 +28,7 @@ export default class ForumView extends React.Component {
                     });
                 }}
                 ref="iframe"
-                src="www.google.com"
+                src="ec2-18-224-228-152.us-east-2.compute.amazonaws.com"
                 width="100%"
                 height={this.state.iFrameHeight}
                 scrolling="no"
