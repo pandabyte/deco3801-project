@@ -24,40 +24,35 @@ class TestApiV1(TestCase):
         """
         Test registering a new user.
         """
+        user_data = {
+            'email': 'newuser@example.com',
+            'first_name': 'first',
+            'last_name': 'last',
+            'password': 'password',
+        }
         # Create new user
         response = self.client.post(
             '/api/v1/register/',
-            {
-                'email': 'newuser@example.com',
-                'first_name': 'first',
-                'last_name': 'last',
-                'password': 'password',
-            },
+            user_data,
         )
         self.assertEqual(response.status_code, 200)
 
         # Fail to register user with same email
         response = self.client.post(
             '/api/v1/register/',
-            {
-                'email': 'newuser@example.com',
-                'first_name': 'first',
-                'last_name': 'last',
-                'password': 'password',
-            },
+            user_data,
         )
         self.assertEqual(response.status_code, 422)
 
-        # Fail to register user with no email
-        response = self.client.post(
-            '/api/v1/register/',
-            {
-                'first_name': 'first',
-                'last_name': 'last',
-                'password': 'password',
-            },
-        )
-        self.assertEqual(response.status_code, 422)
+        # Fail to register user with missing fields
+        for key in user_data.keys():
+            incomplete_data = dict(user_data)
+            del incomplete_data[key]
+            response = self.client.post(
+                '/api/v1/register/',
+                incomplete_data,
+            )
+            self.assertEqual(response.status_code, 422)
 
     def test_user_list(self):
         """
