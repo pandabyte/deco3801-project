@@ -1,4 +1,3 @@
-import json
 from django.test import TestCase
 
 from users.models import User
@@ -16,16 +15,16 @@ class TestApiV1(TestCase):
             {
                 'email': 'user@example.com',
                 'password': 'password',
-            }
+            },
         )
-        self.token = json.loads(response.content.decode('utf-8'))['access']
+        self.token = response.json()['access']
 
-    def test_register_correct(self):
+    def test_register(self):
         """
         Test registering a new user.
         """
         user_data = {
-            'email': 'newuser@example.com',
+            'email': 'newuser1@example.com',
             'first_name': 'first',
             'last_name': 'last',
             'password': 'password',
@@ -35,24 +34,48 @@ class TestApiV1(TestCase):
             '/api/v1/register/',
             user_data,
         )
+        expected = dict(user_data)
+        del expected['password']
         self.assertEqual(response.status_code, 200)
+        # Assert that response contains all expected data
+        self.assertTrue(response.json().items() >= expected.items())
 
         # Fail to register user with same email
         response = self.client.post(
             '/api/v1/register/',
             user_data,
         )
+        expected = {'error': 'An account with this email already exists'}
         self.assertEqual(response.status_code, 422)
+        self.assertEqual(response.json(), expected)
 
-        # Fail to register user with missing fields
+        # Fail to register user with missing or blank fields
         for key in user_data.keys():
-            incomplete_data = dict(user_data)
+            incomplete_data = {**user_data, **{'email': 'newuser2@example.com'}}
             del incomplete_data[key]
             response = self.client.post(
                 '/api/v1/register/',
                 incomplete_data,
             )
             self.assertEqual(response.status_code, 422)
+            self.assertTrue(response.json()['error'].endswith('must be given'))
+
+            incomplete_data[key] = ''
+            response = self.client.post(
+                '/api/v1/register/',
+                incomplete_data,
+            )
+            self.assertEqual(response.status_code, 422)
+            self.assertTrue(response.json()['error'].endswith('must be given'))
+
+        # Fail to register user with invalid email
+        response = self.client.post(
+            '/api/v1/register/',
+            {**user_data, **{'email': 'invalid'}},
+        )
+        expected = {'error': 'Invalid email address'}
+        self.assertEqual(response.status_code, 422)
+        self.assertEqual(response.json()['error'], expected)
 
     def test_user_list(self):
         """
@@ -77,7 +100,7 @@ class TestApiV1(TestCase):
             'position': self.user.position,
         }]
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, json.dumps(expected).encode('utf-8'))
+        self.assertEqual(response.json(), expected)
 
     def test_user_id(self):
         """
@@ -94,7 +117,7 @@ class TestApiV1(TestCase):
         )
         expected = {'userId': self.user.username}
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, json.dumps(expected).encode('utf-8'))
+        self.assertEqual(response.json(), expected)
 
     def test_user_profile(self):
         """
@@ -117,4 +140,4 @@ class TestApiV1(TestCase):
             'last_name': self.user.last_name,
         }
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, json.dumps(expected).encode('utf-8'))
+        self.assertEqual(response.json(), expected)
