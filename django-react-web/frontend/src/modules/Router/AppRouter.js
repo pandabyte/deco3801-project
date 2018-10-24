@@ -1,7 +1,7 @@
 // import dependencies
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
-import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Switch, Route, Redirect } from 'react-router-dom';
 import { Menu, Icon, Sticky } from 'semantic-ui-react';
 
 // import custom components
@@ -262,7 +262,6 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/dashboard' component={Dashboard} />
                             <Route exact path='/profile' component={Profile} />
                             <Route exact path='/reports' component={ReportView} />
-                            <Route exact path='/forum' component={ForumView} />
                             <Route exact path='/users' component={Users} />
                             <Route exact path='/process' component={Process} />
                             <Route exact path='/search' component={ChemicalSearch} />
