@@ -83,7 +83,9 @@ class TestApiV1(TestCase):
         """
         # Get users without authorization
         response = self.client.get('/api/v1/users/')
+        expected = {'detail': 'Authentication credentials were not provided.'}
         self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json(), expected)
 
         # Get users with authorization
         response = self.client.get(
@@ -108,7 +110,9 @@ class TestApiV1(TestCase):
         """
         # Get username without authorization
         response = self.client.get('/api/v1/userid/')
+        expected = {'detail': 'Authentication credentials were not provided.'}
         self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json(), expected)
 
         # Get username with authorization
         response = self.client.get(
@@ -123,9 +127,11 @@ class TestApiV1(TestCase):
         """
         Test getting user profile.
         """
-        # Get user profil without authorization
+        # Get user profile without authorization
         response = self.client.get('/api/v1/userprofile/')
+        expected = {'detail': 'Authentication credentials were not provided.'}
         self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json(), expected)
 
         # Get user profile with authorization
         response = self.client.get(

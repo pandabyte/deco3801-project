@@ -61,6 +61,9 @@ def user_id(request):
 @api_view(['POST'])
 @permission_classes(())
 def password_recovery_request(request):
+    """
+    Send a password recovery email.
+    """
     try:
         user = User.objects.get(email=request.data.get('email'))
         one_time_secret = user.username + '-' + user.password + settings.SECRET_KEY
@@ -69,9 +72,8 @@ def password_recovery_request(request):
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
         }
         encoded_jwt = jwt.encode(payload, one_time_secret, algorithm='HS256')
-        email = 'jerryw4113@gmail.com'
+        email = user.email
         one_time_link = request.get_host() + '/pwrecovery/?resetott=' + str(encoded_jwt)
-        print(one_time_link)
         try:
             send_mail(
                 'Forgot Password - Reset Your Password',
@@ -98,6 +100,9 @@ def password_recovery_submit(request):
 @api_view(['PUT'])
 @parser_classes((FileUploadParser,))
 def upload(request):
+    """
+    Saves a file uploaded by a user for processing.
+    """
     if 'file' not in request.data:
         return JsonResponse({'error': 'File not found'}, status=422)
     file = request.data['file']
