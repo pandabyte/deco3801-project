@@ -9,14 +9,12 @@ const baseUrl = '/api/v1';
 class UserApi {
 
     /* Create user */
-
     create = () => { }
 
     /* Get user */
     read = () => {
         var token = localStorage.getItem('access');
-        token = 'swag';
-        var promise =  axios.get(baseUrl + '/userprofile/',
+        return axios.get(baseUrl + '/userprofile/',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -25,8 +23,6 @@ class UserApi {
                 }
             }
         );
-        console.log(JSON.stringify(promise));
-        return promise;
     }
 
     /* Update user */
@@ -50,11 +46,6 @@ class UserApi {
         );
     }
 
-
-
-
-
-
     /* Get all users */
     readAll = () => {
         var token = localStorage.getItem('access');
@@ -71,30 +62,3 @@ class UserApi {
 }
 
 export default new UserApi();
-
-
-/* 
-    get = (url) => {
-        return axios.get(baseUrl + url)
-            .catch(err => alert(err))
-            .then(res => alert(res.data.message))
-    }
-
-    post = (url, data) => {
-        return axios.post(baseUrl + url, data)
-            .catch(err => alert(err))
-            .then(res => console.log(res.data));
-    }
-
-    put = (url, data) => {
-        return axios.post(baseUrl + url, data)
-            .catch(err => alert(err))
-            .then(res => console.log(res.data));
-    }
-
-    delete = (url) => {
-        return axios.delete(baseUrl + url)
-            .catch(err => alert(err))
-            .then(res => console.log(res.data));
-
-    }*/

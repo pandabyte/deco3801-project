@@ -20,6 +20,9 @@
     "css-loader": "0.28.7",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-15": "^1.1.1",
+    "enzyme-adapter-react-16": "^1.6.0",
     "eslint": "4.10.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
@@ -63,8 +66,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "jest": "jest",
+    "test": "node scripts/test.js --env=jsdom --setupTestFrameworkScriptFile=raf/polyfill",
     "setup": "pipenv install && npm install && ./test_migrate.sh",
     "start:live": "DJANGO_DEV=true concurrently \"npm start\" \"./test_built.sh\""
   },
@@ -73,6 +75,7 @@
       "src/**/*.{js,jsx,mjs}"
     ],
     "setupFiles": [
+      "<rootDir>/config/shim.js",
       "<rootDir>/config/polyfills.js"
     ],
     "testMatch": [

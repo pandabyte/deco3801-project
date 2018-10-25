@@ -11,10 +11,6 @@ export default class Acquisition extends React.Component {
 
     render() {
 
-        const acquisitionViews = [
-            {}
-        ]
-
         return (
             <div className='p-5 text-center'>
                 <Grid columns={2} padded>

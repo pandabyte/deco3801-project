@@ -12,8 +12,8 @@ export default class Home extends React.Component {
             {
                 header: 'Collaborative',
                 text: [
-                    'Work together with other environmental chemist',
-                    'View workings from other chemiest'
+                    'Work with other environmental chemist',
+                    'View previous work conducted'
                 ]
             },
             {
@@ -25,8 +25,8 @@ export default class Home extends React.Component {
             {
                 header: 'History',
                 text: [
-                    'See what has been processed',
-                    'Reuse configurations'
+                    'View results',
+                    'View historical data'
                 ]
             }
         ];
@@ -58,7 +58,7 @@ export default class Home extends React.Component {
                                         <Card.Description>
                                             <ul>
                                                 {card.text.map((text, index) => {
-                                                    return <li key={index}> key={text}>{text}</li>
+                                                    return <li key={index}>{text}</li>
                                                 })}
                                             </ul>
 
