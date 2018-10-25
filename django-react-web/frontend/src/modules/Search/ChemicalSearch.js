@@ -1,19 +1,11 @@
 import * as React from 'react';
 import _ from 'lodash'
-import faker from 'faker'
 
 import { Header, Search, Divider, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
-
+import Mock from './Mock';
 import ChemicalSearchStore from './ChemicalSearchStore';
 
-/* TODO: change to chemical compounds when we have model*/
-const source = _.times(5, () => ({
-    title: faker.company.companyName(),
-    description: faker.company.catchPhrase(),
-    image: faker.internet.avatar(),
-    price: faker.finance.amount(0, 100, 2, '$'),
-}));
 
 @observer
 export default class ChemicalSearch extends React.Component {
@@ -24,33 +16,32 @@ export default class ChemicalSearch extends React.Component {
     }
 
     /* Event handler for selecting element from search bar */
-    handleResultSelect = (e, { result }) => {
-        ChemicalSearchStore.value = result.title;
-    }
+    handleResultSelect = (e, { result }) => { ChemicalSearchStore.value = result.title; }
 
-    /* Event handler for search bar changing values */
+    handleResultSelect = (e, { result }) => this.setState({ value: result.title })
+
     handleSearchChange = (e, { value }) => {
-        ChemicalSearchStore.isLoading = true;
-        ChemicalSearchStore.value = value;
+        ChemicalSearchStore.updateStateKeyValue('isLoading', true);
+        ChemicalSearchStore.updateStateKeyValue('value', value);
 
         setTimeout(() => {
-            if (ChemicalSearchStore.value.length < 1) {
-                return ChemicalSearchStore.clear();
-            }
+            if (ChemicalSearchStore.state.value.length < 1) return ChemicalSearchStore.clear()
 
-            const re = new RegExp(_.escapeRegExp(ChemicalSearchStore.value), 'i')
-            const isMatch = result => re.test(result.title)
+            const re = new RegExp(_.escapeRegExp(ChemicalSearchStore.state.value), 'i')
+            const isMatch = (result) => re.test(result.title)
 
-            ChemicalSearchStore.isLoading = false;
-            ChemicalSearchStore.results = _.filter(source, isMatch);
+
+            ChemicalSearchStore.updateStateKeyValue('isLoading', false);
+            ChemicalSearchStore.updateStateKeyValue('results', _.filter(Mock.chemicals.slice(), isMatch));
         }, 300)
     }
 
+
     render() {
-        const { isLoading, results, value } = ChemicalSearchStore;
+        const { isLoading, value, results } = ChemicalSearchStore.state;
+
         return (
             <div className='p-5'>
-
                 <Segment>
                     <Header> Perform global chemical search </Header>
                     <Divider />
@@ -63,11 +54,6 @@ export default class ChemicalSearch extends React.Component {
                         results={results}
                         value={value}
                     />
-                </Segment>
-
-                <Segment>
-                    <Header> Results of Search </Header>
-                    <Divider />
                 </Segment>
             </div>
         )
