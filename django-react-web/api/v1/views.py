@@ -87,15 +87,6 @@ def password_recovery_request(request):
         return JsonResponse({})
     except ObjectDoesNotExist as e:
         return JsonResponse({'error': str(e)}, status=400, reason=str(e))
-    
-
-@api_view(['GET'])
-def password_recovery_landing(request):
-    return
-
-@api_view(['POST'])
-def password_recovery_submit(request):
-    return
 
 @api_view(['PUT'])
 @parser_classes((FileUploadParser,))
