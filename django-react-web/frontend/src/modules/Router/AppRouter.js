@@ -107,7 +107,7 @@ export default class AppRouter extends React.Component {
             active={activeTab === 'forum'}
             icon={<Icon name='wechat' />}
             onClick={AppRouterStore.handleTabClick}
-            as={Link} to='/forum'
+            href='http://ec2-18-224-228-152.us-east-2.compute.amazonaws.com/' target='_blank'
         />,
         <Menu.Item
             key='7'
@@ -228,6 +228,7 @@ export default class AppRouter extends React.Component {
                             <Route exact path='/profile' component={Profile} />
                             <Route exact path='/information' component={InformationView} />
                             <Route exact path='/reports' component={ReportView} />
+                            
                             <Route exact path='/users' component={Users} />
                             <Route exact path='/process' component={Process} />
                             <Route exact path='/search' component={ChemicalSearch} />
