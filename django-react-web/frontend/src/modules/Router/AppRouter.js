@@ -1,8 +1,8 @@
 // import dependencies
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
-import { BrowserRouter, Link, Switch, Route, Redirect } from 'react-router-dom';
-import { Menu, Icon, Sticky } from 'semantic-ui-react';
+import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
+import { Menu, Icon } from 'semantic-ui-react';
 
 // import custom components
 import Home from '../Home/Home';
@@ -110,7 +110,6 @@ export default class AppRouter extends React.Component {
         />,
         <Menu.Item
             key='8'
-
             name='help'
             active={activeTab === 'help'}
             icon={<Icon name='help' />}
@@ -142,9 +141,9 @@ export default class AppRouter extends React.Component {
         var renderedNav = [];
         if (!this.props.rootStore.tokenVerified) {
             renderedNav.push(
-                <Menu.Menu position='right'>
+                <Menu.Menu key='a' position='right'>
                     <Menu.Item
-                        key='11'
+                        key='14'
                         name='sign in'
                         active={activeTab === 'sign in'}
                         icon={<Icon name='sign-in' />}
@@ -163,7 +162,7 @@ export default class AppRouter extends React.Component {
             );
         } else {
             renderedNav.push(
-                <Menu.Menu position='right'>
+                <Menu.Menu key='b' position='right'>
                     <Menu.Item
                         key='13'
                         name='sign out'

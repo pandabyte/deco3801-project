@@ -23,7 +23,7 @@ export default class Acquisition extends React.Component {
 
 
                     <Grid.Column >
-                        <Label fluid id='chromatagraphysystem' onClick={this.redirect}>
+                        <Label fluid='true' id='chromatagraphysystem' onClick={this.redirect}>
                             <Icon id='chromatagraphysystem' name='user' size='massive' />
                             My Chromotagraphy Systems
                             </Label>
