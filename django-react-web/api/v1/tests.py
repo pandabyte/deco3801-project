@@ -1,3 +1,4 @@
+import os
 from django.test import TestCase
 
 from users.models import User
@@ -147,3 +148,117 @@ class TestApiV1(TestCase):
         }
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), expected)
+
+    def test_update_user(self):
+        """
+        Test updating user profile.
+        """
+        new_details = {
+            'email': 'newuser1@example.com',
+            'first_name': 'test1',
+            'last_name': 'test1',
+        }
+        # Update user profile without authorization
+        original_details = {
+            'username': self.user.username,
+        }
+        response = self.client.post(
+            '/api/v1/userprofile/update/',
+            new_details,
+        )
+        expected = {'detail': 'Authentication credentials were not provided.'}
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json(), expected)
+
+        # Update user profile with authorization
+        response = self.client.post(
+            '/api/v1/userprofile/update/',
+            new_details,
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+        )
+        expected = {
+            **original_details,
+            **new_details,
+        }
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), expected)
+
+        # Partially update user profile
+        original_details = {
+            'username': self.user.username,
+            'email': self.user.email,
+        }
+        partial_details = {
+            'first_name': 'test2',
+            'last_name': 'test2',
+        }
+        response = self.client.post(
+            '/api/v1/userprofile/update/',
+            partial_details,
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+        )
+        expected = {
+            **original_details,
+            **partial_details,
+        }
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), expected)
+
+    def test_password_recovery_request(self):
+        """
+        Test password recovery request.
+        """
+        # Request password recovery with existing user
+        response = self.client.post(
+            '/api/v1/password-recovery/request/',
+            {'email': self.user.email},
+        )
+        self.assertEqual(response.status_code, 200)
+
+        # Request password recovery with nonexistent user
+        response = self.client.post(
+            '/api/v1/password-recovery/request/',
+            {'email': 'fake@example.com'},
+        )
+        expected = {'error': 'User matching query does not exist.'}
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json(), expected)
+
+    def test_upload(self):
+        """
+        Test uploading a file for processing.
+        """
+        file = open('test.txt', 'w')
+
+        # Upload file without authorization
+        response = self.client.put(
+            '/api/v1/upload/',
+            {'file': file},
+            HTTP_CONTENT_DISPOSITION='form-data; name="file"; filename="test.txt"'
+        )
+        expected = {'detail': 'Authentication credentials were not provided.'}
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json(), expected)
+
+        # Upload file with authorization
+        response = self.client.put(
+            '/api/v1/upload/',
+            {'file': file},
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+            HTTP_CONTENT_DISPOSITION='form-data; name="file"; filename="test.txt"'
+        )
+        expected = {'message': 'File saved'}
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.json(), expected)
+
+        # Upload without file
+        response = self.client.put(
+            '/api/v1/upload/',
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+        )
+        expected = {'error': 'File not found'}
+        self.assertEqual(response.status_code, 422)
+        self.assertEqual(response.json(), expected)
+
+        file.close()
+        os.remove('test.txt')
