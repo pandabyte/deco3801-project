@@ -1,4 +1,4 @@
-set SECRET_KEY="secret"
+set DJANGO_DEV=true
 
 pipenv run python manage.py migrate
 
