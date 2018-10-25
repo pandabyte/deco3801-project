@@ -147,3 +147,58 @@ class TestApiV1(TestCase):
         }
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), expected)
+
+    def test_update_user(self):
+        """
+        Test updating user profile.
+        """
+        new_details = {
+            'email': 'newuser1@example.com',
+            'first_name': 'test1',
+            'last_name': 'test1',
+        }
+        # Update user profile without authorization
+        original_details = {
+            'username': self.user.username,
+        }
+        response = self.client.post(
+            '/api/v1/userprofile/update/',
+            new_details,
+        )
+        expected = {'detail': 'Authentication credentials were not provided.'}
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json(), expected)
+
+        # Update user profile with authorization
+        response = self.client.post(
+            '/api/v1/userprofile/update/',
+            new_details,
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+        )
+        expected = {
+            **original_details,
+            **new_details,
+        }
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), expected)
+
+        # Partially update user profile
+        original_details = {
+            'username': self.user.username,
+            'email': self.user.email,
+        }
+        partial_details = {
+            'first_name': 'test2',
+            'last_name': 'test2',
+        }
+        response = self.client.post(
+            '/api/v1/userprofile/update/',
+            partial_details,
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+        )
+        expected = {
+            **original_details,
+            **partial_details,
+        }
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), expected)
