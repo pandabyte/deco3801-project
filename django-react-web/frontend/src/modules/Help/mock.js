@@ -1,16 +1,56 @@
 const mock =
     [{
-        question: 'What is a dog?',
-        answer: 'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.',
+        question: 'What is CECESWN?',
+        answer: 'CECESWN stands for Chemicals of Emerging Concern Early Warning Social Network. CECESWN is an web application that offers to help to bridge the disparity in the way environmental scientist process and store their data between institutions. CECESWN is designed to be user friendly and convenient approach for scientists to analyse and share the chemicals and compounds found in the sample that they have collected with other scientists, allowing for collaboration across all institutions.'
     },
     {
-        question: 'What kind of dogs are there?',
-        answer: 'There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.',
+        question: 'Who is QAEHS?',
+        answer: 'QAEHS stands for Queensland Alliance for Environmental Health Sciences. QAEHS  is a research center which jointly founded by Queensland Health and the University of Queensland.'
     },
     {
-        question: 'How do you acquire a dog?',
-        answer: 'Three common ways for a prospective owner to acquire a dog is from pet shops, private owners, or shelters. A pet shop may be the most convenient way to buy a dog. Buying a dog from a private owner allows you to assess the pedigree and upbringing of your dog before choosing to take it home. Lastly, finding your dog from a shelter, helps give a good home to a dog who may not find one so readily. a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.'
-    }]
-
+        question: 'What is a HRMS?',
+        'answer': 'HRMS stands for High Resolution Spectrometer.'
+    },
+    {
+        question: 'How does a user sign up?',
+        answer: 'A User can sign up by filling out the form on the Sign Up page. The Sign Up page can be accessed from the Navigation Bar.'
+    },
+    {
+        question: 'How do I upgrade a user’s access permission?',
+        answer: 'Only an administrator of the website and upgrade a user’s access permission.'
+    },
+    {
+        question: 'How is a user’s password stored?',
+        answer: 'Passwords are stored on the server’s database and hashed to prevent the user’s password from being hacked.'
+    },
+    {
+        question: 'How do I access the database?',
+        answer: 'Users are not able to access the database, they will only be able to interact with the database.'
+    },
+    {
+        question: 'What file types will be accepted?',
+        answer: 'The accepted file types are text files (.txt, .) and Excel files (.xlmx)'
+    },
+    {
+        question: 'How long will an upload take?',
+        answer: 'An upload can take about an hour to a few hours to process, depending on your upload speeds.'
+    },
+    {
+        question: 'Will a user be able to set the privacy of the data they upload?',
+        answer: 'Users are able to modify their privacy setting from the profile page once they are logged in.'
+    },
+    {
+        question: 'Where is a users data uploaded to?',
+        answer: 'The users data is uploaded to Amazon S3 where it will be processed by QAEHS algorithm.'
+    },
+    {
+        question: 'What is the web address for CECESWN forum?',
+        answer: 'Ec2-18-224-228-152.us-east-2.compute.amazonaws.com'
+    },
+    {
+        question: 'What could user do?',
+        answer: 'Users can interact directly with each other in the forum by starting a post, commenting on a post or liking a post.'
+    }
+]
 
 export default mock;

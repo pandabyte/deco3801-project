@@ -24,7 +24,7 @@ export default class ReportView extends React.Component {
                                 {Object.keys(report).map((key, index) => {
                                     return (<p key={index}>
                                         <span>{`${key}`}</span>
-                                        <span className='float-right'>{`${report[key]}`}</span>
+                                        <span className='float-right'>{`${isNaN(report[key]) ? report[key] : report[key].toFixed(4)}`}</span>
                                     </p>)
                                 })}
                             </Card.Content>
