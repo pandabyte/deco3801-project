@@ -43,7 +43,7 @@ export default class ChemicalSearch extends React.Component {
         return (
             <div className='p-5'>
                 <Segment>
-                    <Header> Perform global chemical search </Header>
+                    <Header> Perform a global search for a chemical compound </Header>
                     <Divider />
                     <Search
                         input={{ fluid: true }}
