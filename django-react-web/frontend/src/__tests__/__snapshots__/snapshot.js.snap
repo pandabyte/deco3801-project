@@ -18074,56 +18074,67 @@ exports[`Set: Rendering react components Search component 1`] = `
   className="p-5"
 >
   <div
-    className="ui header"
-  >
-     Perform global chemical search 
-  </div>
-  <div
-    className="ui search"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onMouseDown={[Function]}
+    className="ui segment"
   >
     <div
-      className="ui fluid icon input"
+      className="ui header"
     >
-      <input
-        autoComplete="off"
-        className="prompt"
-        disabled={undefined}
-        onChange={[Function]}
-        onClick={[Function]}
-        placeholder="Please insert the identifier of your chemical (e.g. name, CAS, SMILES)"
-        tabIndex="0"
-        type="text"
-        value=""
-      />
-      <i
-        aria-hidden="true"
-        className="search icon"
-      />
+       Perform global chemical search 
     </div>
     <div
-      className="results transition"
+      className="ui divider"
+    />
+    <div
+      className="ui search"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseDown={[Function]}
     >
       <div
-        className="message empty"
+        className="ui fluid icon input"
+      >
+        <input
+          autoComplete="off"
+          className="prompt"
+          disabled={undefined}
+          onChange={[Function]}
+          onClick={[Function]}
+          placeholder="Please insert the identifier of your chemical (e.g. name, CAS, SMILES)"
+          tabIndex="0"
+          type="text"
+          value=""
+        />
+        <i
+          aria-hidden="true"
+          className="search icon"
+        />
+      </div>
+      <div
+        className="results transition"
       >
         <div
-          className="header"
+          className="message empty"
         >
-          No results found.
+          <div
+            className="header"
+          >
+            No results found.
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div
-    className="ui header"
+    className="ui segment"
   >
-     Results of Search 
+    <div
+      className="ui header"
+    >
+       Results of Search 
+    </div>
+    <div
+      className="ui divider"
+    />
   </div>
-  <div
-    className="ui divider"
-  />
 </div>
 `;

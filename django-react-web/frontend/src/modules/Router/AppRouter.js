@@ -23,8 +23,6 @@ import Acquisition from '../Acquisition/Acquisition';
 import HrmsInstrumentView from '../Acquisition/HrmsInstrument/HrmsInstrumentView';
 import ChromatographySystemView from '../Acquisition/ChromatographySystem/ChromatographySystemView';
 import ReportView from '../Report/ReportView';
-import ForumView from '../Forum/ForumView';
-
 
 @inject("rootStore")
 @observer
@@ -206,35 +204,6 @@ export default class AppRouter extends React.Component {
 
         const { activeTab } = AppRouterStore;
 
-        // var secondaryMenu = (SigninStore.tokens.refresh === ''
-        //     && SigninStore.tokens.access === ''
-        //     && SigninStore.userID === '') ?
-        //     (<Menu.Menu position='right'>
-        //         <Menu.Item
-        //             name='sign in'
-        //             active={activeTab === 'sign in'}
-        //             icon={<Icon name='sign-in' />}
-        //             onClick={AppRouterStore.handleTabClick}
-        //             as={Link} to='/signin'
-        //         />
-        //         <Menu.Item
-        //             name='sign up'
-        //             active={activeTab === 'sign up'}
-        //             icon={<Icon name='signup' />}
-        //             onClick={AppRouterStore.handleTabClick}
-        //             as={Link} to='/signup'
-        //         />
-        //     </Menu.Menu>) :
-        //     (<Menu.Menu position='right'>
-        //         <Menu.Item
-        //             name='sign out'
-        //             icon={<Icon name='sign-out' />}
-        //             active={activeTab === 'sign out'}
-        //             onClick={SigninStore.handleSignout}
-        //         />
-        //     </Menu.Menu>);
-
-        // Return has to return one component
         return (
             <div>
 
@@ -242,17 +211,12 @@ export default class AppRouter extends React.Component {
                 <BrowserRouter>
 
                     <div className='text-center'>
-                        <Sticky>    {/* Allows scrollable nav bar */}
 
-                            {/* semantic UI components for linking to url paths */}
-                            <Menu className='bg-light p-4' pointing secondary icon='labeled' >
-                                {this.renderPrimaryNavByAuthState(activeTab)}
-
-                                {/**/}
-                                {this.renderSecondaryNavByAuthState(activeTab)}
-
-                            </Menu>
-                        </Sticky>
+                        {/* semantic UI components for linking to url paths */}
+                        <Menu className='bg-light p-4' pointing secondary icon='labeled' >
+                            {this.renderPrimaryNavByAuthState(activeTab)}
+                            {this.renderSecondaryNavByAuthState(activeTab)}
+                        </Menu>
 
                         {/* Switch Component that holds Routes */}
                         <Switch>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import _ from 'lodash'
 import faker from 'faker'
 
-import { Header, Search, Divider } from 'semantic-ui-react';
+import { Header, Search, Divider, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 
 import ChemicalSearchStore from './ChemicalSearchStore';
@@ -51,21 +51,24 @@ export default class ChemicalSearch extends React.Component {
         return (
             <div className='p-5'>
 
-                <Header> Perform global chemical search </Header>
+                <Segment>
+                    <Header> Perform global chemical search </Header>
+                    <Divider />
+                    <Search
+                        input={{ fluid: true }}
+                        placeholder={'Please insert the identifier of your chemical (e.g. name, CAS, SMILES)'}
+                        loading={isLoading}
+                        onResultSelect={this.handleResultSelect}
+                        onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+                        results={results}
+                        value={value}
+                    />
+                </Segment>
 
-                <Search
-                    input={{ fluid: true }}
-                    placeholder={'Please insert the identifier of your chemical (e.g. name, CAS, SMILES)'}
-                    loading={isLoading}
-                    onResultSelect={this.handleResultSelect}
-                    onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                    results={results}
-                    value={value}
-                />
-
-                <Header> Results of Search </Header>
-
-                <Divider />
+                <Segment>
+                    <Header> Results of Search </Header>
+                    <Divider />
+                </Segment>
             </div>
         )
     }
