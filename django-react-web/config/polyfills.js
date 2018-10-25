@@ -6,6 +6,27 @@ import Adapter from 'enzyme-adapter-react-16';
 /* Configure to use enzyme */
 configure({ adapter: new Adapter() });
 
+/* Configure local storage */
+var localStorageMock = (function () {
+  var store = {};
+  return {
+    getItem: function (key) {
+      return store[key];
+    },
+    setItem: function (key, value) {
+      store[key] = value.toString();
+    },
+    clear: function () {
+      store = {};
+    },
+    removeItem: function (key) {
+      delete store[key];
+    }
+  };
+})();
+
+Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+
 
 if (typeof Promise === 'undefined') {
   // Rejection tracking prevents a common issue where React gets into an

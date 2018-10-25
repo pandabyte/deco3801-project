@@ -8,26 +8,22 @@ class HrmsInstrumentStore {
     @observable newInstrument = {
         brand: '',
         model: '',
-        class: '',
         sources: ''
     }
 
     @action
+    clearNewInstrument = () => {
+        this.newInstrument = {
+            brand: '',
+            model: '',
+            sources: ''
+        }
+    }
+
+    @action
     setup = () => {
-        this.instruments = [
-            {
-                brand: 'brand1',
-                model: 'brand1',
-                class: 'brand1',
-                sources: 'brand1'
-            },
-            {
-                brand: 'brand2',
-                model: 'brand2',
-                class: 'brand2',
-                sources: 'brand2'
-            }
-        ]
+        this.instruments = Mock.instruments.slice();
+        this.clearNewInstrument();
     }
 
     @action

@@ -11,6 +11,35 @@ export default class HrmsInstrumentView extends React.Component {
         HrmsInstrumentStore.setup();
     }
 
+    createBrandOptions = (arr) => {
+        return arr.map((el, index) => {
+            return ({
+                key: index,
+                value: el,
+                text: el
+            });
+        });
+    }
+
+    createOptions = (brand, key) => {
+        if (Object.keys(Mock.options).includes(brand)) {
+
+            return Mock.options[brand][key].map((el, index) => {
+                return ({
+                    key: index,
+                    value: el,
+                    text: el
+                });
+            })
+        } else {
+            return [{
+                key: 0,
+                value: 'default',
+                text: 'default'
+            }];
+        }
+
+    }
     onRemoveInstrument = (e) => {
         const index = e.target.id;
         HrmsInstrumentStore.instruments.splice(index, 1);
@@ -23,10 +52,11 @@ export default class HrmsInstrumentView extends React.Component {
             {
                 brand: newInstrument.brand,
                 model: newInstrument.model,
-                class: newInstrument.class,
                 sources: newInstrument.sources
             }
         );
+
+        HrmsInstrumentStore.clearNewInstrument();
     }
 
     onChangeNewInstrument = (e, data) => {
@@ -36,7 +66,7 @@ export default class HrmsInstrumentView extends React.Component {
     render() {
 
         const { instruments, newInstrument } = HrmsInstrumentStore;
-
+        const brand = newInstrument.brand;
         return (
             <div className='p-5 text-center'>
 
@@ -51,26 +81,21 @@ export default class HrmsInstrumentView extends React.Component {
                                 name='brand' label='Brand' fluid selection
                                 value={newInstrument.brand}
                                 onChange={this.onChangeNewInstrument}
-                                options={Mock.brandOptions}
+                                options={this.createBrandOptions(Object.keys(Mock.options))}
                             />
+
                             <Form.Dropdown
                                 name='model' label='Model' fluid selection
                                 value={newInstrument.model}
-                                options={Mock.modelOptions}
-
-                            />
-                            <Form.Dropdown
-                                name='class' label='Class' fluid selection
-                                value={newInstrument.class}
                                 onChange={this.onChangeNewInstrument}
-                                options={Mock.classOptions}
-
+                                options={this.createOptions(brand, 'models')}
                             />
+
                             <Form.Dropdown
                                 name='sources' label='Sources' fluid selection
                                 value={newInstrument.sources}
                                 onChange={this.onChangeNewInstrument}
-                                options={Mock.sourcesOptions}
+                                options={this.createOptions(brand, 'sources')}
                             />
                             <Form.Button
                                 positive fluid content='add'
@@ -90,11 +115,7 @@ export default class HrmsInstrumentView extends React.Component {
                                         label='Model' fluid
                                         value={instrument.model}
                                     />
-                                    <Form.Field control={Input}
-                                        label='Class' fluid
-                                        value={instrument.class}
 
-                                    />
                                     <Form.Field control={Input}
                                         label='Sources' fluid
                                         value={instrument.sources}
