@@ -1,3 +1,4 @@
+import os
 from django.test import TestCase
 
 from users.models import User
@@ -222,3 +223,42 @@ class TestApiV1(TestCase):
         expected = {'error': 'User matching query does not exist.'}
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), expected)
+
+    def test_upload(self):
+        """
+        Test uploading a file for processing.
+        """
+        file = open('test.txt', 'w')
+
+        # Upload file without authorization
+        response = self.client.put(
+            '/api/v1/upload/',
+            {'file': file},
+            HTTP_CONTENT_DISPOSITION='form-data; name="file"; filename="test.txt"'
+        )
+        expected = {'detail': 'Authentication credentials were not provided.'}
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json(), expected)
+
+        # Upload file with authorization
+        response = self.client.put(
+            '/api/v1/upload/',
+            {'file': file},
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+            HTTP_CONTENT_DISPOSITION='form-data; name="file"; filename="test.txt"'
+        )
+        expected = {'message': 'File saved'}
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.json(), expected)
+
+        # Upload without file
+        response = self.client.put(
+            '/api/v1/upload/',
+            HTTP_AUTHORIZATION='Bearer ' + self.token,
+        )
+        expected = {'error': 'File not found'}
+        self.assertEqual(response.status_code, 422)
+        self.assertEqual(response.json(), expected)
+
+        file.close()
+        os.remove('test.txt')
