@@ -998,15 +998,8 @@ fieldset.fields1 dl.pmlist dd.recipients {
 /* Miscellaneous styles
 ---------------------------------------- */
 .copyright {
-	font-size: 10px;
+	padding: 5px;
 	text-align: center;
-	padding: 10px;
-}
-
-.footer-row {
-	font-size: 10px;
-	line-height: 1.8;
-	margin: 0;
 }
 
 .small {

@@ -7,7 +7,6 @@
 <!-- IF U_MARK_FORUMS -->
 	<div class="action-bar compact">
 		<a href="{U_MARK_FORUMS}" class="mark-read rightside" accesskey="m" data-ajax="mark_forums_read">{L_MARK_FORUMS_READ}</a>
-
 	</div>
 <!-- ENDIF -->
 <!-- EVENT index_body_markforums_after -->
@@ -16,16 +15,11 @@
 
 <!-- EVENT index_body_forumlist_body_after -->
 
-
-
-<!-- EVENT index_body_stat_blocks_before -->
-<div class="stats">{L_STATISTICS}</div>
-<div class="statsblock">
 <!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
 	<form method="post" action="{S_LOGIN_ACTION}" class="headerspace">
 	<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
 		<fieldset class="quick-login">
-			<i class="fa fa-sign-in" aria-hidden="true"></i><label for="username"><span>{L_USERNAME}{L_COLON}</span> <input type="text" tabindex="1" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" /></label>
+			<label for="username"><span>{L_USERNAME}{L_COLON}</span> <input type="text" tabindex="1" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" /></label>
 			<label for="password"><span>{L_PASSWORD}{L_COLON}</span> <input type="password" tabindex="2" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" autocomplete="off" /></label>
 			<!-- IF U_SEND_PASSWORD -->
 				<a href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a>
@@ -38,6 +32,10 @@
 		</fieldset>
 	</form>
 <!-- ENDIF -->
+
+<!-- EVENT index_body_stat_blocks_before -->
+<div class="stats">{L_STATISTICS}</div>
+<div class="statsblock">
 <!-- IF S_DISPLAY_ONLINE_LIST -->
 	<div class="stat-block online-list">
 		<!-- IF U_VIEWONLINE --><h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3>{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->

@@ -60,13 +60,6 @@ div#content {
      -moz-box-shadow: inset 0px 1px 0 #757575;
      box-shadow: inset 0px 1px 0 #757575;    
 }
-@media (max-width: 700px){
-.nav-main {
-	position: sticky;
-    top: 0px;
-    z-index: 10;	
-}
-}
 ul#nav-breadcrumbs {
     background-color: #f8f8f8;
     padding: 5px;
@@ -324,16 +317,6 @@ i.fa.fa-pie-chart {
     padding-bottom: 10px;
     padding-top: 10px;
 }
-i.fa.fa-sign-in {
-    font-size: 25px;
-    padding: 0 8px;
-    top: 7px;
-    position: relative;
-}
-@media (max-width: 700px) {
-	i.fa.fa-sign-in {
-	top:40px;}
-}
 .backhead {
 	background: #0080da;
     background: -moz-linear-gradient(top, #0080da 0, #006db9 100%);
@@ -365,21 +348,4 @@ i.fa.fa-sign-in {
 	.row .pagination {
      margin-top: 2px;
 	}
-}
-@media (max-width: 700px) {
-	.headerbar {
-	border-bottom:none;
-    box-shadow: none;
-	-webkit-box-shadow: none;	
-}
-}
-@media (max-width: 700px) {
-.forabg, .forumbg, .stats, .statsblock {
-    margin: 0 -10px;
-}
-}
-@media (max-width: 700px) {
-.stats{
-	margin: 0px -10px -21px -10px;
-}
 }
