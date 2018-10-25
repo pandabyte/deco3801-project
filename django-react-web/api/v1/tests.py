@@ -159,9 +159,6 @@ class TestApiV1(TestCase):
             'last_name': 'test1',
         }
         # Update user profile without authorization
-        original_details = {
-            'username': self.user.username,
-        }
         response = self.client.post(
             '/api/v1/userprofile/update/',
             new_details,
@@ -171,6 +168,9 @@ class TestApiV1(TestCase):
         self.assertEqual(response.json(), expected)
 
         # Update user profile with authorization
+        original_details = {
+            'username': self.user.username,
+        }
         response = self.client.post(
             '/api/v1/userprofile/update/',
             new_details,
@@ -221,7 +221,7 @@ class TestApiV1(TestCase):
             {'email': 'fake@example.com'},
         )
         expected = {'error': 'User matching query does not exist.'}
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.json(), expected)
 
     def test_upload(self):

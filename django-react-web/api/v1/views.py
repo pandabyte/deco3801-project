@@ -83,10 +83,10 @@ def password_recovery_request(request):
                 fail_silently=False,
             )
         except SMTPException:
-            return JsonResponse({'error': str(e)}, status=400, reason=str(e))
+            return JsonResponse({'error': str(e)}, status=422, reason=str(e))
         return JsonResponse({})
     except ObjectDoesNotExist as e:
-        return JsonResponse({'error': str(e)}, status=400, reason=str(e))
+        return JsonResponse({'error': str(e)}, status=422, reason=str(e))
 
 @api_view(['PUT'])
 @parser_classes((FileUploadParser,))
