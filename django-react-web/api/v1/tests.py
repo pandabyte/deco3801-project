@@ -202,3 +202,23 @@ class TestApiV1(TestCase):
         }
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), expected)
+
+    def test_password_recovery_request(self):
+        """
+        Test password recovery request.
+        """
+        # Request password recovery with existing user
+        response = self.client.post(
+            '/api/v1/password-recovery/request/',
+            {'email': self.user.email},
+        )
+        self.assertEqual(response.status_code, 200)
+
+        # Request password recovery with nonexistent user
+        response = self.client.post(
+            '/api/v1/password-recovery/request/',
+            {'email': 'fake@example.com'},
+        )
+        expected = {'error': 'User matching query does not exist.'}
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json(), expected)
