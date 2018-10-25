@@ -101,21 +101,12 @@ export default class AppRouter extends React.Component {
         />,
         <Menu.Item
             key='6'
-
             name='forum'
             active={activeTab === 'forum'}
             icon={<Icon name='wechat' />}
             onClick={AppRouterStore.handleTabClick}
-            as={Link} to='/forum'
-        />,
-        <Menu.Item
-            key='7'
-
-            name='information'
-            active={activeTab === 'information'}
-            icon={<Icon name='graduation cap' />}
-            onClick={AppRouterStore.handleTabClick}
-            as={Link} to='/information'
+            href='http://ec2-18-224-228-152.us-east-2.compute.amazonaws.com/' 
+            target='_blank'
         />,
         <Menu.Item
             key='8'

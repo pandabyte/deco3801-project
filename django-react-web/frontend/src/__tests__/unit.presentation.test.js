@@ -1,14 +1,23 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Error404 from '../modules/Error/Error404';
-import { Divider, Header, Grid, Search, Segment } from 'semantic-ui-react';
+import { Divider, Header, Grid, Search, Segment, Menu, Icon, Container } from 'semantic-ui-react';
+import { Provider } from 'mobx-react';
+
 
 import AppHeader from '../modules/Layout/AppHeader';
 import AppFooter from '../modules/Layout/AppFooter';
 import ChemicalSearch from "../modules/Search/ChemicalSearch";
+import Error404 from '../modules/Error/Error404';
+import Dashboard from '../modules/Dashboard/Dashboard';
+import RootContainer from '../RootContainer';
+import App from '../App';
 
-
-describe('Set: Test shallow rendering of App component', () => {
+describe('Set: Test shallow rendering of React component', () => {
+    test("Shallow Test: App Component", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find(Provider).length).toEqual(1);
+        expect(wrapper.find(RootContainer).length).toEqual(1);
+    });
 
     test("Shallow Test: Error Component", () => {
         const wrapper = shallow(<Error404 />);
@@ -21,7 +30,6 @@ describe('Set: Test shallow rendering of App component', () => {
         const wrapper = shallow(<AppHeader />);
         expect(wrapper.find(Header).length).toEqual(1);
         expect(wrapper.find('div').length).toEqual(1);
-
     });
 
     test("Shallow Test: AppFooter Component", () => {
@@ -39,8 +47,19 @@ describe('Set: Test shallow rendering of App component', () => {
         expect(wrapper.find(Search).length).toEqual(1);
         expect(wrapper.find(Divider).length).toEqual(2);
         expect(wrapper.find(Segment).length).toEqual(2);
-        
+    });
+
+    test("Shallow Test: Dashboard Component", () => {
+        const wrapper = shallow(<Dashboard />);
+        expect(wrapper.find(Container).length).toEqual(1);
+        expect(wrapper.find(Grid).length).toEqual(1);
+        expect(wrapper.find(Grid.Column).length).toEqual(9);
+        expect(wrapper.find(Icon).length).toEqual(9);
+        expect(wrapper.find(Header).length).toEqual(9);
+        expect(wrapper.find(Menu.Item).length).toEqual(9);
     });
 });
+
+
 
 

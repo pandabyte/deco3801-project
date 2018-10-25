@@ -46,11 +46,6 @@ export default class Dashboard extends React.Component {
                 url: '/acquisition'
             },
             {
-                iconName: 'graduation cap',
-                tabName: 'Documentation and Education',
-                url: '/information'
-            },
-            {
                 iconName: 'help',
                 tabName: 'Help and FAQ',
                 url: '/help'
