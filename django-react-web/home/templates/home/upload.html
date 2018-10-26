@@ -18,7 +18,12 @@
         <input type="submit" value="Submit">
     </form>
     <script>
-      document.getElementById('id_token').value = localStorage.getItem('access')
+      if (localStorage.getItem('access')) {
+        document.getElementById('id_token').value = localStorage.getItem('access')
+      } else {
+        document.getElementById('id_token').value = "{{ token }}"
+      }
+
     </script>
   </body>
 </html>

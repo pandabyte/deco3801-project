@@ -28,23 +28,26 @@ export default class Upload extends React.Component {
         keys.forEach(key => {
             files.push(selectedFiles[key]);
         });
-
+        let uploadUrl = '/upload/?token=' + localStorage.getItem('access')
         return (
             <div>
-
                 {/* Form to select files */}
                 <Segment className='text-center p-4'>
                     <div className='d-inline-block p-4'>
+                        
                         <Label
                             as="label" htmlFor="singleFile" size="big">
                             <Icon name='file text' size='big' />
                             Upload Single File
                         </Label>
+                        
                         <input
                             id="singleFile" hidden type="file"
                             onChange={this.onChangeSingleFile}
-                        />
+                        /><br />
+
                     </div>
+                    
 
                     <div className='d-inline-block p-5'>
                         <Label
@@ -58,6 +61,7 @@ export default class Upload extends React.Component {
                         />
                     </div>
                 </Segment>
+                <a href={uploadUrl}><small>Test upload link</small></a>
                 <br />
 
                 {/* Table to display currently selected files */}

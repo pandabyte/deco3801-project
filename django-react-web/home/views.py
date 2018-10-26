@@ -19,7 +19,7 @@ def upload(request):
             try:
                 token = jwt.decode(request.POST['token'], settings.SECRET_KEY, algorithm='HS256')
                 user = User.objects.get(id=token['user_id'])
-            except:
+            except e:
                 form = UploadForm()
                 return render(request, 'home/upload.html', {'form': form, 'message': 'Your session has expired, please log in again.'})
                 #return HttpResponse(status=422)
@@ -31,5 +31,6 @@ def upload(request):
             form = UploadForm()
             return render(request, 'home/upload.html', {'form': form, 'message': 'Form is invalid, please reopen this window.'})
     else:
+        token = request.GET.get('token')
         form = UploadForm()
-    return render(request, 'home/upload.html', {'form': form})
+    return render(request, 'home/upload.html', {'form': form, 'token': token})
