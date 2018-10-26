@@ -13,6 +13,29 @@ import RootContainer from '../RootContainer';
 import App from '../App';
 
 describe('Set: Test shallow rendering of React component', () => {
+    /* Configure local storage */
+    beforeAll(() => {
+        var localStorageMock = (function () {
+            var store = {};
+            return {
+            getItem: function (key) {
+                return store[key];
+            },
+            setItem: function (key, value) {
+                store[key] = value.toString();
+            },
+            clear: function () {
+                store = {};
+            },
+            removeItem: function (key) {
+                delete store[key];
+            }
+            };
+        })();
+      
+      Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+    });
+
     test("Shallow Test: App Component", () => {
         const wrapper = shallow(<App />);
         expect(wrapper.find(Provider).length).toEqual(1);
