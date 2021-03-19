@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-djangorestframework = "==3.8.2"
+djangorestframework = "==3.11.2"
 pytz = "==2018.5"
 Django = "==2.1"
 django-webpack-loader = "==0.6.0"
